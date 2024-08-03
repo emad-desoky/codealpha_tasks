@@ -1,5 +1,3 @@
-/* src/components/products/Products.module.css */
-
 .featuredProducts {
   padding: 40px 20px;
   background: #f4f4f4;
@@ -99,14 +97,8 @@
   margin: 8px 0;
 }
 
-.originalPrice {
-  text-decoration: line-through;
-  color: #888;
-}
-
-.discountedPrice {
+.price {
   color: #e74c3c;
-  margin-left: 5px;
   font-weight: 600;
 }
 
@@ -164,80 +156,6 @@
   border-radius: 8px;
   box-shadow: 0 12px 24px rgba(0,0,0,0.2);
   z-index: 1000;
-}
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.pageButton {
-  border: 1px solid #ccc;
-  background: #f8f8f8;
-  padding: 10px 15px;
-  margin: 0 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.pageButton.active {
-  background: #556cdc;
-  color: white;
-}
-
-.pageButton:hover {
-  background: #ddd;
-}
-.productDialog {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
-  z-index: 1000;
-  max-width: 600px;
-  width: 100%;
-  text-align: center;
-}
-
-.productDialog img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 15px;
-}
-
-.productDialog p {
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.productDialog .closeButton {
-  background-color: #e74c3c;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-.productDialog .closeButton:hover {
-  background-color: #c0392b;
-}
-.productDialog {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
-  z-index: 1000;
   max-width: 600px;
   width: 100%;
   text-align: center;
@@ -272,4 +190,30 @@
 
 .productDialog .closeButton:hover {
   background-color: #c0392b;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pageButton {
+  border: none;
+  background: #ddd;
+  padding: 10px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.pageButton:hover {
+  background-color: #ccc;
+}
+
+.pageButton.active {
+  background-color: #007bff;
+  color: white;
 }

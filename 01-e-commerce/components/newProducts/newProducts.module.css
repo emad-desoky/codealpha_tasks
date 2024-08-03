@@ -1,112 +1,105 @@
 .newProducts {
-    padding: 20px;
-  }
-  
-  .newProducts h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .newProducts hr {
-    margin-bottom: 20px;
-  }
-  
-  .productCard {
-    position: relative;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    background: #fff;
-  }
-  
-  .productCardImg {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-  }
-  
-  .productImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .likeButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(255, 255, 255, 0.7);
-    border: none;
-    border-radius: 50%;
-    padding: 8px;
-    cursor: pointer;
-  }
-  
-  .liked {
-    color: red;
-  }
-  
-  .productCardBody {
-    padding: 10px;
-  }
-  
-  .productCategory {
-    font-size: 0.9rem;
-    color: #777;
-  }
-  
-  .productName {
-    font-size: 1.1rem;
-    margin: 5px 0;
-  }
-  
-  .productPrice {
-    font-size: 1rem;
-    margin: 5px 0;
-  }
-  
-  .originalPrice {
-    text-decoration: line-through;
-    color: #999;
-  }
-  
-  .discountedPrice {
-    color: #e60000;
-    margin-left: 10px;
-  }
-  
-  .productActions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-  
-  .addToCartButton,
-  .quickViewButton {
-    background: #556cdc;
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  }
-  
-  .buttonText {
-    margin-left: 5px;
-  }
-  
-  .productDialog {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
-  
+  padding: 20px;
+}
+
+.newProducts h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.newProducts hr {
+  margin-bottom: 20px;
+}
+
+.productCard {
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.productCardImg {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.likeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.liked {
+  color: red;
+}
+
+.productCardBody {
+  padding: 10px;
+}
+
+.productCategory {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.productName {
+  font-size: 1.1rem;
+  margin: 5px 0;
+}
+
+.productPrice {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.price {
+  color: #e60000;
+}
+
+.productActions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.addToCartButton,
+.quickViewButton {
+  background: #556cdc;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.buttonText {
+  margin-left: 5px;
+}
+
+.productDialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}

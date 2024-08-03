@@ -89,11 +89,8 @@ const NewProducts = () => {
                   <p className={styles.productCategory}>{product.category}</p>
                   <h4 className={styles.productName}>{product.name}</h4>
                   <p className={styles.productPrice}>
-                    <span className={styles.originalPrice}>
-                      ${product.originalPrice.toFixed(2)}
-                    </span>
-                    <span className={styles.discountedPrice}>
-                      ${product.discountedPrice.toFixed(2)}
+                    <span className={styles.price}>
+                      ${product.price.toFixed(2)}
                     </span>
                   </p>
                   <div className={styles.productActions}>

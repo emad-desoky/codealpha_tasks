@@ -13,13 +13,12 @@ const Products = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [likedProducts, setLikedProducts] = useState(new Set());
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6; // Changed to 6 products per page
+  const itemsPerPage = 6;
 
   useEffect(() => {
     fetch("/api/products")
       .then((response) => response.json())
       .then((data) => {
-        // Filter out new products
         const filteredProducts = data.filter(
           (product) => product.category !== "newProduct"
         );
@@ -44,7 +43,27 @@ const Products = () => {
     });
   };
 
-  // Paginate products
+  const handleAddToCart = async (product) => {
+    try {
+      const response = await fetch("/api/cart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...product,
+          quantity: 1, // Set quantity to 1 or any default value
+        }),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to add to cart");
+      }
+      alert("Product added to cart");
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+    }
+  };
+
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
   const currentProducts = products.slice(
@@ -52,7 +71,6 @@ const Products = () => {
     indexOfLastProduct
   );
 
-  // Page numbers
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
     pageNumbers.push(i);
@@ -90,15 +108,15 @@ const Products = () => {
               <p className={styles.productCategory}>{product.category}</p>
               <h4 className={styles.productName}>{product.name}</h4>
               <p className={styles.productPrice}>
-                <span className={styles.originalPrice}>
-                  ${product.originalPrice.toFixed(2)}
-                </span>
-                <span className={styles.discountedPrice}>
-                  ${product.discountedPrice.toFixed(2)}
+                <span className={styles.price}>
+                  ${product.price.toFixed(2)}
                 </span>
               </p>
               <div className={styles.productActions}>
-                <button className={styles.addToCartButton}>
+                <button
+                  className={styles.addToCartButton}
+                  onClick={() => handleAddToCart(product)}
+                >
                   <FontAwesomeIcon icon={faShoppingCart} />
                   <span className={styles.buttonText}>Add to Cart</span>
                 </button>

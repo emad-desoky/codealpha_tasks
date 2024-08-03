@@ -94,5 +94,23 @@
     "name": "Product Short Name",
     "originalPrice": 99,
     "discountedPrice": 49
+  },
+  {
+    "id": "14",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "price": 99,
+    "discountedPrice": 49,
+    "quantity": 1
+  },
+  {
+    "id": "15",
+    "image": "https://contents.mediadecathlon.com/p2606919/k$a531927e5c71c12f4d3edac227199f78/jogflow-5001-men-s-running-shoes-white-blue-red.jpg?format=auto&quality=40&f=452x452",
+    "category": "mens fashion",
+    "name": "Product Short Name",
+    "price": 99,
+    "discountedPrice": 49,
+    "quantity": 1
   }
 ]
