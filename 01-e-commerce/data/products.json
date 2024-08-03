@@ -1,52 +1,186 @@
 [
-    {
-      "id": "p001",
-      "name": "UltraSlim Laptop Pro",
-      "category": "laptop",
-      "price": 999.99,
-      "images": [
-        "https://example.com/images/laptop1.jpg",
-        "https://example.com/images/laptop2.jpg"
-      ]
-    },
-    {
-      "id": "p002",
-      "name": "Smartphone X1",
-      "category": "mobile",
-      "price": 499.99,
-      "images": [
-        "https://example.com/images/mobile1.jpg",
-        "https://example.com/images/mobile2.jpg"
-      ]
-    },
-    {
-      "id": "p003",
-      "name": "Men's Stylish Jacket",
-      "category": "mensfashion",
-      "price": 89.99,
-      "images": [
-        "https://example.com/images/jacket1.jpg",
-        "https://example.com/images/jacket2.jpg"
-      ]
-    },
-    {
-      "id": "p004",
-      "name": "Women's Elegant Dress",
-      "category": "womenfashion",
-      "price": 129.99,
-      "images": [
-        "https://example.com/images/dress1.jpg",
-        "https://example.com/images/dress2.jpg"
-      ]
-    },
-    {
-      "id": "p005",
-      "name": "Gaming Laptop RTX",
-      "category": "laptop",
-      "price": 1499.99,
-      "images": [
-        "https://example.com/images/gaming_laptop1.jpg",
-        "https://example.com/images/gaming_laptop2.jpg"
-      ]
-    }
-  ]
+  {
+    "id": "1",
+    "image": "https://allegro.stati.pl/AllegroIMG/PRODUCENCI/ASUS/ProArt-StudioBook-Pro-17/02-wielozadaniowosc.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "2",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "3",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "4",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "5",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "6",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "7",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "8",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "9",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "10",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "11",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "12",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "13",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "14",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "15",
+    "image": "https://contents.mediadecathlon.com/p2606919/k$a531927e5c71c12f4d3edac227199f78/jogflow-5001-men-s-running-shoes-white-blue-red.jpg?format=auto&quality=40&f=452x452",
+    "category": "mens fashion",
+    "name": "Product Short Name",
+    "originalPrice": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "16",
+    "image": "https://example.com/image7.jpg",
+    "category": "newProduct",
+    "name": "New Product 1",
+    "originalPrice": 199.0,
+    "discountedPrice": 149.0
+  },
+  {
+    "id": "17",
+    "image": "https://example.com/image8.jpg",
+    "category": "newProduct",
+    "name": "New Product 2",
+    "originalPrice": 199.0,
+    "discountedPrice": 149.0
+  },
+  {
+    "id": "18",
+    "image": "https://example.com/image9.jpg",
+    "category": "newProduct",
+    "name": "New Product 3",
+    "originalPrice": 199.0,
+    "discountedPrice": 149.0
+  },
+  {
+    "id": "19",
+    "image": "https://example.com/image10.jpg",
+    "category": "newProduct",
+    "name": "New Product 4",
+    "originalPrice": 199.0,
+    "discountedPrice": 149.0
+  },
+  {
+    "id": "20",
+    "image": "https://example.com/image11.jpg",
+    "category": "newProduct",
+    "name": "New Product 5",
+    "originalPrice": 199.0,
+    "discountedPrice": 149.0
+  },
+  {
+    "id": "21",
+    "image": "https://example.com/image12.jpg",
+    "category": "newProduct",
+    "name": "New Product 6",
+    "originalPrice": 199.0,
+    "discountedPrice": 149.0
+  },
+  {
+    "id": "22",
+    "image": "https://example.com/image13.jpg",
+    "category": "newProduct",
+    "name": "New Product 7",
+    "originalPrice": 199.0,
+    "discountedPrice": 149.0
+  },
+  {
+    "id": "23",
+    "image": "https://example.com/image14.jpg",
+    "category": "newProduct",
+    "name": "New Product 8",
+    "originalPrice": 199.0,
+    "discountedPrice": 149.0
+  }
+]

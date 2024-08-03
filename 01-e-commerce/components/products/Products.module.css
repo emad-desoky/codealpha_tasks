@@ -165,3 +165,26 @@
   box-shadow: 0 12px 24px rgba(0,0,0,0.2);
   z-index: 1000;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pageButton {
+  border: 1px solid #ccc;
+  background: #f8f8f8;
+  padding: 10px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.pageButton.active {
+  background: #556cdc;
+  color: white;
+}
+
+.pageButton:hover {
+  background: #ddd;
+}

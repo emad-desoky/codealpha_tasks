@@ -1,0 +1,88 @@
+.salesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    padding: 40px;
+    background: linear-gradient(to right, #e0f7fa, #dbe1e2); /* Optional background gradient */
+}
+
+.saleCard {
+    position: relative;
+    width: 400px;
+    height: 500px; /* Increased height for taller cards */
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+    border: 2px solid #ddd; /* Optional border */
+}
+
+.saleCard:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border-color: #556cdc; /* Border color change on hover */
+}
+
+.saleCard img {
+    width: 100%;
+    height: 60%; /* Adjusted height to leave space for the overlay */
+    object-fit: cover;
+    transition: filter 0.3s ease;
+}
+
+.saleCard:hover img {
+    filter: brightness(70%);
+}
+
+.saleOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%; /* Adjusted height */
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    transition: background 0.3s ease;
+}
+
+.saleOverlay:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.saleContent {
+    text-align: center;
+    color: #fff;
+}
+
+.saleContent h2 {
+    font-size: 30px;
+    margin: 0 0 10px;
+    font-weight: bold;
+}
+
+.saleContent p {
+    font-size: 22px;
+    margin: 0 0 10px;
+}
+
+.button {
+    background-color: #556cdc;
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+    background-color: #3f4dbf;
+    transform: scale(1.05);
+}

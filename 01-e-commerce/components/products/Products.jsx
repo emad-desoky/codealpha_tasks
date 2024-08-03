@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Products.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,85 +8,25 @@ import {
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
 
-const products = [
-  {
-    id: 1,
-    image:
-      "https://allegro.stati.pl/AllegroIMG/PRODUCENCI/ASUS/ProArt-StudioBook-Pro-17/02-wielozadaniowosc.jpg",
-    category: "Category 1",
-    name: "Product Short Name",
-    originalPrice: 99.0,
-    discountedPrice: 49.0,
-  },
-  {
-    id: 2,
-    image:
-      "https://contents.mediadecathlon.com/p2606919/k$a531927e5c71c12f4d3edac227199f78/jogflow-5001-men-s-running-shoes-white-blue-red.jpg?format=auto&quality=40&f=452x452",
-    category: "Category 2",
-    name: "Product Short Name",
-    originalPrice: 99.0,
-    discountedPrice: 49.0,
-  },
-  {
-    id: 2,
-    image:
-      "https://contents.mediadecathlon.com/p2606919/k$a531927e5c71c12f4d3edac227199f78/jogflow-5001-men-s-running-shoes-white-blue-red.jpg?format=auto&quality=40&f=452x452",
-    category: "Category 2",
-    name: "Product Short Name",
-    originalPrice: 99.0,
-    discountedPrice: 49.0,
-  },
-  {
-    id: 2,
-    image:
-      "https://contents.mediadecathlon.com/p2606919/k$a531927e5c71c12f4d3edac227199f78/jogflow-5001-men-s-running-shoes-white-blue-red.jpg?format=auto&quality=40&f=452x452",
-    category: "Category 2",
-    name: "Product Short Name",
-    originalPrice: 99.0,
-    discountedPrice: 49.0,
-  },
-  {
-    id: 2,
-    image:
-      "https://contents.mediadecathlon.com/p2606919/k$a531927e5c71c12f4d3edac227199f78/jogflow-5001-men-s-running-shoes-white-blue-red.jpg?format=auto&quality=40&f=452x452",
-    category: "Category 2",
-    name: "Product Short Name",
-    originalPrice: 99.0,
-    discountedPrice: 49.0,
-  },
-  {
-    id: 2,
-    image:
-      "https://contents.mediadecathlon.com/p2606919/k$a531927e5c71c12f4d3edac227199f78/jogflow-5001-men-s-running-shoes-white-blue-red.jpg?format=auto&quality=40&f=452x452",
-    category: "Category 2",
-    name: "Product Short Name",
-    originalPrice: 99.0,
-    discountedPrice: 49.0,
-  },
-  {
-    id: 2,
-    image:
-      "https://contents.mediadecathlon.com/p2606919/k$a531927e5c71c12f4d3edac227199f78/jogflow-5001-men-s-running-shoes-white-blue-red.jpg?format=auto&quality=40&f=452x452",
-    category: "Category 2",
-    name: "Product Short Name",
-    originalPrice: 99.0,
-    discountedPrice: 49.0,
-  },
-  {
-    id: 2,
-    image:
-      "https://contents.mediadecathlon.com/p2606919/k$a531927e5c71c12f4d3edac227199f78/jogflow-5001-men-s-running-shoes-white-blue-red.jpg?format=auto&quality=40&f=452x452",
-    category: "Category 2",
-    name: "Product Short Name",
-    originalPrice: 99.0,
-    discountedPrice: 49.0,
-  },
-  // Add more products as needed
-];
-
 const Products = () => {
+  const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [likedProducts, setLikedProducts] = useState(new Set());
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6; // Changed to 6 products per page
+
+  useEffect(() => {
+    fetch("/api/products")
+      .then((response) => response.json())
+      .then((data) => {
+        // Filter out new products
+        const filteredProducts = data.filter(
+          (product) => product.category !== "newProduct"
+        );
+        setProducts(filteredProducts);
+      })
+      .catch((error) => console.error("Error fetching products:", error));
+  }, []);
 
   const handleQuickView = (product) => {
     setSelectedProduct(product);
@@ -104,12 +44,26 @@ const Products = () => {
     });
   };
 
+  // Paginate products
+  const indexOfLastProduct = currentPage * itemsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  // Page numbers
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
   return (
     <section className={styles.featuredProducts}>
       <h3>Featured Products</h3>
       <hr />
       <div className={styles.productsContainer}>
-        {products.map((product) => (
+        {currentProducts.map((product) => (
           <div key={product.id} className={styles.productCard}>
             <div className={styles.productCardImg}>
               <img
@@ -161,11 +115,24 @@ const Products = () => {
         ))}
       </div>
 
-      {/* Optional: Dialog Component for Quick View */}
+      {/* Pagination Controls */}
+      <div className={styles.pagination}>
+        {pageNumbers.map((number) => (
+          <button
+            key={number}
+            className={`${styles.pageButton} ${
+              currentPage === number ? styles.active : ""
+            }`}
+            onClick={() => setCurrentPage(number)}
+          >
+            {number}
+          </button>
+        ))}
+      </div>
+
       {selectedProduct && (
         <div className={styles.productDialog}>
           <h4>{selectedProduct.name}</h4>
-          {/* Include more product details here */}
           <button onClick={() => setSelectedProduct(null)}>Close</button>
         </div>
       )}
