@@ -1,0 +1,77 @@
+.footer {
+    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+    color: #fff;
+    padding: 40px 0;
+}
+
+.footer h5 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footer p,
+.footer li {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.footer .list {
+    list-style: none;
+    padding: 0;
+}
+
+.footer .tags {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+.footer .subscribeForm {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.footer .subscribeForm input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.footer .subscribeBtn {
+    background: #2196f3;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.footer .subscribeBtn:hover {
+    background: #1976d2;
+}
+
+.footer .socialIcons {
+    font-size: 24px;
+}
+
+.footer .socialIcons svg {
+    margin-right: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.footer .socialIcons svg:hover {
+    color: #ffeb3b;
+}
+
+.footerBottom {
+    text-align: center;
+    padding: 20px 0;
+    background: #182848;
+}
+
+.footerBottom p {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}

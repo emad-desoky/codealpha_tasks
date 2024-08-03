@@ -1,0 +1,93 @@
+/* Ensuring the navbar and its elements have the correct styles */
+.mainNavbar {
+    border-bottom: 1px solid #ccc;
+    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+}
+
+.topNavbar {
+    background: transparent;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.brandName {
+    color: #fff !important;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navLink {
+    color: #fff !important;
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.navLink:hover {
+    color: #ffeb3b !important;
+}
+
+.navIcon {
+    margin-right: 8px;
+    font-size: 20px;
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+.searchBtn {
+    background: #2196f3 !important;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.searchBtn:hover {
+    background: #1976d2 !important;
+}
+
+.dropdownMenu {
+    padding: 0;
+    border-radius: 0;
+    background-color: #2874f0 !important;
+}
+
+.dropdownItem {
+    padding: 8px 16px;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+    color: #fff !important;
+    transition: background 0.3s ease;
+}
+
+.dropdownItem:hover {
+    background-color: #1f5bb4 !important;
+}
+
+.dropdownItemIcon {
+    width: 20px;
+    text-align: center;
+    color: #fff !important;
+    font-size: 20px;
+}
+
+.navbar {
+    padding: 0;
+    background: transparent !important;
+}
+
+.navbarNav .nav-item .nav-link {
+    padding: 8px 12px;
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbarNav .nav-item .nav-link:hover {
+    color: #ffeb3b !important;
+}

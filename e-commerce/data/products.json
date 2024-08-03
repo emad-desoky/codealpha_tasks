@@ -1,0 +1,52 @@
+[
+    {
+      "id": "p001",
+      "name": "UltraSlim Laptop Pro",
+      "category": "laptop",
+      "price": 999.99,
+      "images": [
+        "https://example.com/images/laptop1.jpg",
+        "https://example.com/images/laptop2.jpg"
+      ]
+    },
+    {
+      "id": "p002",
+      "name": "Smartphone X1",
+      "category": "mobile",
+      "price": 499.99,
+      "images": [
+        "https://example.com/images/mobile1.jpg",
+        "https://example.com/images/mobile2.jpg"
+      ]
+    },
+    {
+      "id": "p003",
+      "name": "Men's Stylish Jacket",
+      "category": "mensfashion",
+      "price": 89.99,
+      "images": [
+        "https://example.com/images/jacket1.jpg",
+        "https://example.com/images/jacket2.jpg"
+      ]
+    },
+    {
+      "id": "p004",
+      "name": "Women's Elegant Dress",
+      "category": "womenfashion",
+      "price": 129.99,
+      "images": [
+        "https://example.com/images/dress1.jpg",
+        "https://example.com/images/dress2.jpg"
+      ]
+    },
+    {
+      "id": "p005",
+      "name": "Gaming Laptop RTX",
+      "category": "laptop",
+      "price": 1499.99,
+      "images": [
+        "https://example.com/images/gaming_laptop1.jpg",
+        "https://example.com/images/gaming_laptop2.jpg"
+      ]
+    }
+  ]

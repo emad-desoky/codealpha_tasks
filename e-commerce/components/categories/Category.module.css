@@ -1,0 +1,43 @@
+/* src/components/Category.module.css */
+.categoryContainer {
+    margin: 0; /* Remove any default margin */
+    padding: 0; /* Remove any default padding */
+}
+
+.categoryCard {
+    border: 1px solid #ddd;
+    border-radius: .375rem;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.125), 0 .5rem 1rem rgba(0,0,0,.15);
+    transition: all 0.3s ease;
+}
+
+.categoryCard:hover {
+    box-shadow: 0 0 0 1px rgba(0,0,0,.125), 0 .75rem 1.25rem rgba(0,0,0,.1);
+    transform: translateY(-5px);
+}
+
+.categoryCardImg {
+    overflow: hidden;
+}
+
+.categoryCardImg img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.categoryCardBody {
+    padding: 1rem;
+    text-align: center;
+    border-top: 1px solid #d4caca; /* Thicker and more noticeable line */
+    position: relative;
+    z-index: 1;
+    background: #fff;
+}
+
+.categoryCardBody h5 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+}

@@ -1,0 +1,157 @@
+/* src/components/FramerMotion.module.css */
+.pageContainer {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Ensure the navbar and image are stacked vertically */
+    align-items: center;
+    overflow: hidden; /* Prevent overflow */
+    padding-top: 0; /* Remove any padding that might create space above */
+}
+
+.next,
+.prev {
+    top: calc(50% - 20px);
+    position: absolute;
+    background: white;
+    border-radius: 30px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    z-index: 2;
+    transition: background 0.3s ease; /* Smooth background transition */
+}
+
+.next {
+    right: 10px;
+}
+
+.prev {
+    left: 10px;
+    transform: scale(-1);
+}
+
+.next:hover,
+.prev:hover {
+    background: #e0e0e0; /* Light hover effect */
+}
+
+.img {
+    position: absolute;
+    width: 100vw; /* Ensure it takes up full viewport width */
+    max-width: 120vw; /* Allows image to be wider if needed */
+    top: 0; /* Position at the top of the viewport */
+    left: 0; /* Align to the left */
+    object-fit: cover; /* Maintain aspect ratio and fit within container */
+    transition: opacity 1s ease-in-out; /* Smooth image transitions */
+    filter: blur(0px); /* Apply blur effect */
+    z-index: 0; /* Make sure the image is behind other elements */
+}
+
+.imgOverlay {
+    position: absolute;
+    top: 40%;
+    left: 5%;
+    transform: translateY(-50%); /* Center vertically */
+    text-align: left;
+    z-index: 1; /* Ensure overlay is above the image */
+    color: #0e0d0d; /* Adjust text color for better readability */
+    max-width: 40%; /* Restrict width to fit within container */
+    opacity: 0.9; /* Slightly translucent overlay */
+    transition: opacity 0.5s ease; /* Smooth transition for opacity */
+}
+
+.imgOverlay:hover {
+    opacity: 1; /* Fully opaque on hover */
+}
+
+.overlayContent h1 {
+    font-size: 3rem; /* Adjust size as needed */
+    margin-bottom: 1rem;
+    animation: fadeIn 2s ease-in-out; /* Fade-in animation */
+}
+
+.overlayContent h2 {
+    font-size: 2rem; /* Adjust size as needed */
+    margin-bottom: 1rem;
+    animation: fadeIn 2s ease-in-out 0.5s; /* Delay fade-in for h2 */
+}
+
+.overlayContent p {
+    font-size: 1.2rem; /* Adjust size as needed */
+    margin-bottom: 2rem;
+    animation: fadeIn 2s ease-in-out 1s; /* Delay fade-in for p */
+}
+
+.overlayContent button {
+    background: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+    border: none; /* Remove default border */
+    color: rgb(15, 13, 13); /* Text color */
+    padding: 12px 24px; /* Increased padding for a larger button */
+    border-radius: 8px; /* Slightly more rounded corners */
+    font-size: 1rem; /* Font size */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    transform: scale(1); /* Default scale */
+    backdrop-filter: blur(10px); /* Apply a blur effect to background */
+}
+
+.overlayContent button:hover {
+    background: rgba(255, 255, 255, 0.9); /* Slightly more opaque on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+    animation: pulse 1.5s infinite; /* Add a pulse animation */
+}
+
+/* Pulse animation */
+@keyframes pulse {
+    0% {
+        transform: scale(1.05);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+.refresh {
+    padding: 10px;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.5s ease; /* Smooth background transition */
+}
+
+.refresh:hover {
+    background: rgba(0, 0, 0, 0.6); /* Darker hover effect */
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
