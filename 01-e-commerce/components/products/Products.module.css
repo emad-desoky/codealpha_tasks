@@ -188,3 +188,88 @@
 .pageButton:hover {
   background: #ddd;
 }
+.productDialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+  z-index: 1000;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.productDialog img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.productDialog p {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.productDialog .closeButton {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.productDialog .closeButton:hover {
+  background-color: #c0392b;
+}
+.productDialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+  z-index: 1000;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.dialogImage {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.productDialog h4 {
+  margin: 10px 0;
+  color: #333;
+}
+
+.productDialog p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.productDialog .closeButton {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.productDialog .closeButton:hover {
+  background-color: #c0392b;
+}

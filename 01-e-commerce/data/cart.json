@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": "Wireless Headphones",
+    "price": 99.99,
+    "quantity": 1,
+    "image": "https://example.com/images/wireless_headphones.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Smartphone",
+    "price": 599.99,
+    "quantity": 1,
+    "image": "https://example.com/images/smartphone.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Bluetooth Speaker",
+    "price": 49.99,
+    "quantity": 2,
+    "image": "https://example.com/images/bluetooth_speaker.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Laptop",
+    "price": 1199.99,
+    "quantity": 1,
+    "image": "https://example.com/images/laptop.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Smartwatch",
+    "price": 199.99,
+    "quantity": 1,
+    "image": "https://example.com/images/smartwatch.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Gaming Mouse",
+    "price": 89.99,
+    "quantity": 1,
+    "image": "https://example.com/images/gaming_mouse.jpg"
+  },
+  {
+    "id": 7,
+    "name": "4K Monitor",
+    "price": 349.99,
+    "quantity": 1,
+    "image": "https://example.com/images/4k_monitor.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Mechanical Keyboard",
+    "price": 129.99,
+    "quantity": 1,
+    "image": "https://example.com/images/mechanical_keyboard.jpg"
+  },
+  {
+    "id": "2",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99,
+    "discountedPrice": 49
+  },
+  {
+    "id": "2",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99,
+    "discountedPrice": 49
+  },
+  {
+    "id": "3",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99,
+    "discountedPrice": 49
+  },
+  {
+    "id": "4",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99,
+    "discountedPrice": 49
+  },
+  {
+    "id": "3",
+    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "category": "laptop-mobile",
+    "name": "Product Short Name",
+    "originalPrice": 99,
+    "discountedPrice": 49
+  }
+]

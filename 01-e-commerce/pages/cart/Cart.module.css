@@ -1,0 +1,89 @@
+.cartContainer {
+    margin-top: 2rem;
+  }
+  
+  .cartItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 1rem;
+  }
+  
+  .cartItem:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .imageCol {
+    flex-shrink: 0;
+  }
+  
+  .productImage {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .detailsCol {
+    flex-grow: 1;
+    padding-left: 1rem;
+  }
+  
+  .removeButton {
+    border: none;
+    background-color: transparent;
+    color: #dc3545;
+    font-size: 1rem;
+    transition: color 0.3s;
+    margin-top: 1rem;
+  }
+  
+  .removeButton:hover {
+    color: #a71d2a;
+  }
+  
+  .summaryCard {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #f8f9fa;
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .summaryCard .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .summaryCard .card-text {
+    font-size: 1.125rem;
+    color: #555;
+  }
+  
+  .checkoutButton {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background-color: #28a745;
+    border: none;
+    color: #fff;
+    border-radius: 0.25rem;
+    font-size: 1.125rem;
+    transition: background-color 0.3s;
+  }
+  
+  .checkoutButton:hover {
+    background-color: #218838;
+  }
+  
