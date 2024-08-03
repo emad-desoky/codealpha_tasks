@@ -1,0 +1,167 @@
+/* src/components/products/Products.module.css */
+
+.featuredProducts {
+  padding: 40px 20px;
+  background: #f4f4f4;
+}
+
+.featuredProducts h3 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.featuredProducts hr {
+  margin-bottom: 30px;
+  border: 0;
+  border-top: 3px solid #ddd;
+}
+
+.productsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.productCard {
+  position: relative;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  width: 300px;
+  text-align: center;
+  background: #fff;
+  margin: 10px;
+  padding: 0;
+}
+
+.productCard:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  transform: translateY(-8px);
+}
+
+.productCardImg {
+  position: relative;
+}
+
+.productCardImg img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.productCard:hover .productCardImg img {
+  transform: scale(1.1);
+  filter: brightness(0.9);
+}
+
+.likeButton {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: white; /* Default color */
+  font-size: 1.8rem;
+  transition: color 0.3s ease;
+}
+
+.liked {
+  color: #e74c3c; /* Red color when liked */
+}
+
+.productCardBody {
+  padding: 1.5rem;
+  border-top: 1px solid #ddd;
+  background: #fff;
+}
+
+.productCategory {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.productName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 8px 0;
+  color: #333;
+}
+
+.productPrice {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.originalPrice {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.discountedPrice {
+  color: #e74c3c;
+  margin-left: 5px;
+  font-weight: 600;
+}
+
+.productActions {
+  display: flex;
+  flex-direction: column; /* Arrange buttons vertically */
+  gap: 10px;
+  margin-top: 15px;
+  padding: 0 10px;
+}
+
+.addToCartButton, .quickViewButton {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.addToCartButton {
+  background-color: #4caf50;
+  color: white;
+}
+
+.addToCartButton:hover {
+  background-color: #45a049;
+}
+
+.quickViewButton {
+  background-color: #007bff;
+  color: white;
+}
+
+.quickViewButton:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.buttonText {
+  margin-left: 8px;
+}
+
+.productDialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
