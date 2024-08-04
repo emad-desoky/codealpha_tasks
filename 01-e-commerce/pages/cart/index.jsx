@@ -10,15 +10,31 @@ const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
+    // Fetch cart items from the backend when the component mounts
     fetch("/api/cart")
       .then((response) => response.json())
-      .then((data) => setCartItems(data))
+      .then((data) => {
+        // Ensure the cart is initially empty or populated correctly
+        setCartItems(data);
+      })
       .catch((error) => console.error("Error fetching cart items:", error));
   }, []);
 
   const handleRemove = (id) => {
-    // Logic to handle removal
-    console.log(`Remove item with id: ${id}`);
+    fetch(`/api/cart?id=${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Remove the item from the local state
+          setCartItems((prevItems) =>
+            prevItems.filter((item) => item.id !== id)
+          );
+        } else {
+          throw new Error("Failed to remove item");
+        }
+      })
+      .catch((error) => console.error("Error removing item:", error));
   };
 
   const calculateTotal = () => {
