@@ -8,9 +8,11 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Navbar = () => {
   const [cartCount, setCartCount] = useState(0);
+  const [scrollingUp, setScrollingUp] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -22,13 +24,30 @@ const Navbar = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("Cart data fetched successfully:", data);
         const totalItems = data.reduce((sum, item) => sum + item.quantity, 0);
         setCartCount(totalItems);
       })
       .catch((error) => {
         console.error("Error fetching cart data:", error);
       });
+
+    let lastScrollTop = 0;
+    const handleScroll = () => {
+      const currentScroll =
+        window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > lastScrollTop) {
+        setScrollingUp(false);
+      } else {
+        setScrollingUp(true);
+      }
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const handleCartClick = (event) => {
@@ -36,8 +55,20 @@ const Navbar = () => {
     router.push("/cart");
   };
 
+  const handleClick = (event, link) => {
+    if (link === "cart") {
+      handleCartClick(event);
+    } else {
+      event.preventDefault();
+    }
+  };
+
   return (
-    <div className={`${styles.mainNavbar} shadow-sm sticky-top`}>
+    <div
+      className={`${styles.mainNavbar} shadow-sm sticky-top ${
+        scrollingUp ? "" : styles.hidden
+      }`}
+    >
       <div className={styles.topNavbar}>
         <div className="container-fluid">
           <div className="row">
@@ -64,7 +95,7 @@ const Navbar = () => {
                   <a
                     className={`${styles.navLink} nav-link`}
                     href="#"
-                    onClick={handleCartClick}
+                    onClick={(e) => handleClick(e, "cart")}
                   >
                     <ShoppingCartIcon className={styles.navIcon} />
                     <span>Cart ({cartCount})</span>
@@ -96,6 +127,7 @@ const Navbar = () => {
                       <a
                         className={`${styles.dropdownItem} dropdown-item`}
                         href="#"
+                        onClick={(e) => handleClick(e, "profile")}
                       >
                         <PersonOutlineIcon
                           className={styles.dropdownItemIcon}
@@ -107,6 +139,7 @@ const Navbar = () => {
                       <a
                         className={`${styles.dropdownItem} dropdown-item`}
                         href="#"
+                        onClick={(e) => handleClick(e, "orders")}
                       >
                         <ListAltIcon className={styles.dropdownItemIcon} /> My
                         Orders
@@ -116,6 +149,7 @@ const Navbar = () => {
                       <a
                         className={`${styles.dropdownItem} dropdown-item`}
                         href="#"
+                        onClick={(e) => handleClick(e, "wishlist")}
                       >
                         <FavoriteBorderIcon
                           className={styles.dropdownItemIcon}
@@ -127,6 +161,7 @@ const Navbar = () => {
                       <a
                         className={`${styles.dropdownItem} dropdown-item`}
                         href="#"
+                        onClick={(e) => handleClick(e, "cart")}
                       >
                         <ShoppingCartIcon className={styles.dropdownItemIcon} />{" "}
                         My Cart
@@ -136,6 +171,7 @@ const Navbar = () => {
                       <a
                         className={`${styles.dropdownItem} dropdown-item`}
                         href="#"
+                        onClick={(e) => handleClick(e, "logout")}
                       >
                         <ExitToAppIcon className={styles.dropdownItemIcon} />{" "}
                         Logout
@@ -169,27 +205,71 @@ const Navbar = () => {
               className={`navbar-nav me-auto mb-2 mb-lg-0 ${styles.navbarNav}`}
             >
               <li className="nav-item">
+                <Link href="/" passHref>
+                  <span className={`${styles.navLink} nav-link`}>Home</span>
+                </Link>
+              </li>
+              <li className="nav-item">
                 <a
-                  className={`nav-link active ${styles.navLink}`}
-                  aria-current="page"
+                  className={`${styles.navLink} nav-link`}
                   href="#"
+                  onClick={(e) => handleClick(e, "categories")}
                 >
-                  Home
+                  All Categories
                 </a>
               </li>
               <li className="nav-item">
-                <a className={`nav-link ${styles.navLink}`} href="#">
-                  Shop
+                <a
+                  className={`${styles.navLink} nav-link`}
+                  href="#"
+                  onClick={(e) => handleClick(e, "new-arrivals")}
+                >
+                  New Arrivals
                 </a>
               </li>
               <li className="nav-item">
-                <a className={`nav-link ${styles.navLink}`} href="#">
-                  About
+                <a
+                  className={`${styles.navLink} nav-link`}
+                  href="#"
+                  onClick={(e) => handleClick(e, "featured-products")}
+                >
+                  Featured Products
                 </a>
               </li>
               <li className="nav-item">
-                <a className={`nav-link ${styles.navLink}`} href="#">
-                  Contact
+                <a
+                  className={`${styles.navLink} nav-link`}
+                  href="#"
+                  onClick={(e) => handleClick(e, "electronics")}
+                >
+                  Electronics
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className={`${styles.navLink} nav-link`}
+                  href="#"
+                  onClick={(e) => handleClick(e, "fashion")}
+                >
+                  Fashion
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className={`${styles.navLink} nav-link`}
+                  href="#"
+                  onClick={(e) => handleClick(e, "home-appliances")}
+                >
+                  Home Appliances
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className={`${styles.navLink} nav-link`}
+                  href="#"
+                  onClick={(e) => handleClick(e, "furniture")}
+                >
+                  Furniture
                 </a>
               </li>
             </ul>

@@ -3,7 +3,12 @@
     border-bottom: 1px solid #ccc;
     background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
+    transition: opacity 2s ease, transform 2s ease; /* Add transition */
+}
+
+.mainNavbar.hidden {
+    opacity: 0;
+    transform: translateY(-100%);
 }
 
 .topNavbar {
@@ -27,6 +32,7 @@
     display: flex;
     align-items: center;
     transition: color 0.3s ease;
+    text-decoration: none; /* Remove underline */
 }
 
 .navLink:hover {
@@ -62,6 +68,7 @@
     font-size: 14px;
     color: #fff !important;
     transition: background 0.3s ease;
+    text-decoration: none; /* Remove underline */
 }
 
 .dropdownItem:hover {
@@ -86,6 +93,7 @@
     font-size: 14px;
     font-weight: 500;
     transition: color 0.3s ease;
+    text-decoration: none; /* Remove underline */
 }
 
 .navbarNav .nav-item .nav-link:hover {

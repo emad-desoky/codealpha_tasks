@@ -1,29 +1,20 @@
 [
   {
-    "id": "6",
-    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
-    "category": "laptop-mobile",
+    "id": "8",
+    "image": "https://contents.mediadecathlon.com/p2606919/k$a531927e5c71c12f4d3edac227199f78/jogflow-5001-men-s-running-shoes-white-blue-red.jpg?format=auto&quality=40&f=452x452",
+    "category": "mens fashion",
     "name": "Product Short Name",
     "price": 99,
     "discountedPrice": 49,
     "quantity": 1
   },
   {
-    "id": "18",
-    "image": "https://example.com/image9.jpg",
-    "category": "newProduct",
-    "name": "New Product 3",
-    "price": 199,
-    "discountedPrice": 149,
-    "quantity": 1
-  },
-  {
-    "id": "18",
-    "image": "https://example.com/image9.jpg",
-    "category": "newProduct",
-    "name": "New Product 3",
-    "price": 199,
-    "discountedPrice": 149,
+    "id": "1000",
+    "image": "https://img.freepik.com/free-photo/handsome-confident-hipster-modelsexy-unshaven-man-dressed-summer-stylish-green-hoodie-jeans-clothes-fashion-male-with-curly-hairstyle-posing-studio-isolated-blue_158538-26586.jpg",
+    "category": "mens fashion",
+    "name": "Product Short Name",
+    "price": 99,
+    "discountedPrice": 49,
     "quantity": 1
   }
 ]

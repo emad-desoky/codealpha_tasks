@@ -1,3 +1,4 @@
+// NewProducts.jsx
 import React, { useState, useEffect } from "react";
 import SwiperCore, { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,6 +11,7 @@ import {
   faEye,
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
+import Dialog from "../dialog/Dialog"; // Import the Dialog component
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -22,7 +24,6 @@ const NewProducts = () => {
     fetch("/api/products")
       .then((response) => response.json())
       .then((data) => {
-        console.log("Fetched data:", data);
         const filteredProducts = data.filter(
           (product) => product.category === "newProduct"
         );
@@ -48,7 +49,6 @@ const NewProducts = () => {
   };
 
   const handleAddToCart = (product) => {
-    // Send a POST request to add the product to the cart
     fetch("/api/cart", {
       method: "POST",
       headers: {
@@ -67,7 +67,6 @@ const NewProducts = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Added to cart:", data);
-        // Optionally, you can handle successful addition here
       })
       .catch((error) => console.error("Error adding to cart:", error));
   };
@@ -142,12 +141,10 @@ const NewProducts = () => {
         )}
       </Swiper>
 
-      {selectedProduct && (
-        <div className={styles.productDialog}>
-          <h4>{selectedProduct.name}</h4>
-          <button onClick={() => setSelectedProduct(null)}>Close</button>
-        </div>
-      )}
+      <Dialog
+        product={selectedProduct}
+        onClose={() => setSelectedProduct(null)}
+      />
     </section>
   );
 };

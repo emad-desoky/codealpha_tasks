@@ -1,3 +1,4 @@
+// Products.jsx
 import React, { useState, useEffect } from "react";
 import styles from "./Products.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,6 +8,7 @@ import {
   faEye,
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
+import Dialog from "../dialog/Dialog"; // Import the Dialog component
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -133,27 +135,22 @@ const Products = () => {
         ))}
       </div>
 
-      {/* Pagination Controls */}
       <div className={styles.pagination}>
         {pageNumbers.map((number) => (
           <button
             key={number}
-            className={`${styles.pageButton} ${
-              currentPage === number ? styles.active : ""
-            }`}
             onClick={() => setCurrentPage(number)}
+            className={currentPage === number ? styles.active : ""}
           >
             {number}
           </button>
         ))}
       </div>
 
-      {selectedProduct && (
-        <div className={styles.productDialog}>
-          <h4>{selectedProduct.name}</h4>
-          <button onClick={() => setSelectedProduct(null)}>Close</button>
-        </div>
-      )}
+      <Dialog
+        product={selectedProduct}
+        onClose={() => setSelectedProduct(null)}
+      />
     </section>
   );
 };

@@ -1,71 +1,7 @@
 [
   {
     "id": "1",
-    "image": "https://allegro.stati.pl/AllegroIMG/PRODUCENCI/ASUS/ProArt-StudioBook-Pro-17/02-wielozadaniowosc.jpg",
-    "category": "laptop-mobile",
-    "name": "Product Short Name",
-    "price": 99.0,
-    "discountedPrice": 49.0
-  },
-  {
-    "id": "2",
-    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
-    "category": "laptop-mobile",
-    "name": "Product Short Name",
-    "price": 99.0,
-    "discountedPrice": 49.0
-  },
-  {
-    "id": "3",
-    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
-    "category": "laptop-mobile",
-    "name": "Product Short Name",
-    "price": 99.0,
-    "discountedPrice": 49.0
-  },
-  {
-    "id": "4",
-    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
-    "category": "laptop-mobile",
-    "name": "Product Short Name",
-    "price": 99.0,
-    "discountedPrice": 49.0
-  },
-  {
-    "id": "5",
-    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
-    "category": "laptop-mobile",
-    "name": "Product Short Name",
-    "price": 99.0,
-    "discountedPrice": 49.0
-  },
-  {
-    "id": "6",
-    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
-    "category": "laptop-mobile",
-    "name": "Product Short Name",
-    "price": 99.0,
-    "discountedPrice": 49.0
-  },
-  {
-    "id": "7",
-    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
-    "category": "laptop-mobile",
-    "name": "Product Short Name",
-    "price": 99.0,
-    "discountedPrice": 49.0
-  },
-  {
-    "id": "8",
-    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
-    "category": "laptop-mobile",
-    "name": "Product Short Name",
-    "price": 99.0,
-    "discountedPrice": 49.0
-  },
-  {
-    "id": "9",
-    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "image": "https://m.media-amazon.com/images/I/81a5Xbt8dRL._AC_UF894,1000_QL80_.jpg",
     "category": "laptop-mobile",
     "name": "Product Short Name",
     "price": 99.0,
@@ -73,46 +9,102 @@
   },
   {
     "id": "10",
-    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "image": "https://m.media-amazon.com/images/I/81a5Xbt8dRL._AC_UF894,1000_QL80_.jpg",
     "category": "laptop-mobile",
     "name": "Product Short Name",
     "price": 99.0,
     "discountedPrice": 49.0
   },
   {
-    "id": "11",
-    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "id": "2",
+    "image": "https://media.kijiji.ca/api/v1/ca-prod-fsbo-ads/images/54/54923fde-fee9-48d3-ab13-7d847970237e?rule=kijijica-400-webp",
     "category": "laptop-mobile",
     "name": "Product Short Name",
     "price": 99.0,
     "discountedPrice": 49.0
   },
   {
-    "id": "12",
-    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "id": "20",
+    "image": "https://media.kijiji.ca/api/v1/ca-prod-fsbo-ads/images/54/54923fde-fee9-48d3-ab13-7d847970237e?rule=kijijica-400-webp",
     "category": "laptop-mobile",
     "name": "Product Short Name",
     "price": 99.0,
     "discountedPrice": 49.0
   },
   {
-    "id": "13",
-    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
+    "id": "3",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNxvnHUr4q-1YDtxzv4qRQuFyPRrceqsfRI1Qq6fss3pg6kWfY3YlS2tkCAJzsJymrp-w&usqp=CAU",
+    "category": "Women fashion",
+    "name": "Product Short Name",
+    "price": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "30",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNxvnHUr4q-1YDtxzv4qRQuFyPRrceqsfRI1Qq6fss3pg6kWfY3YlS2tkCAJzsJymrp-w&usqp=CAU",
+    "category": "Women fashion",
+    "name": "Product Short Name",
+    "price": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "4",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXVHH3tZNwuFb1EBHZyrH0Lr5tt-7ijrB4TR6tDo3fGwJEVLhIxXlUwH_EmMyLZyvHKmk&usqp=CAU",
+    "category": "mens fashion",
+    "name": "Product Short Name",
+    "price": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "40",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXVHH3tZNwuFb1EBHZyrH0Lr5tt-7ijrB4TR6tDo3fGwJEVLhIxXlUwH_EmMyLZyvHKmk&usqp=CAU",
+    "category": "mens fashion",
+    "name": "Product Short Name",
+    "price": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "5",
+    "image": "https://www.reliancedigital.in/wp-content/uploads/2023/07/Oppo_Reno_10_5g_Cover.jpg",
     "category": "laptop-mobile",
     "name": "Product Short Name",
     "price": 99.0,
     "discountedPrice": 49.0
   },
   {
-    "id": "14",
-    "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
-    "category": "laptop-mobile",
+    "id": "6",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqPnybBPTRIDvD7IBm5LMFrWz6lSYviWNk_cCaUSIp20K8VKeAHdeYkIrCU1WzsMlq0Is&usqp=CAU",
+    "category": "Women fashion",
     "name": "Product Short Name",
     "price": 99.0,
     "discountedPrice": 49.0
   },
   {
-    "id": "15",
+    "id": "66",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqPnybBPTRIDvD7IBm5LMFrWz6lSYviWNk_cCaUSIp20K8VKeAHdeYkIrCU1WzsMlq0Is&usqp=CAU",
+    "category": "Women fashion",
+    "name": "Product Short Name",
+    "price": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "7",
+    "image": "https://img.freepik.com/free-photo/handsome-confident-hipster-modelsexy-unshaven-man-dressed-summer-stylish-green-hoodie-jeans-clothes-fashion-male-with-curly-hairstyle-posing-studio-isolated-blue_158538-26586.jpg",
+    "category": "mens fashion",
+    "name": "Product Short Name",
+    "price": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "1000",
+    "image": "https://img.freepik.com/free-photo/handsome-confident-hipster-modelsexy-unshaven-man-dressed-summer-stylish-green-hoodie-jeans-clothes-fashion-male-with-curly-hairstyle-posing-studio-isolated-blue_158538-26586.jpg",
+    "category": "mens fashion",
+    "name": "Product Short Name",
+    "price": 99.0,
+    "discountedPrice": 49.0
+  },
+  {
+    "id": "8",
     "image": "https://contents.mediadecathlon.com/p2606919/k$a531927e5c71c12f4d3edac227199f78/jogflow-5001-men-s-running-shoes-white-blue-red.jpg?format=auto&quality=40&f=452x452",
     "category": "mens fashion",
     "name": "Product Short Name",
@@ -120,64 +112,64 @@
     "discountedPrice": 49.0
   },
   {
-    "id": "16",
-    "image": "https://example.com/image7.jpg",
+    "id": "9",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNxvnHUr4q-1YDtxzv4qRQuFyPRrceqsfRI1Qq6fss3pg6kWfY3YlS2tkCAJzsJymrp-w&usqp=CAU",
     "category": "newProduct",
     "name": "New Product 1",
     "price": 199.0,
     "discountedPrice": 149.0
   },
   {
-    "id": "17",
-    "image": "https://example.com/image8.jpg",
+    "id": "10",
+    "image": "https://img.freepik.com/free-photo/handsome-confident-hipster-modelsexy-unshaven-man-dressed-summer-stylish-green-hoodie-jeans-clothes-fashion-male-with-curly-hairstyle-posing-studio-isolated-blue_158538-26586.jpg",
     "category": "newProduct",
     "name": "New Product 2",
     "price": 199.0,
     "discountedPrice": 149.0
   },
   {
-    "id": "18",
-    "image": "https://example.com/image9.jpg",
+    "id": "11",
+    "image": "https://media.kijiji.ca/api/v1/ca-prod-fsbo-ads/images/54/54923fde-fee9-48d3-ab13-7d847970237e?rule=kijijica-400-webp",
     "category": "newProduct",
     "name": "New Product 3",
     "price": 199.0,
     "discountedPrice": 149.0
   },
   {
-    "id": "19",
-    "image": "https://example.com/image10.jpg",
+    "id": "12",
+    "image": "https://m.media-amazon.com/images/I/81a5Xbt8dRL._AC_UF894,1000_QL80_.jpg",
     "category": "newProduct",
     "name": "New Product 4",
     "price": 199.0,
     "discountedPrice": 149.0
   },
   {
-    "id": "20",
-    "image": "https://example.com/image11.jpg",
+    "id": "13",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXVHH3tZNwuFb1EBHZyrH0Lr5tt-7ijrB4TR6tDo3fGwJEVLhIxXlUwH_EmMyLZyvHKmk&usqp=CAU",
     "category": "newProduct",
     "name": "New Product 5",
     "price": 199.0,
     "discountedPrice": 149.0
   },
   {
-    "id": "21",
-    "image": "https://example.com/image12.jpg",
+    "id": "14",
+    "image": "https://www.reliancedigital.in/wp-content/uploads/2023/07/Oppo_Reno_10_5g_Cover.jpg",
     "category": "newProduct",
     "name": "New Product 6",
     "price": 199.0,
     "discountedPrice": 149.0
   },
   {
-    "id": "22",
-    "image": "https://example.com/image13.jpg",
+    "id": "15",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqPnybBPTRIDvD7IBm5LMFrWz6lSYviWNk_cCaUSIp20K8VKeAHdeYkIrCU1WzsMlq0Is&usqp=CAU",
     "category": "newProduct",
     "name": "New Product 7",
     "price": 199.0,
     "discountedPrice": 149.0
   },
   {
-    "id": "",
-    "image": "https://example.com/image14.jpg",
+    "id": "16",
+    "image": "https://contents.mediadecathlon.com/p2606919/k$a531927e5c71c12f4d3edac227199f78/jogflow-5001-men-s-running-shoes-white-blue-red.jpg?format=auto&quality=40&f=452x452",
     "category": "newProduct",
     "name": "New Product 8",
     "price": 199.0,
