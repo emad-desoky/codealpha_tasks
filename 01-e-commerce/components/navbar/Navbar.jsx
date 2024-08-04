@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Navbar.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,8 +12,35 @@ import {
   faCreditCard as faCreditCardRegular,
   faHeart as faHeartRegular,
 } from "@fortawesome/free-regular-svg-icons";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
+  const [cartCount, setCartCount] = useState(0);
+  const router = useRouter();
+
+  useEffect(() => {
+    fetch("/cart.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Cart data fetched successfully:", data); // Add this line
+        const totalItems = data.reduce((sum, item) => sum + item.quantity, 0);
+        setCartCount(totalItems);
+      })
+      .catch((error) => {
+        console.error("Error fetching cart data:", error);
+      });
+  }, []);
+
+  const handleCartClick = (event) => {
+    event.preventDefault();
+    router.push("/cart");
+  };
+
   return (
     <div className={`${styles.mainNavbar} shadow-sm sticky-top`}>
       <div className={styles.topNavbar}>
@@ -42,12 +69,16 @@ const Navbar = () => {
             <div className="col-md-5 my-auto">
               <ul className="nav justify-content-end">
                 <li className="nav-item">
-                  <a className={`${styles.navLink} nav-link`} href="#">
+                  <a
+                    className={`${styles.navLink} nav-link`}
+                    href="#"
+                    onClick={handleCartClick}
+                  >
                     <FontAwesomeIcon
                       icon={faCreditCardRegular}
                       className={styles.navIcon}
                     />
-                    <span>Cart (0)</span>
+                    <span>Cart ({cartCount})</span>
                   </a>
                 </li>
                 <li className="nav-item">
