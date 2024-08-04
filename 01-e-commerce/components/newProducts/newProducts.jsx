@@ -19,11 +19,10 @@ const NewProducts = () => {
   const [likedProducts, setLikedProducts] = useState(new Set());
 
   useEffect(() => {
-    fetch("/api/products") // Ensure this is the correct endpoint
+    fetch("/api/products")
       .then((response) => response.json())
       .then((data) => {
-        console.log("Fetched data:", data); // Debug line
-        // Filter new products only
+        console.log("Fetched data:", data);
         const filteredProducts = data.filter(
           (product) => product.category === "newProduct"
         );
@@ -46,6 +45,31 @@ const NewProducts = () => {
       }
       return updated;
     });
+  };
+
+  const handleAddToCart = (product) => {
+    // Send a POST request to add the product to the cart
+    fetch("/api/cart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: product.id,
+        image: product.image,
+        category: product.category,
+        name: product.name,
+        price: product.price,
+        discountedPrice: product.discountedPrice || product.price,
+        quantity: 1,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Added to cart:", data);
+        // Optionally, you can handle successful addition here
+      })
+      .catch((error) => console.error("Error adding to cart:", error));
   };
 
   return (
@@ -94,7 +118,10 @@ const NewProducts = () => {
                     </span>
                   </p>
                   <div className={styles.productActions}>
-                    <button className={styles.addToCartButton}>
+                    <button
+                      className={styles.addToCartButton}
+                      onClick={() => handleAddToCart(product)}
+                    >
                       <FontAwesomeIcon icon={faShoppingCart} />
                       <span className={styles.buttonText}>Add to Cart</span>
                     </button>

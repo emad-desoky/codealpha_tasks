@@ -1,11 +1,29 @@
 [
   {
-    "id": "3",
+    "id": "6",
     "image": "https://png.pngtree.com/background/20240112/original/pngtree-modern-workspace-concept-black-background-with-copy-space-for-laptop-and-picture-image_7226763.jpg",
     "category": "laptop-mobile",
     "name": "Product Short Name",
     "price": 99,
     "discountedPrice": 49,
+    "quantity": 1
+  },
+  {
+    "id": "18",
+    "image": "https://example.com/image9.jpg",
+    "category": "newProduct",
+    "name": "New Product 3",
+    "price": 199,
+    "discountedPrice": 149,
+    "quantity": 1
+  },
+  {
+    "id": "18",
+    "image": "https://example.com/image9.jpg",
+    "category": "newProduct",
+    "name": "New Product 3",
+    "price": 199,
+    "discountedPrice": 149,
     "quantity": 1
   }
 ]

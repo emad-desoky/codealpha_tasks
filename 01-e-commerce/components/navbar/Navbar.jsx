@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Navbar.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faSearch,
-  faThList,
-  faSignOut,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faUser as faUserRegular,
-  faCreditCard as faCreditCardRegular,
-  faHeart as faHeartRegular,
-} from "@fortawesome/free-regular-svg-icons";
+import SearchIcon from "@mui/icons-material/Search";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import ListAltIcon from "@mui/icons-material/ListAlt";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { useRouter } from "next/router";
 
 const Navbar = () => {
@@ -19,7 +14,7 @@ const Navbar = () => {
   const router = useRouter();
 
   useEffect(() => {
-    fetch("/cart.json")
+    fetch("/api/cart")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -27,7 +22,7 @@ const Navbar = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("Cart data fetched successfully:", data); // Add this line
+        console.log("Cart data fetched successfully:", data);
         const totalItems = data.reduce((sum, item) => sum + item.quantity, 0);
         setCartCount(totalItems);
       })
@@ -58,10 +53,7 @@ const Navbar = () => {
                     className="form-control"
                   />
                   <button className={`btn ${styles.searchBtn}`} type="submit">
-                    <FontAwesomeIcon
-                      icon={faSearch}
-                      style={{ color: "#fff" }}
-                    />
+                    <SearchIcon style={{ color: "#fff" }} />
                   </button>
                 </div>
               </form>
@@ -74,19 +66,13 @@ const Navbar = () => {
                     href="#"
                     onClick={handleCartClick}
                   >
-                    <FontAwesomeIcon
-                      icon={faCreditCardRegular}
-                      className={styles.navIcon}
-                    />
+                    <ShoppingCartIcon className={styles.navIcon} />
                     <span>Cart ({cartCount})</span>
                   </a>
                 </li>
                 <li className="nav-item">
                   <a className={`${styles.navLink} nav-link`} href="#">
-                    <FontAwesomeIcon
-                      icon={faHeartRegular}
-                      className={styles.navIcon}
-                    />
+                    <FavoriteBorderIcon className={styles.navIcon} />
                     <span>Wishlist (0)</span>
                   </a>
                 </li>
@@ -99,10 +85,7 @@ const Navbar = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <FontAwesomeIcon
-                      icon={faUserRegular}
-                      className={styles.navIcon}
-                    />
+                    <PersonOutlineIcon className={styles.navIcon} />
                     <span>Username</span>
                   </a>
                   <ul
@@ -114,8 +97,7 @@ const Navbar = () => {
                         className={`${styles.dropdownItem} dropdown-item`}
                         href="#"
                       >
-                        <FontAwesomeIcon
-                          icon={faUserRegular}
+                        <PersonOutlineIcon
                           className={styles.dropdownItemIcon}
                         />{" "}
                         Profile
@@ -126,11 +108,8 @@ const Navbar = () => {
                         className={`${styles.dropdownItem} dropdown-item`}
                         href="#"
                       >
-                        <FontAwesomeIcon
-                          icon={faThList}
-                          className={styles.dropdownItemIcon}
-                        />{" "}
-                        My Orders
+                        <ListAltIcon className={styles.dropdownItemIcon} /> My
+                        Orders
                       </a>
                     </li>
                     <li>
@@ -138,8 +117,7 @@ const Navbar = () => {
                         className={`${styles.dropdownItem} dropdown-item`}
                         href="#"
                       >
-                        <FontAwesomeIcon
-                          icon={faHeartRegular}
+                        <FavoriteBorderIcon
                           className={styles.dropdownItemIcon}
                         />{" "}
                         My Wishlist
@@ -150,10 +128,7 @@ const Navbar = () => {
                         className={`${styles.dropdownItem} dropdown-item`}
                         href="#"
                       >
-                        <FontAwesomeIcon
-                          icon={faCreditCardRegular}
-                          className={styles.dropdownItemIcon}
-                        />{" "}
+                        <ShoppingCartIcon className={styles.dropdownItemIcon} />{" "}
                         My Cart
                       </a>
                     </li>
@@ -162,10 +137,7 @@ const Navbar = () => {
                         className={`${styles.dropdownItem} dropdown-item`}
                         href="#"
                       >
-                        <FontAwesomeIcon
-                          icon={faSignOut}
-                          className={styles.dropdownItemIcon}
-                        />{" "}
+                        <ExitToAppIcon className={styles.dropdownItemIcon} />{" "}
                         Logout
                       </a>
                     </li>
@@ -197,53 +169,27 @@ const Navbar = () => {
               className={`navbar-nav me-auto mb-2 mb-lg-0 ${styles.navbarNav}`}
             >
               <li className="nav-item">
-                <a className={`${styles.navLink} nav-link`} href="#">
+                <a
+                  className={`nav-link active ${styles.navLink}`}
+                  aria-current="page"
+                  href="#"
+                >
                   Home
                 </a>
               </li>
               <li className="nav-item">
-                <a className={`${styles.navLink} nav-link`} href="#">
-                  All Categories
+                <a className={`nav-link ${styles.navLink}`} href="#">
+                  Shop
                 </a>
               </li>
               <li className="nav-item">
-                <a className={`${styles.navLink} nav-link`} href="#">
-                  New Arrivals
+                <a className={`nav-link ${styles.navLink}`} href="#">
+                  About
                 </a>
               </li>
               <li className="nav-item">
-                <a className={`${styles.navLink} nav-link`} href="#">
-                  Featured Products
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className={`${styles.navLink} nav-link`} href="#">
-                  Electronics
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className={`${styles.navLink} nav-link`} href="#">
-                  Fashion
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className={`${styles.navLink} nav-link`} href="#">
-                  Accessories
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className={`${styles.navLink} nav-link`} href="#">
-                  Bestsellers
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className={`${styles.navLink} nav-link`} href="#">
-                  More Offers
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className={`${styles.navLink} nav-link`} href="#">
-                  Contact Us
+                <a className={`nav-link ${styles.navLink}`} href="#">
+                  Contact
                 </a>
               </li>
             </ul>
