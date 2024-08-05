@@ -15,11 +15,6 @@ const Layout = () => {
         <div className="w-full h-screen gradient-background">
           <HeroSection className="w-full h-full" />
         </div>
-
-        {/* Body Section */}
-        <div className="w-full gradient-background">
-          <Body className="w-full" />
-        </div>
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
-// components/HeroSection.jsx
 import React from "react";
 import { motion } from "framer-motion";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { useRouter } from "next/router";
 
 const HeroSection = () => {
   // Animation settings for Framer Motion
@@ -14,6 +14,14 @@ const HeroSection = () => {
   const buttonAnimation = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } },
+  };
+
+  // Initialize the router
+  const router = useRouter();
+
+  // Function to handle button click
+  const handleButtonClick = () => {
+    router.push("/platform"); // Adjust the path according to your routing setup
   };
 
   return (
@@ -53,6 +61,7 @@ const HeroSection = () => {
               boxShadow: "0px 6px 8px rgba(0, 0, 0, 0.2)",
             },
           }}
+          onClick={handleButtonClick} // Add click handler
         >
           Join Us Now
         </Button>
