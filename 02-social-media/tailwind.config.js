@@ -1,3 +1,4 @@
+// tailwind.config.js
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -7,7 +8,17 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        gradient: {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "30%": { backgroundPosition: "100% 80%" },
+        },
+      },
+      animation: {
+        "gradient-motion": "gradient 5s ease infinite",
+      },
+    },
   },
   plugins: [],
 };

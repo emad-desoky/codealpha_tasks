@@ -17,7 +17,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-full w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white p-8">
+    <div className="flex flex-col justify-center items-center min-h-full w-full text-white p-8 bg-gradient-to-r from-blue-950 via-indigo-950 to-blue-950 bg-[length:400%_400%] animate-gradient-motion">
       <motion.div
         initial="hidden"
         animate="visible"
