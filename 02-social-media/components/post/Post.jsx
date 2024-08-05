@@ -18,7 +18,7 @@ const Post = ({ title, content, comments }) => {
       initial="hidden"
       animate="visible"
       variants={postAnimation}
-      className="bg-white rounded-lg shadow-lg mb-4 p-4 transition-transform transform hover:scale-105"
+      className="bg-blue-50 rounded-lg shadow-lg mb-4 p-4 transition-transform transform hover:scale-105"
     >
       <Typography variant="h6" gutterBottom>
         {title}

@@ -59,7 +59,7 @@ const Post = ({ title, content, comments, author }) => {
       initial="hidden"
       animate="visible"
       variants={postAnimation}
-      className="bg-white rounded-lg shadow-lg mb-4 p-4 transition-transform transform hover:scale-105"
+      className="bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-lg shadow-lg mb-4 p-4 transition-transform transform hover:scale-105"
       style={{ y }}
     >
       <div className="flex items-center mb-4">
@@ -123,7 +123,7 @@ const Body = () => {
   };
 
   return (
-    <div className="p-4 bg-gradient-to-r from-blue-100 to-blue-200 min-h-screen">
+    <div className="p-4 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 min-h-screen">
       <Typography variant="h4" gutterBottom>
         Recent Posts
       </Typography>
