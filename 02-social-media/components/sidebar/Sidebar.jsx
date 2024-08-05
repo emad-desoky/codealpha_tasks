@@ -17,13 +17,12 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import Tooltip from "@mui/material/Tooltip";
-import Icon from "@mui/material/Icon";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { styled } from "@mui/material/styles";
-import { useSpring, animated } from "@ui-aceternity";
+import { useSpring, animated } from "@react-spring/web";
 
 // Styled Avatar for Click Effect
 const ClickableAvatar = styled(Avatar)({
@@ -36,33 +35,20 @@ const ClickableAvatar = styled(Avatar)({
   },
 });
 
-// Styled Dialog with Animation
-const AnimatedDialog = ({ open, onClose, children }) => {
-  const [animate, setAnimate] = useState(open);
+// Styled Dialog for Settings
+const StyledDialogContent = styled(DialogContent)({
+  backgroundColor: "#f5f5f5",
+  padding: "24px",
+});
 
-  const props = useSpring({
-    opacity: open ? 1 : 0,
-    transform: open ? "translateY(0)" : "translateY(-50px)",
-    config: { duration: 300 },
-    onRest: () => {
-      if (!open) {
-        setAnimate(false);
-      }
-    },
-  });
-
-  if (!animate && !open) return null;
-
-  return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      PaperProps={{ style: { backgroundColor: "#333", color: "#fff" } }}
-    >
-      <animated.div style={props}>{children}</animated.div>
-    </Dialog>
-  );
-};
+const StyledListItem = styled(ListItem)({
+  borderRadius: "8px",
+  marginBottom: "8px",
+  backgroundColor: "#ffffff",
+  "&:hover": {
+    backgroundColor: "#e0e0e0",
+  },
+});
 
 const Sidebar = () => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -70,6 +56,14 @@ const Sidebar = () => {
   const [profilePicture, setProfilePicture] = useState(
     "/path-to-your-profile-pic.jpg"
   );
+  const [postContent, setPostContent] = useState("");
+  const [settings, setSettings] = useState({
+    deleteAccount: false,
+    safety: false,
+    aboutUs: false,
+    privacyPolicy: false,
+    termsOfService: false,
+  });
 
   const handleOpenDialog = () => setOpenDialog(true);
   const handleCloseDialog = () => setOpenDialog(false);
@@ -91,6 +85,20 @@ const Sidebar = () => {
   const handleProfilePictureClick = () => {
     document.getElementById("profile-picture-upload").click();
   };
+
+  // Animation for Create Post Dialog
+  const dialogProps = useSpring({
+    opacity: openDialog ? 1 : 0,
+    transform: openDialog ? "scale(1)" : "scale(0.9)",
+    config: { tension: 300, friction: 30 },
+  });
+
+  // Animation for Settings Dialog
+  const settingsDialogProps = useSpring({
+    opacity: openSettingsDialog ? 1 : 0,
+    transform: openSettingsDialog ? "scale(1)" : "scale(0.9)",
+    config: { tension: 300, friction: 30 },
+  });
 
   return (
     <div className="w-64 h-screen bg-gray-900 text-white flex flex-col p-4 shadow-lg">
@@ -196,75 +204,91 @@ const Sidebar = () => {
       </div>
 
       {/* Create Post Dialog */}
-      <AnimatedDialog open={openDialog} onClose={handleCloseDialog}>
-        <DialogTitle>Create a Post</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="title"
-            label="Post Title"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            margin="dense"
-            id="content"
-            label="Post Content"
-            type="text"
-            fullWidth
-            multiline
-            rows={4}
-            variant="standard"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDialog}>Cancel</Button>
-          <Button
-            onClick={() => {
-              // Handle Post Creation Logic
-              handleCloseDialog();
-            }}
-          >
-            Post
-          </Button>
-        </DialogActions>
-      </AnimatedDialog>
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <animated.div style={dialogProps}>
+          <DialogTitle>Create a Post</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="title"
+              label="Post Title"
+              type="text"
+              fullWidth
+              variant="standard"
+            />
+            <TextField
+              margin="dense"
+              id="content"
+              label="Post Content"
+              type="text"
+              fullWidth
+              multiline
+              rows={4}
+              variant="standard"
+              value={postContent}
+              onChange={(e) => setPostContent(e.target.value)}
+              inputProps={{ maxLength: 500 }}
+              helperText={`${postContent.length}/500 characters`}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseDialog}>Cancel</Button>
+            <Button
+              onClick={() => {
+                // Handle Post Creation Logic
+                handleCloseDialog();
+              }}
+            >
+              Post
+            </Button>
+          </DialogActions>
+        </animated.div>
+      </Dialog>
 
       {/* Settings Dialog */}
-      <AnimatedDialog
+      <Dialog
         open={openSettingsDialog}
         onClose={handleCloseSettingsDialog}
+        maxWidth="md"
+        fullWidth
       >
-        <DialogTitle>Settings</DialogTitle>
-        <DialogContent>
-          <List>
-            <ListItem button>
-              <ListItemText primary="Delete Account" />
-            </ListItem>
-            <Divider />
-            <ListItem button>
-              <ListItemText primary="Safety" />
-            </ListItem>
-            <Divider />
-            <ListItem button>
-              <ListItemText primary="About Us" />
-            </ListItem>
-            <Divider />
-            <ListItem button>
-              <ListItemText primary="Privacy Policy" />
-            </ListItem>
-            <Divider />
-            <ListItem button>
-              <ListItemText primary="Terms of Service" />
-            </ListItem>
-          </List>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseSettingsDialog}>Close</Button>
-        </DialogActions>
-      </AnimatedDialog>
+        <animated.div style={settingsDialogProps}>
+          <DialogTitle>Settings</DialogTitle>
+          <StyledDialogContent>
+            <List>
+              {Object.keys(settings).map((key) => (
+                <StyledListItem
+                  button
+                  key={key}
+                  onClick={() =>
+                    setSettings((prev) => ({
+                      ...prev,
+                      [key]: !prev[key],
+                    }))
+                  }
+                >
+                  <ListItemText
+                    primary={key.replace(/([A-Z])/g, " $1").toUpperCase()}
+                  />
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: settings[key] ? "green" : "red",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {settings[key] ? "Enabled" : "Disabled"}
+                  </Typography>
+                </StyledListItem>
+              ))}
+            </List>
+          </StyledDialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseSettingsDialog}>Close</Button>
+          </DialogActions>
+        </animated.div>
+      </Dialog>
     </div>
   );
 };

@@ -1,10 +1,9 @@
-import Sidebar from "@/components/sidebar/Sidebar";
+import Layout from "@/components/layout/Layout";
 
 export default function Home() {
   return (
     <>
-      <Sidebar />
-      <div></div>
+      <Layout />
     </>
   );
 }
