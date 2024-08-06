@@ -1,6 +1,5 @@
 import React from "react";
 import Sidebar from "../sidebar/Sidebar";
-import Body from "../body/Body";
 import HeroSection from "../hero-section/HeroSetcion"; // Ensure the import is correct
 
 const Layout = () => {

@@ -1,4 +1,4 @@
-import Body from "@/components/body/Body";
+import Posts from "@/components/posts/Posts";
 import Sidebar from "@/components/sidebar/Sidebar";
 import React from "react";
 
@@ -12,8 +12,8 @@ export default function Platform() {
         {/* Right Side with Scrolling */}
         <div className="flex-1 ml-1/4 overflow-y-auto">
           {/* Hero Section */}
-          <div className="w-full h-screen gradient-background">
-            <Body className="w-full h-full" />
+          <div>
+            <Posts />
           </div>
         </div>
       </div>
