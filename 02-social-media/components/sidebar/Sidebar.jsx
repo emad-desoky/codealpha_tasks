@@ -1,4 +1,3 @@
-// components/Sidebar.jsx
 import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -17,6 +16,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import Tooltip from "@mui/material/Tooltip";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -53,6 +54,7 @@ const StyledListItem = styled(ListItem)({
 const Sidebar = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [openSettingsDialog, setOpenSettingsDialog] = useState(false);
+  const [openRegistrationDialog, setOpenRegistrationDialog] = useState(false);
   const [profilePicture, setProfilePicture] = useState(
     "/path-to-your-profile-pic.jpg"
   );
@@ -64,12 +66,24 @@ const Sidebar = () => {
     privacyPolicy: false,
     termsOfService: false,
   });
+  const [registrationData, setRegistrationData] = useState({
+    username: "",
+    password: "",
+    age: "",
+    email: "",
+    country: "",
+  });
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
 
   const handleOpenDialog = () => setOpenDialog(true);
   const handleCloseDialog = () => setOpenDialog(false);
 
   const handleOpenSettingsDialog = () => setOpenSettingsDialog(true);
   const handleCloseSettingsDialog = () => setOpenSettingsDialog(false);
+
+  const handleOpenRegistrationDialog = () => setOpenRegistrationDialog(true);
+  const handleCloseRegistrationDialog = () => setOpenRegistrationDialog(false);
 
   const handleProfilePictureChange = (event) => {
     const file = event.target.files[0];
@@ -99,6 +113,72 @@ const Sidebar = () => {
     transform: openSettingsDialog ? "scale(1)" : "scale(0.9)",
     config: { tension: 300, friction: 30 },
   });
+
+  // Animation for Registration Dialog
+  const registrationDialogProps = useSpring({
+    opacity: openRegistrationDialog ? 1 : 0,
+    transform: openRegistrationDialog ? "scale(1)" : "scale(0.9)",
+    config: { tension: 300, friction: 30 },
+  });
+
+  const validateRegistrationData = () => {
+    const { username, password, age, email, country } = registrationData;
+    if (!username || !password || !age || !email || !country) {
+      setSnackbarMessage("All fields are required.");
+      setSnackbarOpen(true);
+      return false;
+    }
+    if (isNaN(age) || age <= 0) {
+      setSnackbarMessage("Age must be a positive number.");
+      setSnackbarOpen(true);
+      return false;
+    }
+    return true;
+  };
+
+  const handleRegister = async () => {
+    if (validateRegistrationData()) {
+      try {
+        const response = await fetch("/api/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...registrationData,
+            id: Date.now().toString(), // Generating a unique ID
+            pfp: profilePicture || "", // Optional profile picture
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const result = await response.json();
+        console.log("Registration successful:", result);
+
+        // Clear the registration form
+        setRegistrationData({
+          username: "",
+          password: "",
+          age: "",
+          email: "",
+          country: "",
+        });
+
+        handleCloseRegistrationDialog();
+      } catch (error) {
+        setSnackbarMessage("Failed to register. Please try again.");
+        setSnackbarOpen(true);
+      }
+    }
+  };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+    setSnackbarMessage("");
+  };
 
   return (
     <div className="w-64 h-screen bg-gray-900 text-white flex flex-col p-4 shadow-lg">
@@ -179,6 +259,7 @@ const Sidebar = () => {
           variant="outlined"
           className="w-full"
           startIcon={<PersonAddIcon />}
+          onClick={handleOpenRegistrationDialog}
         >
           Register
         </Button>
@@ -228,58 +309,25 @@ const Sidebar = () => {
               variant="standard"
               value={postContent}
               onChange={(e) => setPostContent(e.target.value)}
-              inputProps={{ maxLength: 500 }}
-              helperText={`${postContent.length}/500 characters`}
+              inputProps={{ maxLength: 280 }}
             />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleCloseDialog}>Cancel</Button>
-            <Button
-              onClick={() => {
-                // Handle Post Creation Logic
-                handleCloseDialog();
-              }}
-            >
-              Post
-            </Button>
+            <Button onClick={() => console.log("Post Created")}>Post</Button>
           </DialogActions>
         </animated.div>
       </Dialog>
 
       {/* Settings Dialog */}
-      <Dialog
-        open={openSettingsDialog}
-        onClose={handleCloseSettingsDialog}
-        maxWidth="md"
-        fullWidth
-      >
+      <Dialog open={openSettingsDialog} onClose={handleCloseSettingsDialog}>
         <animated.div style={settingsDialogProps}>
           <DialogTitle>Settings</DialogTitle>
           <StyledDialogContent>
             <List>
-              {Object.keys(settings).map((key) => (
-                <StyledListItem
-                  button
-                  key={key}
-                  onClick={() =>
-                    setSettings((prev) => ({
-                      ...prev,
-                      [key]: !prev[key],
-                    }))
-                  }
-                >
-                  <ListItemText
-                    primary={key.replace(/([A-Z])/g, " $1").toUpperCase()}
-                  />
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: settings[key] ? "green" : "red",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {settings[key] ? "Enabled" : "Disabled"}
-                  </Typography>
+              {Object.keys(settings).map((setting) => (
+                <StyledListItem key={setting}>
+                  <ListItemText primary={setting} />
                 </StyledListItem>
               ))}
             </List>
@@ -289,6 +337,113 @@ const Sidebar = () => {
           </DialogActions>
         </animated.div>
       </Dialog>
+
+      {/* Registration Dialog */}
+      <Dialog
+        open={openRegistrationDialog}
+        onClose={handleCloseRegistrationDialog}
+      >
+        <animated.div style={registrationDialogProps}>
+          <DialogTitle>Register</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="username"
+              label="Username"
+              type="text"
+              fullWidth
+              variant="standard"
+              value={registrationData.username}
+              onChange={(e) =>
+                setRegistrationData({
+                  ...registrationData,
+                  username: e.target.value,
+                })
+              }
+            />
+            <TextField
+              margin="dense"
+              id="password"
+              label="Password"
+              type="password"
+              fullWidth
+              variant="standard"
+              value={registrationData.password}
+              onChange={(e) =>
+                setRegistrationData({
+                  ...registrationData,
+                  password: e.target.value,
+                })
+              }
+            />
+            <TextField
+              margin="dense"
+              id="age"
+              label="Age"
+              type="number"
+              fullWidth
+              variant="standard"
+              value={registrationData.age}
+              onChange={(e) =>
+                setRegistrationData({
+                  ...registrationData,
+                  age: e.target.value,
+                })
+              }
+            />
+            <TextField
+              margin="dense"
+              id="email"
+              label="Email"
+              type="email"
+              fullWidth
+              variant="standard"
+              value={registrationData.email}
+              onChange={(e) =>
+                setRegistrationData({
+                  ...registrationData,
+                  email: e.target.value,
+                })
+              }
+            />
+            <TextField
+              margin="dense"
+              id="country"
+              label="Country"
+              type="text"
+              fullWidth
+              variant="standard"
+              value={registrationData.country}
+              onChange={(e) =>
+                setRegistrationData({
+                  ...registrationData,
+                  country: e.target.value,
+                })
+              }
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseRegistrationDialog}>Cancel</Button>
+            <Button onClick={handleRegister}>Register</Button>
+          </DialogActions>
+        </animated.div>
+      </Dialog>
+
+      {/* Snackbar for Validation Messages */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+      >
+        <Alert
+          onClose={handleSnackbarClose}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

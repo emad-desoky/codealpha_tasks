@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import { useRouter } from "next/router";
 
 const HeroSection = () => {
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false); // Assume user is not logged in initially
+
   // Animation settings for Framer Motion
   const titleAnimation = {
     hidden: { opacity: 0, y: -50 },
@@ -21,7 +26,20 @@ const HeroSection = () => {
 
   // Function to handle button click
   const handleButtonClick = () => {
-    router.push("/platform"); // Adjust the path according to your routing setup
+    if (!loggedIn) {
+      setOpenSnackbar(true); // Show Snackbar if the user is not logged in
+      return; // Stop execution if not logged in
+    }
+    // Only route if logged in
+    router.push("/platform"); // Redirect if the user is logged in
+  };
+
+  // Handle closing the Snackbar
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenSnackbar(false);
   };
 
   return (
@@ -66,6 +84,22 @@ const HeroSection = () => {
           Join Us Now
         </Button>
       </motion.div>
+
+      {/* Snackbar for login alert */}
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="warning"
+          sx={{ width: "100%" }}
+        >
+          Please log in first to join!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
