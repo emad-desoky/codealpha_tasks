@@ -1,106 +1,130 @@
-import React, { useState } from "react";
+import React from "react";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Avatar,
+  TextField,
+  InputAdornment,
+} from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
+import GroupIcon from "@mui/icons-material/Group";
+import SearchIcon from "@mui/icons-material/Search";
 import { motion } from "framer-motion";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
-import { useRouter } from "next/router";
+import styles from "./Navbar.module.css"; // Ensure you have a CSS module for styling
 
-const HeroSection = () => {
-  const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false); // Assume user is not logged in initially
+// Define animation variants for the gradient background
+const gradientAnimation = {
+  hidden: { backgroundPosition: "0% 0%" },
+  visible: {
+    backgroundPosition: "100% 100%",
+    transition: {
+      backgroundPosition: {
+        duration: 20,
+        ease: "linear",
+        repeat: "infinite",
+      },
+    },
+  },
+};
 
-  // Animation settings for Framer Motion
-  const titleAnimation = {
-    hidden: { opacity: 0, y: -50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
-
-  const buttonAnimation = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } },
-  };
-
-  // Initialize the router
-  const router = useRouter();
-
-  // Function to handle button click
-  const handleButtonClick = () => {
-    if (loggedIn) {
-      router.push("/platform"); // Redirect if the user is logged in
-    } else {
-      setOpenSnackbar(true); // Show Snackbar if the user is not logged in
-    }
-  };
-
-  // Handle closing the Snackbar
-  const handleCloseSnackbar = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpenSnackbar(false);
-  };
-
+const Navbar = () => {
   return (
-    <div className="flex flex-col justify-center items-center min-h-full w-full text-white p-8 bg-gradient-to-r from-blue-950 via-indigo-950 to-blue-950 bg-[length:400%_400%] animate-gradient-motion">
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={titleAnimation}
-        className="text-center mb-8"
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={gradientAnimation}
+      style={{
+        position: "relative",
+        width: "100%",
+        background: "linear-gradient(to right, #002147, #4b0082, #002147)",
+        backgroundSize: "200% 200%",
+        height: "64px",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Add shadow for depth
+      }}
+    >
+      <AppBar
+        position="static"
+        sx={{
+          bgcolor: "transparent",
+          color: "white",
+          boxShadow: "none",
+        }}
       >
-        <Typography
-          variant="h2"
-          gutterBottom
-          sx={{ fontWeight: "bold", fontSize: { xs: "2rem", sm: "3rem" } }}
-        >
-          Welcome to CodeAlpha Social
-        </Typography>
-        <Typography
-          variant="h6"
-          color="inherit"
-          sx={{ fontSize: { xs: "1rem", sm: "1.25rem" } }}
-        >
-          Connect with friends and the world around you on CodeAlpha.
-        </Typography>
-      </motion.div>
-      <motion.div initial="hidden" animate="visible" variants={buttonAnimation}>
-        <Button
-          variant="contained"
-          size="large"
-          color="secondary"
-          sx={{
-            padding: "12px 24px",
-            borderRadius: "8px",
-            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-            "&:hover": {
-              backgroundColor: "#f50057",
-              boxShadow: "0px 6px 8px rgba(0, 0, 0, 0.2)",
-            },
-          }}
-          onClick={handleButtonClick} // Add click handler
-        >
-          Join Us Now
-        </Button>
-      </motion.div>
-
-      {/* Snackbar for login alert */}
-      <Snackbar
-        open={openSnackbar}
-        autoHideDuration={6000}
-        onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-      >
-        <Alert
-          onClose={handleCloseSnackbar}
-          severity="warning"
-          sx={{ width: "100%" }}
-        >
-          Please log in first to join!
-        </Alert>
-      </Snackbar>
-    </div>
+        <Toolbar sx={{ justifyContent: "space-between", padding: "0 16px" }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <IconButton
+              color="inherit"
+              aria-label="home"
+              className={styles.icon}
+            >
+              <HomeIcon />
+            </IconButton>
+            <IconButton
+              color="inherit"
+              aria-label="videos"
+              className={styles.icon}
+            >
+              <VideoLibraryIcon />
+            </IconButton>
+            <IconButton
+              color="inherit"
+              aria-label="groups"
+              className={styles.icon}
+            >
+              <GroupIcon />
+            </IconButton>
+          </div>
+          <TextField
+            variant="outlined"
+            placeholder="Search..."
+            size="small"
+            sx={{
+              background: "rgba(255, 255, 255, 0.1)",
+              borderRadius: "20px",
+              "& .MuiOutlinedInput-root": {
+                borderRadius: "20px",
+                "& fieldset": {
+                  border: "none",
+                },
+                "&:hover fieldset": {
+                  border: "none",
+                },
+                "&.Mui-focused fieldset": {
+                  border: "none",
+                },
+                "& input": {
+                  color: "white", // Set text color to white
+                },
+                "& input::placeholder": {
+                  color: "rgba(255, 255, 255, 0.7)", // Set placeholder color to a lighter white
+                },
+              },
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon sx={{ color: "white" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <IconButton
+            color="inherit"
+            aria-label="profile"
+            className={styles.icon}
+          >
+            <Avatar
+              alt="Profile Picture"
+              src="/path/to/your/pfp.jpg"
+              sx={{ width: 24, height: 24 }}
+            />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+    </motion.div>
   );
 };
 
-export default HeroSection;
+export default Navbar;

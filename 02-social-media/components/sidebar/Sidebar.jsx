@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import InputBase from "@mui/material/InputBase";
@@ -24,7 +24,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { styled } from "@mui/material/styles";
 import { useSpring, animated } from "@react-spring/web";
-import { useFormik } from "formik";
+import axios from "axios";
 
 // Styled Avatar for Click Effect
 const ClickableAvatar = styled(Avatar)({
@@ -57,7 +57,11 @@ const Sidebar = () => {
   const [openSettingsDialog, setOpenSettingsDialog] = useState(false);
   const [openRegistrationDialog, setOpenRegistrationDialog] = useState(false);
   const [openLoginDialog, setOpenLoginDialog] = useState(false);
-
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [snackbarLoginOpen, setSnackbarLoginOpen] = useState(false);
+  const [snackbarLoginMessage, setSnackbarLoginMessage] = useState("");
+  const [user, setUser] = useState(null);
   const [profilePicture, setProfilePicture] = useState(
     "/path-to-your-profile-pic.jpg"
   );
@@ -193,6 +197,41 @@ const Sidebar = () => {
     setSnackbarMessage("");
   };
 
+  useEffect(() => {
+    // Retrieve user data from localStorage
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    // Assuming successful login
+    const userData = {
+      username: username,
+    };
+
+    // Save user data to localStorage
+    localStorage.setItem("user", JSON.stringify(userData));
+
+    // Set the user in state to manage UI
+    setUser(userData);
+
+    // Close the login dialog
+    handleCloseLoginDialog();
+  };
+
+  const handleLogout = () => {
+    // Remove user data from localStorage
+    localStorage.removeItem("user");
+
+    // Clear the user state
+    setUser(null);
+  };
+
+  // The rest of your component's code...
   return (
     <div className="w-64 h-screen bg-gray-900 text-white flex flex-col p-4 shadow-lg">
       {/* Header */}
@@ -220,7 +259,7 @@ const Sidebar = () => {
       {/* Profile Section */}
       <div className="mb-4">
         <Typography variant="body1" align="center">
-          Your Profile
+          {user ? `Welcome, ${user.username}` : "Your Profile"}
         </Typography>
       </div>
 
@@ -265,29 +304,81 @@ const Sidebar = () => {
 
       {/* Login/Logout/Registration */}
       <div className="mb-4 flex flex-col gap-2">
-        <Button
-          variant="outlined"
-          className="w-full"
-          startIcon={<LoginIcon />}
-          onClick={handleOpenLoginDialog}
-        >
-          Login
-        </Button>
-        <Button
-          variant="outlined"
-          className="w-full"
-          startIcon={<PersonAddIcon />}
-          onClick={handleOpenRegistrationDialog}
-        >
-          Register
-        </Button>
-        <Button
-          variant="outlined"
-          className="w-full"
-          startIcon={<ExitToAppIcon />}
-        >
-          Logout
-        </Button>
+        {user ? (
+          <>
+            {/* Logout Button */}
+            <Button
+              onClick={handleLogout}
+              variant="outlined"
+              className="w-full"
+              startIcon={<ExitToAppIcon />}
+            >
+              Logout
+            </Button>
+          </>
+        ) : (
+          <>
+            {/* Login Button */}
+            <Button
+              variant="outlined"
+              className="w-full"
+              startIcon={<LoginIcon />}
+              onClick={() => setOpenLoginDialog(true)}
+            >
+              Login
+            </Button>
+
+            {/* Login Dialog */}
+            <Dialog
+              open={openLoginDialog}
+              onClose={() => setOpenLoginDialog(false)}
+            >
+              <DialogTitle>Login</DialogTitle>
+              <DialogContent>
+                <form onSubmit={handleLogin} className="flex flex-col gap-2">
+                  <TextField
+                    label="Username"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                  <TextField
+                    label="Password"
+                    type="password"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <Button type="submit" variant="contained" color="primary">
+                    Login
+                  </Button>
+                </form>
+              </DialogContent>
+              <DialogActions>
+                <Button
+                  onClick={() => setOpenLoginDialog(false)}
+                  color="primary"
+                >
+                  Cancel
+                </Button>
+              </DialogActions>
+            </Dialog>
+
+            {/* Register Button */}
+            <Button
+              variant="outlined"
+              className="w-full"
+              startIcon={<PersonAddIcon />}
+              onClick={() => setOpenRegistrationDialog(true)}
+            >
+              Register
+            </Button>
+          </>
+        )}
       </div>
 
       {/* Settings */}
@@ -356,34 +447,6 @@ const Sidebar = () => {
         </animated.div>
       </Dialog>
 
-      <Dialog open={openLoginDialog} onClose={handleCloseLoginDialog}>
-        <animated.div style={loginDialogProps}>
-          <DialogTitle>Login</DialogTitle>
-          <DialogContent>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="login-username"
-              label="Username"
-              type="text"
-              fullWidth
-              variant="standard"
-            />
-            <TextField
-              margin="dense"
-              id="login-password"
-              label="Password"
-              type="password"
-              fullWidth
-              variant="standard"
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleCloseLoginDialog}>Cancel</Button>
-            <Button onClick={() => console.log("Logged In")}>Login</Button>
-          </DialogActions>
-        </animated.div>
-      </Dialog>
       {/* Registration Dialog */}
       <Dialog
         open={openRegistrationDialog}

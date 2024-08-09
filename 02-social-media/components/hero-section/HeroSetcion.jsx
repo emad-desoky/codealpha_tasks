@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -23,6 +23,14 @@ const HeroSection = () => {
 
   // Initialize the router
   const router = useRouter();
+
+  // Check if user is logged in when component mounts
+  useEffect(() => {
+    const user = localStorage.getItem("user"); // Adjust key if needed
+    if (user) {
+      setLoggedIn(true);
+    }
+  }, []);
 
   // Function to handle button click
   const handleButtonClick = () => {
