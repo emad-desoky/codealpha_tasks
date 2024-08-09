@@ -1,5 +1,6 @@
 [
   {
+    "id": "1",
     "username": "john_doe",
     "pfp": "https://cdn.pfps.gg/pfps/6284-luffy.png",
     "date": "2024-08-01",
@@ -26,29 +27,94 @@
     ]
   },
   {
-    "username": "emily_richards",
+    "username": "current_user",
     "pfp": "https://cdn.pfps.gg/pfps/6284-luffy.png",
-    "date": "2024-08-02",
+    "date": "2024-08-09T20:44:36.003Z",
     "post": {
-      "image": "https://images.unsplash.com/photo-1579114213255-d8d82bfff681?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "text": "Enjoying a great book at the cafe."
+      "image": null,
+      "text": "123"
     },
-    "likes": 85,
-    "shares": 10,
-    "commentsCount": 5,
-    "comments": [
-      {
-        "username": "michael_brown",
-        "pfp": "https://cdn.pfps.gg/pfps/6284-luffy.png",
-        "text": "Which book are you reading?",
-        "date": "2024-08-02"
-      },
-      {
-        "username": "sara_lee",
-        "pfp": "https://cdn.pfps.gg/pfps/6284-luffy.png",
-        "text": "Love that place!",
-        "date": "2024-08-02"
-      }
-    ]
+    "likes": 0,
+    "shares": 0,
+    "commentsCount": 0,
+    "comments": []
+  },
+  {
+    "username": "current_user",
+    "pfp": "https://cdn.pfps.gg/pfps/6284-luffy.png",
+    "date": "2024-08-09T21:01:50.210Z",
+    "post": {
+      "image": null,
+      "text": "qwe"
+    },
+    "likes": 0,
+    "shares": 0,
+    "commentsCount": 0,
+    "comments": []
+  },
+  {
+    "username": "current_user",
+    "pfp": "https://cdn.pfps.gg/pfps/6284-luffy.png",
+    "date": "2024-08-09T21:17:11.499Z",
+    "post": {
+      "image": null,
+      "text": "qweqwe"
+    },
+    "likes": 0,
+    "shares": 0,
+    "commentsCount": 0,
+    "comments": []
+  },
+  {
+    "username": "current_user",
+    "pfp": "https://cdn.pfps.gg/pfps/6284-luffy.png",
+    "date": "2024-08-09T21:21:36.053Z",
+    "post": {
+      "image": null,
+      "text": "asdsad"
+    },
+    "likes": 0,
+    "shares": 0,
+    "commentsCount": 0,
+    "comments": []
+  },
+  {
+    "username": "current_user",
+    "pfp": "https://cdn.pfps.gg/pfps/6284-luffy.png",
+    "date": "2024-08-09T21:21:44.493Z",
+    "post": {
+      "image": null,
+      "text": "qweqwe"
+    },
+    "likes": 0,
+    "shares": 0,
+    "commentsCount": 0,
+    "comments": []
+  },
+  {
+    "username": "current_user",
+    "pfp": "https://cdn.pfps.gg/pfps/6284-luffy.png",
+    "date": "2024-08-09T21:26:32.413Z",
+    "post": {
+      "image": null,
+      "text": "QWE"
+    },
+    "likes": 0,
+    "shares": 0,
+    "commentsCount": 0,
+    "comments": []
+  },
+  {
+    "username": "current_user",
+    "pfp": "https://cdn.pfps.gg/pfps/6284-luffy.png",
+    "date": "2024-08-09T21:27:59.006Z",
+    "post": {
+      "image": null,
+      "text": "qwe"
+    },
+    "likes": 0,
+    "shares": 0,
+    "commentsCount": 0,
+    "comments": []
   }
 ]
