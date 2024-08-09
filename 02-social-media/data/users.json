@@ -6,7 +6,19 @@
     "age": 28,
     "email": "john.doe@example.com",
     "country": "United States",
-    "pfp": "https://example.com/images/john_doe.jpg"
+    "pfp": "https://example.com/images/john_doe.jpg",
+    "likesReceived": 20,
+    "likesGiven": 15,
+    "comments": [
+      { "postId": "post1", "text": "Great post!" },
+      { "postId": "post2", "text": "Thanks for sharing!" }
+    ],
+    "postsCreated": [
+      { "postId": "post1", "content": "This is my first post!" },
+      { "postId": "post2", "content": "Another day, another post!" }
+    ],
+    "following": ["2b3c4d5e", "3c4d5e6f"],
+    "followers": ["2b3c4d5e"]
   },
   {
     "id": "2b3c4d5e",
@@ -15,7 +27,17 @@
     "age": 32,
     "email": "jane.smith@example.com",
     "country": "Canada",
-    "pfp": "https://example.com/images/jane_smith.jpg"
+    "pfp": "https://example.com/images/jane_smith.jpg",
+    "likesReceived": 10,
+    "likesGiven": 8,
+    "comments": [
+      { "postId": "post3", "text": "Interesting read!" }
+    ],
+    "postsCreated": [
+      { "postId": "post3", "content": "Here's a new post!" }
+    ],
+    "following": ["1a2b3c4d", "4d5e6f7g"],
+    "followers": ["1a2b3c4d"]
   },
   {
     "id": "3c4d5e6f",
@@ -24,7 +46,17 @@
     "age": 25,
     "email": "emad.desoky@example.com",
     "country": "Egypt",
-    "pfp": "https://example.com/images/emad_desoky.jpg"
+    "pfp": "https://example.com/images/emad_desoky.jpg",
+    "likesReceived": 30,
+    "likesGiven": 25,
+    "comments": [
+      { "postId": "post4", "text": "Great job!" }
+    ],
+    "postsCreated": [
+      { "postId": "post4", "content": "My latest post!" }
+    ],
+    "following": ["1a2b3c4d", "4d5e6f7g"],
+    "followers": ["1a2b3c4d", "2b3c4d5e"]
   },
   {
     "id": "4d5e6f7g",
@@ -33,7 +65,17 @@
     "age": 29,
     "email": "sara.lee@example.com",
     "country": "Australia",
-    "pfp": "https://example.com/images/sara_lee.jpg"
+    "pfp": "https://example.com/images/sara_lee.jpg",
+    "likesReceived": 5,
+    "likesGiven": 10,
+    "comments": [
+      { "postId": "post5", "text": "I disagree with this!" }
+    ],
+    "postsCreated": [
+      { "postId": "post5", "content": "Sharing my thoughts!" }
+    ],
+    "following": ["3c4d5e6f"],
+    "followers": ["2b3c4d5e"]
   },
   {
     "id": "5e6f7g8h",
@@ -42,7 +84,17 @@
     "age": 35,
     "email": "michael.brown@example.com",
     "country": "United Kingdom",
-    "pfp": "https://example.com/images/michael_brown.jpg"
+    "pfp": "https://example.com/images/michael_brown.jpg",
+    "likesReceived": 8,
+    "likesGiven": 12,
+    "comments": [
+      { "postId": "post6", "text": "Interesting perspective!" }
+    ],
+    "postsCreated": [
+      { "postId": "post6", "content": "Here's a new update!" }
+    ],
+    "following": ["1a2b3c4d"],
+    "followers": ["3c4d5e6f"]
   },
   {
     "username": "qweqwe",
@@ -51,7 +103,13 @@
     "email": "desko_emad112@yahoo.com",
     "country": "caito",
     "id": "1723149406088",
-    "pfp": "/path-to-your-profile-pic.jpg"
+    "pfp": "/path-to-your-profile-pic.jpg",
+    "likesReceived": 0,
+    "likesGiven": 0,
+    "comments": [],
+    "postsCreated": [],
+    "following": [],
+    "followers": []
   },
   {
     "username": "q",
@@ -60,7 +118,13 @@
     "email": "desko_emad112@yahoo.com",
     "country": "caito",
     "id": "1723149406088",
-    "pfp": "/path-to-your-profile-pic.jpg"
+    "pfp": "/path-to-your-profile-pic.jpg",
+    "likesReceived": 0,
+    "likesGiven": 0,
+    "comments": [],
+    "postsCreated": [],
+    "following": [],
+    "followers": []
   },
   {
     "username": "asdsa1231",
@@ -69,7 +133,13 @@
     "email": "desko_emad112@yahoo.com",
     "country": "caito",
     "id": "1723149672491",
-    "pfp": "/path-to-your-profile-pic.jpg"
+    "pfp": "/path-to-your-profile-pic.jpg",
+    "likesReceived": 0,
+    "likesGiven": 0,
+    "comments": [],
+    "postsCreated": [],
+    "following": [],
+    "followers": []
   },
   {
     "username": "w",
@@ -78,6 +148,12 @@
     "email": "desko_emad@yahoo.com",
     "country": "cairo",
     "id": "1723201623658",
-    "pfp": "/path-to-your-profile-pic.jpg"
+    "pfp": "/path-to-your-profile-pic.jpg",
+    "likesReceived": 0,
+    "likesGiven": 0,
+    "comments": [],
+    "postsCreated": [],
+    "following": [],
+    "followers": []
   }
 ]

@@ -25,6 +25,7 @@ import ListItemText from "@mui/material/ListItemText";
 import { styled } from "@mui/material/styles";
 import { useSpring, animated } from "@react-spring/web";
 import axios from "axios";
+import CreatePostDialog from "./CreatePostDialog";
 
 // Styled Avatar for Click Effect
 const ClickableAvatar = styled(Avatar)({
@@ -231,6 +232,17 @@ const Sidebar = () => {
     setUser(null);
   };
 
+  const handlePostCreate = () => {
+    if (!postContent) {
+      setSnackbarMessage("Post content cannot be empty.");
+      setSnackbarOpen(true);
+      return;
+    }
+    console.log("Post Created:", postContent);
+    setPostContent(""); // Clear post content
+    handleCloseDialog();
+  };
+
   // The rest of your component's code...
   return (
     <div className="w-64 h-screen bg-gray-900 text-white flex flex-col p-4 shadow-lg">
@@ -290,7 +302,7 @@ const Sidebar = () => {
         </Tooltip>
       </div>
 
-      {/* Create Post */}
+      {/* Create Post Button */}
       <div className="mb-4">
         <Button
           variant="contained"
@@ -301,6 +313,12 @@ const Sidebar = () => {
           Create Post
         </Button>
       </div>
+
+      {/* Create Post Dialog */}
+      <CreatePostDialog
+        openDialog={openDialog}
+        handleCloseDialog={handleCloseDialog}
+      />
 
       {/* Login/Logout/Registration */}
       <div className="mb-4 flex flex-col gap-2">
@@ -392,41 +410,6 @@ const Sidebar = () => {
           Settings
         </Button>
       </div>
-
-      {/* Create Post Dialog */}
-      <Dialog open={openDialog} onClose={handleCloseDialog}>
-        <animated.div style={dialogProps}>
-          <DialogTitle>Create a Post</DialogTitle>
-          <DialogContent>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="title"
-              label="Post Title"
-              type="text"
-              fullWidth
-              variant="standard"
-            />
-            <TextField
-              margin="dense"
-              id="content"
-              label="Post Content"
-              type="text"
-              fullWidth
-              multiline
-              rows={4}
-              variant="standard"
-              value={postContent}
-              onChange={(e) => setPostContent(e.target.value)}
-              inputProps={{ maxLength: 280 }}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleCloseDialog}>Cancel</Button>
-            <Button onClick={() => console.log("Post Created")}>Post</Button>
-          </DialogActions>
-        </animated.div>
-      </Dialog>
 
       {/* Settings Dialog */}
       <Dialog open={openSettingsDialog} onClose={handleCloseSettingsDialog}>

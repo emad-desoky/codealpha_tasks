@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Avatar,
   Box,
@@ -19,7 +19,6 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import postsData from "./PostsData";
 import styles from "./Posts.module.css";
 
 // Helper function to convert date to "x time ago"
@@ -33,8 +32,23 @@ const timeAgo = (date) => {
 };
 
 const Posts = () => {
+  const [postsData, setPostsData] = useState([]);
   const [liked, setLiked] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+
+  useEffect(() => {
+    const fetchPostsData = async () => {
+      try {
+        const response = await fetch("/api/posts"); // Adjust the endpoint if necessary
+        const data = await response.json();
+        setPostsData(data);
+      } catch (error) {
+        console.error("Failed to fetch posts data:", error);
+      }
+    };
+
+    fetchPostsData();
+  }, []);
 
   const cardAnimation = {
     hidden: { opacity: 0, scale: 0.8 },
