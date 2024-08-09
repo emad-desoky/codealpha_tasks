@@ -19,6 +19,7 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "clsx": "^2.1.1",
     "flowbite": "^2.5.1",
+    "formik": "^2.4.6",
     "framer-motion": "^11.3.21",
     "next": "14.2.5",
     "react": "^18",
@@ -27,7 +28,8 @@
     "react-intersection-observer": "^9.13.0",
     "react-spring": "^9.7.4",
     "styled-components": "^6.1.12",
-    "tailwind-merge": "^2.4.0"
+    "tailwind-merge": "^2.4.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",

@@ -24,6 +24,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { styled } from "@mui/material/styles";
 import { useSpring, animated } from "@react-spring/web";
+import { useFormik } from "formik";
 
 // Styled Avatar for Click Effect
 const ClickableAvatar = styled(Avatar)({
@@ -55,6 +56,8 @@ const Sidebar = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [openSettingsDialog, setOpenSettingsDialog] = useState(false);
   const [openRegistrationDialog, setOpenRegistrationDialog] = useState(false);
+  const [openLoginDialog, setOpenLoginDialog] = useState(false);
+
   const [profilePicture, setProfilePicture] = useState(
     "/path-to-your-profile-pic.jpg"
   );
@@ -85,6 +88,9 @@ const Sidebar = () => {
   const handleOpenRegistrationDialog = () => setOpenRegistrationDialog(true);
   const handleCloseRegistrationDialog = () => setOpenRegistrationDialog(false);
 
+  const handleOpenLoginDialog = () => setOpenLoginDialog(true);
+  const handleCloseLoginDialog = () => setOpenLoginDialog(false);
+
   const handleProfilePictureChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -99,6 +105,13 @@ const Sidebar = () => {
   const handleProfilePictureClick = () => {
     document.getElementById("profile-picture-upload").click();
   };
+
+  // Animation for Login Dialog
+  const loginDialogProps = useSpring({
+    opacity: openLoginDialog ? 1 : 0,
+    transform: openLoginDialog ? "scale(1)" : "scale(0.9)",
+    config: { tension: 300, friction: 30 },
+  });
 
   // Animation for Create Post Dialog
   const dialogProps = useSpring({
@@ -252,7 +265,12 @@ const Sidebar = () => {
 
       {/* Login/Logout/Registration */}
       <div className="mb-4 flex flex-col gap-2">
-        <Button variant="outlined" className="w-full" startIcon={<LoginIcon />}>
+        <Button
+          variant="outlined"
+          className="w-full"
+          startIcon={<LoginIcon />}
+          onClick={handleOpenLoginDialog}
+        >
           Login
         </Button>
         <Button
@@ -338,6 +356,34 @@ const Sidebar = () => {
         </animated.div>
       </Dialog>
 
+      <Dialog open={openLoginDialog} onClose={handleCloseLoginDialog}>
+        <animated.div style={loginDialogProps}>
+          <DialogTitle>Login</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="login-username"
+              label="Username"
+              type="text"
+              fullWidth
+              variant="standard"
+            />
+            <TextField
+              margin="dense"
+              id="login-password"
+              label="Password"
+              type="password"
+              fullWidth
+              variant="standard"
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseLoginDialog}>Cancel</Button>
+            <Button onClick={() => console.log("Logged In")}>Login</Button>
+          </DialogActions>
+        </animated.div>
+      </Dialog>
       {/* Registration Dialog */}
       <Dialog
         open={openRegistrationDialog}
