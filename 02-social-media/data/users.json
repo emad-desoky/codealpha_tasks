@@ -1,6 +1,5 @@
 [
   {
-    "id": "1a2b3c4d",
     "username": "john_doe",
     "password": "password123",
     "age": 28,
@@ -9,19 +8,17 @@
     "pfp": "https://example.com/images/john_doe.jpg",
     "likesReceived": 20,
     "likesGiven": 15,
-    "comments": [
-      { "postId": "post1", "text": "Great post!" },
-      { "postId": "post2", "text": "Thanks for sharing!" }
+    "friends": [],
+    "following": [
+      "2b3c4d5e",
+      "3c4d5e6f"
     ],
-    "postsCreated": [
-      { "postId": "post1", "content": "This is my first post!" },
-      { "postId": "post2", "content": "Another day, another post!" }
+    "followers": [
+      "2b3c4d5e"
     ],
-    "following": ["2b3c4d5e", "3c4d5e6f"],
-    "followers": ["2b3c4d5e"]
+    "likedPosts": []
   },
   {
-    "id": "2b3c4d5e",
     "username": "jane_smith",
     "password": "qwerty789",
     "age": 32,
@@ -30,17 +27,18 @@
     "pfp": "https://example.com/images/jane_smith.jpg",
     "likesReceived": 10,
     "likesGiven": 8,
-    "comments": [
-      { "postId": "post3", "text": "Interesting read!" }
+    "friends": [],
+    "following": [
+      "1a2b3c4d",
+      "4d5e6f7g"
     ],
-    "postsCreated": [
-      { "postId": "post3", "content": "Here's a new post!" }
+    "followers": [
+      "1a2b3c4d"
     ],
-    "following": ["1a2b3c4d", "4d5e6f7g"],
-    "followers": ["1a2b3c4d"]
+    "likedPosts": []
+
   },
   {
-    "id": "3c4d5e6f",
     "username": "emad_desoky",
     "password": "emad2024",
     "age": 25,
@@ -49,17 +47,19 @@
     "pfp": "https://example.com/images/emad_desoky.jpg",
     "likesReceived": 30,
     "likesGiven": 25,
-    "comments": [
-      { "postId": "post4", "text": "Great job!" }
+    "friends": [],
+    "following": [
+      "1a2b3c4d",
+      "4d5e6f7g"
     ],
-    "postsCreated": [
-      { "postId": "post4", "content": "My latest post!" }
+    "followers": [
+      "1a2b3c4d",
+      "2b3c4d5e"
     ],
-    "following": ["1a2b3c4d", "4d5e6f7g"],
-    "followers": ["1a2b3c4d", "2b3c4d5e"]
+    "likedPosts": []
+
   },
   {
-    "id": "4d5e6f7g",
     "username": "sara_lee",
     "password": "pass4567",
     "age": 29,
@@ -68,17 +68,17 @@
     "pfp": "https://example.com/images/sara_lee.jpg",
     "likesReceived": 5,
     "likesGiven": 10,
-    "comments": [
-      { "postId": "post5", "text": "I disagree with this!" }
+    "friends": [],
+    "following": [
+      "3c4d5e6f"
     ],
-    "postsCreated": [
-      { "postId": "post5", "content": "Sharing my thoughts!" }
+    "followers": [
+      "2b3c4d5e"
     ],
-    "following": ["3c4d5e6f"],
-    "followers": ["2b3c4d5e"]
+    "likedPosts": []
+
   },
   {
-    "id": "5e6f7g8h",
     "username": "michael_brown",
     "password": "mike1234",
     "age": 35,
@@ -87,17 +87,18 @@
     "pfp": "https://example.com/images/michael_brown.jpg",
     "likesReceived": 8,
     "likesGiven": 12,
-    "comments": [
-      { "postId": "post6", "text": "Interesting perspective!" }
+    "friends": [],
+    "following": [
+      "1a2b3c4d"
     ],
-    "postsCreated": [
-      { "postId": "post6", "content": "Here's a new update!" }
+    "followers": [
+      "3c4d5e6f"
     ],
-    "following": ["1a2b3c4d"],
-    "followers": ["3c4d5e6f"]
+    "likedPosts": []
+
   },
   {
-    "username": "qweqwe",
+    "username": "alex_jones",
     "password": "123123",
     "age": "22",
     "email": "desko_emad112@yahoo.com",
@@ -106,10 +107,11 @@
     "pfp": "/path-to-your-profile-pic.jpg",
     "likesReceived": 0,
     "likesGiven": 0,
-    "comments": [],
-    "postsCreated": [],
+    "friends": [],
     "following": [],
-    "followers": []
+    "followers": [],
+    "likedPosts": []
+
   },
   {
     "username": "q",
@@ -121,10 +123,11 @@
     "pfp": "/path-to-your-profile-pic.jpg",
     "likesReceived": 0,
     "likesGiven": 0,
-    "comments": [],
-    "postsCreated": [],
+    "friends": [],
     "following": [],
-    "followers": []
+    "followers": [],
+    "likedPosts": []
+
   },
   {
     "username": "asdsa1231",
@@ -136,24 +139,22 @@
     "pfp": "/path-to-your-profile-pic.jpg",
     "likesReceived": 0,
     "likesGiven": 0,
-    "comments": [],
-    "postsCreated": [],
+    "friends": [],
     "following": [],
-    "followers": []
+    "followers": [],
+    "likedPosts": []
+
   },
+
   {
     "username": "w",
     "password": "123",
     "age": "22",
     "email": "desko_emad@yahoo.com",
-    "country": "cairo",
-    "id": "1723201623658",
-    "pfp": "/path-to-your-profile-pic.jpg",
-    "likesReceived": 0,
-    "likesGiven": 0,
-    "comments": [],
-    "postsCreated": [],
-    "following": [],
-    "followers": []
+    "country": "tezk",
+    "pfp": "https://www.gamepur.com/wp-content/uploads/wp-content/uploads/2022/06/01085031/Mob-7.jpg",
+    "id": "78fb8b53-5426-42de-89be-d703752470e0",
+    "likedPosts": []
+
   }
 ]

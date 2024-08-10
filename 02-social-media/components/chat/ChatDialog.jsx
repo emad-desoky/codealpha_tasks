@@ -15,7 +15,6 @@ import {
 import ChatIcon from "@mui/icons-material/Chat";
 import SearchIcon from "@mui/icons-material/Search";
 import { motion } from "framer-motion";
-import friendsData from "@/data/friendsList.json";
 
 const gradientAnimation = {
   hidden: { backgroundPosition: "0% 0%" },

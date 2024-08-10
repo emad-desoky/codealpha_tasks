@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../sidebar/Sidebar";
-import HeroSection from "../hero-section/HeroSetcion"; // Ensure the import is correct
+import HeroSection from "../hero-section/HeroSection"; // Ensure the import is correct
 
 const Layout = () => {
   return (

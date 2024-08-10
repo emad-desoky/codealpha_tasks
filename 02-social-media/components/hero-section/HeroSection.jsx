@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 
 const HeroSection = () => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false); // Assume user is not logged in initially
 
   // Animation settings for Framer Motion
   const titleAnimation = {
@@ -24,17 +23,9 @@ const HeroSection = () => {
   // Initialize the router
   const router = useRouter();
 
-  // Check if user is logged in when component mounts
-  useEffect(() => {
-    const user = localStorage.getItem("user"); // Adjust key if needed
-    if (user) {
-      setLoggedIn(true);
-    }
-  }, []);
-
   // Function to handle button click
   const handleButtonClick = () => {
-    if (!loggedIn) {
+    if (!localStorage.getItem("user")) {
       setOpenSnackbar(true); // Show Snackbar if the user is not logged in
       return; // Stop execution if not logged in
     }

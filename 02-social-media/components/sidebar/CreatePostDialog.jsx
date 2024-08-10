@@ -9,6 +9,7 @@ import { useSpring, animated } from "@react-spring/web";
 import { IconButton } from "@mui/material";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import VideocamIcon from "@mui/icons-material/Videocam";
+import { v4 } from "uuid";
 
 const CreatePostDialog = ({ openDialog, handleCloseDialog }) => {
   const [postTitle, setPostTitle] = useState("");
@@ -23,16 +24,7 @@ const CreatePostDialog = ({ openDialog, handleCloseDialog }) => {
   });
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get("/api/users"); // Fetch current user data
-        setUser(response.data);
-      } catch (error) {
-        console.error("Failed to fetch user data:", error);
-      }
-    };
-
-    fetchUser();
+    setUser(JSON.parse(localStorage.getItem("user")));
   }, []);
 
   const handleFileChange = (event) => {
@@ -44,8 +36,8 @@ const CreatePostDialog = ({ openDialog, handleCloseDialog }) => {
 
   const handleSubmit = async () => {
     const newPost = {
-      username: "current_user", // Replace with actual username
-      pfp: "https://cdn.pfps.gg/pfps/6284-luffy.png", // Replace with actual profile picture URL
+      id: v4(),
+      username: user.username, // Replace with actual username
       date: new Date().toISOString(),
       post: {
         image: media,
@@ -53,8 +45,6 @@ const CreatePostDialog = ({ openDialog, handleCloseDialog }) => {
       },
       likes: 0,
       shares: 0,
-      commentsCount: 0,
-      comments: [],
     };
 
     try {

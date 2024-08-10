@@ -1,4 +1,4 @@
-import ChatDialog from "@/components/chat/ChatDialog";
+// import ChatDialog from "@/components/chat/ChatDialog";
 import Navbar from "@/components/navbar/Navbar";
 import Posts from "@/components/posts/Posts";
 import Sidebar from "@/components/sidebar/Sidebar";
@@ -15,7 +15,7 @@ export default function Platform() {
           <Posts />
         </div>
       </div>
-      <ChatDialog /> {/* Positioned outside main content */}
+      {/* <ChatDialog /> Positioned outside main content */}
     </>
   );
 }

@@ -18,14 +18,15 @@ import TextField from "@mui/material/TextField";
 import Tooltip from "@mui/material/Tooltip";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { styled } from "@mui/material/styles";
 import { useSpring, animated } from "@react-spring/web";
-import axios from "axios";
 import CreatePostDialog from "./CreatePostDialog";
+import { v4 } from "uuid";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 // Styled Avatar for Click Effect
 const ClickableAvatar = styled(Avatar)({
@@ -58,15 +59,9 @@ const Sidebar = () => {
   const [openSettingsDialog, setOpenSettingsDialog] = useState(false);
   const [openRegistrationDialog, setOpenRegistrationDialog] = useState(false);
   const [openLoginDialog, setOpenLoginDialog] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [snackbarLoginOpen, setSnackbarLoginOpen] = useState(false);
-  const [snackbarLoginMessage, setSnackbarLoginMessage] = useState("");
+  const router = useRouter();
   const [user, setUser] = useState(null);
-  const [profilePicture, setProfilePicture] = useState(
-    "/path-to-your-profile-pic.jpg"
-  );
-  const [postContent, setPostContent] = useState("");
+  const [profilePicture, setProfilePicture] = useState("");
   const [settings, setSettings] = useState({
     deleteAccount: false,
     safety: false,
@@ -74,12 +69,14 @@ const Sidebar = () => {
     privacyPolicy: false,
     termsOfService: false,
   });
+
   const [registrationData, setRegistrationData] = useState({
     username: "",
     password: "",
     age: "",
     email: "",
     country: "",
+    pfp: "",
   });
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
@@ -90,10 +87,8 @@ const Sidebar = () => {
   const handleOpenSettingsDialog = () => setOpenSettingsDialog(true);
   const handleCloseSettingsDialog = () => setOpenSettingsDialog(false);
 
-  const handleOpenRegistrationDialog = () => setOpenRegistrationDialog(true);
   const handleCloseRegistrationDialog = () => setOpenRegistrationDialog(false);
 
-  const handleOpenLoginDialog = () => setOpenLoginDialog(true);
   const handleCloseLoginDialog = () => setOpenLoginDialog(false);
 
   const handleProfilePictureChange = (event) => {
@@ -110,20 +105,6 @@ const Sidebar = () => {
   const handleProfilePictureClick = () => {
     document.getElementById("profile-picture-upload").click();
   };
-
-  // Animation for Login Dialog
-  const loginDialogProps = useSpring({
-    opacity: openLoginDialog ? 1 : 0,
-    transform: openLoginDialog ? "scale(1)" : "scale(0.9)",
-    config: { tension: 300, friction: 30 },
-  });
-
-  // Animation for Create Post Dialog
-  const dialogProps = useSpring({
-    opacity: openDialog ? 1 : 0,
-    transform: openDialog ? "scale(1)" : "scale(0.9)",
-    config: { tension: 300, friction: 30 },
-  });
 
   // Animation for Settings Dialog
   const settingsDialogProps = useSpring({
@@ -164,8 +145,7 @@ const Sidebar = () => {
           },
           body: JSON.stringify({
             ...registrationData,
-            id: Date.now().toString(), // Generating a unique ID
-            pfp: profilePicture || "", // Optional profile picture
+            id: v4(), // Generating a unique ID
           }),
         });
 
@@ -208,17 +188,18 @@ const Sidebar = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    const formData = new FormData(e.target);
+    const user = Object.fromEntries(formData.entries());
 
-    // Assuming successful login
-    const userData = {
-      username: username,
-    };
-
-    // Save user data to localStorage
-    localStorage.setItem("user", JSON.stringify(userData));
-
-    // Set the user in state to manage UI
-    setUser(userData);
+    // Assuming successful login+
+    axios.post("api/login", user).then((res) => {
+      if (!res.data.message) {
+        setUser(res.data);
+        localStorage.setItem("user", JSON.stringify(res.data));
+      } else {
+        alert("invalid email or password");
+      }
+    });
 
     // Close the login dialog
     handleCloseLoginDialog();
@@ -227,20 +208,9 @@ const Sidebar = () => {
   const handleLogout = () => {
     // Remove user data from localStorage
     localStorage.removeItem("user");
+    router.replace("/");
 
-    // Clear the user state
     setUser(null);
-  };
-
-  const handlePostCreate = () => {
-    if (!postContent) {
-      setSnackbarMessage("Post content cannot be empty.");
-      setSnackbarOpen(true);
-      return;
-    }
-    console.log("Post Created:", postContent);
-    setPostContent(""); // Clear post content
-    handleCloseDialog();
   };
 
   // The rest of your component's code...
@@ -303,22 +273,28 @@ const Sidebar = () => {
       </div>
 
       {/* Create Post Button */}
-      <div className="mb-4">
-        <Button
-          variant="contained"
-          className="w-full flex items-center justify-center"
-          startIcon={<AddIcon />}
-          onClick={handleOpenDialog}
-        >
-          Create Post
-        </Button>
-      </div>
+      {user ? (
+        <>
+          <div className="mb-4">
+            <Button
+              variant="contained"
+              className="w-full flex items-center justify-center"
+              startIcon={<AddIcon />}
+              onClick={handleOpenDialog}
+            >
+              Create Post
+            </Button>
+          </div>
 
-      {/* Create Post Dialog */}
-      <CreatePostDialog
-        openDialog={openDialog}
-        handleCloseDialog={handleCloseDialog}
-      />
+          {/* Create Post Dialog */}
+          <CreatePostDialog
+            openDialog={openDialog}
+            handleCloseDialog={handleCloseDialog}
+          />
+        </>
+      ) : (
+        <></>
+      )}
 
       {/* Login/Logout/Registration */}
       <div className="mb-4 flex flex-col gap-2">
@@ -355,21 +331,19 @@ const Sidebar = () => {
               <DialogContent>
                 <form onSubmit={handleLogin} className="flex flex-col gap-2">
                   <TextField
+                    name="username"
                     label="Username"
                     variant="outlined"
                     fullWidth
                     margin="normal"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
                   />
                   <TextField
+                    name="password"
                     label="Password"
                     type="password"
                     variant="outlined"
                     fullWidth
                     margin="normal"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <Button type="submit" variant="contained" color="primary">
                     Login
@@ -511,6 +485,21 @@ const Sidebar = () => {
                 setRegistrationData({
                   ...registrationData,
                   country: e.target.value,
+                })
+              }
+            />
+            <TextField
+              margin="dense"
+              id="pfp"
+              label="Profile Picture URL"
+              type="text"
+              fullWidth
+              variant="standard"
+              value={registrationData.pfp}
+              onChange={(e) =>
+                setRegistrationData({
+                  ...registrationData,
+                  pfp: e.target.value,
                 })
               }
             />

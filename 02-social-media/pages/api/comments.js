@@ -26,7 +26,7 @@ const writeFile = (filePath, data) => {
 };
 
 export default async function handler(req, res) {
-  const filePath = path.join(process.cwd(), "data", "orders.json");
+  const filePath = path.join(process.cwd(), "data", "comments.json");
 
   if (req.method === "GET") {
     try {
