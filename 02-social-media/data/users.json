@@ -36,7 +36,6 @@
       "1a2b3c4d"
     ],
     "likedPosts": []
-
   },
   {
     "username": "emad_desoky",
@@ -57,7 +56,6 @@
       "2b3c4d5e"
     ],
     "likedPosts": []
-
   },
   {
     "username": "sara_lee",
@@ -76,7 +74,6 @@
       "2b3c4d5e"
     ],
     "likedPosts": []
-
   },
   {
     "username": "michael_brown",
@@ -95,7 +92,6 @@
       "3c4d5e6f"
     ],
     "likedPosts": []
-
   },
   {
     "username": "alex_jones",
@@ -111,7 +107,6 @@
     "following": [],
     "followers": [],
     "likedPosts": []
-
   },
   {
     "username": "q",
@@ -126,8 +121,10 @@
     "friends": [],
     "following": [],
     "followers": [],
-    "likedPosts": []
-
+    "likedPosts": [
+      "1",
+      "6f2277b1-7072-47fa-b8e9-78a1d2abda53"
+    ]
   },
   {
     "username": "asdsa1231",
@@ -143,18 +140,24 @@
     "following": [],
     "followers": [],
     "likedPosts": []
-
   },
-
   {
     "username": "w",
     "password": "123",
     "age": "22",
     "email": "desko_emad@yahoo.com",
-    "country": "tezk",
-    "pfp": "https://www.gamepur.com/wp-content/uploads/wp-content/uploads/2022/06/01085031/Mob-7.jpg",
-    "id": "78fb8b53-5426-42de-89be-d703752470e0",
-    "likedPosts": []
-
+    "country": "cairo",
+    "id": "1723201623658",
+    "pfp": "/path-to-your-profile-pic.jpg",
+    "likesReceived": 0,
+    "likesGiven": 0,
+    "friends": [],
+    "following": [],
+    "followers": [],
+    "likedPosts": [
+      "1",
+      "6f2277b1-7072-47fa-b8e9-78a1d2abda53",
+      "105ca97e-6074-467b-8353-3d16f78de34f"
+    ]
   }
 ]

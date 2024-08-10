@@ -67,7 +67,9 @@ export default async function handler(req, res) {
 
     try {
       const data = await readFile(filePath);
-      const index = data.findIndex((item) => item.id === updatedElement.id);
+      const index = data.findIndex(
+        (item) => item.username === updatedElement.username
+      );
       if (index !== -1) {
         data[index] = updatedElement;
         await writeFile(filePath, data);
@@ -83,7 +85,7 @@ export default async function handler(req, res) {
     const { id } = req.query;
     try {
       const data = await readFile(filePath);
-      const newData = data.filter((item) => item.id !== id);
+      const newData = data.filter((item) => item.username !== username);
       if (data.length === newData.length) {
         res.status(404).json({ error: "Element not found" });
       } else {

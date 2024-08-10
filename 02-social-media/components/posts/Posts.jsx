@@ -94,12 +94,15 @@ const Posts = () => {
 
       const updatedUser = {
         ...prevUser,
-        likedPosts: [...currentLikedPosts, postId],
+        likedPosts: Array.from(new Set([...currentLikedPosts, postId])),
       };
+
+      // Update localStorage
+      localStorage.setItem("user", JSON.stringify(updatedUser));
 
       // Send the updated user data to the backend
       axios
-        .put(`/api/users/${updatedUser.id}`, updatedUser)
+        .put(`/api/users`, updatedUser)
         .then((response) => {
           console.log("User updated successfully", response.data);
         })
@@ -121,9 +124,6 @@ const Posts = () => {
       const userData = JSON.parse(storedUser);
       setUser({
         ...userData,
-        likedPosts: Array.isArray(userData.likedPosts)
-          ? userData.likedPosts
-          : [],
       });
     }
   }, []);
@@ -220,7 +220,11 @@ const Posts = () => {
                     aria-label="like"
                     onClick={(e) => handleLike(post.id)}
                   >
-                    {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                    {user.likedPosts.find((l) => l == post.id) ? (
+                      <FavoriteIcon />
+                    ) : (
+                      <FavoriteBorderIcon />
+                    )}
                   </IconButton>
                   <Typography variant="body2" className={styles.iconText}>
                     {post.likes}
