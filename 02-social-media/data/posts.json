@@ -7,7 +7,7 @@
       "image": "https://images.unsplash.com/photo-1579114213255-d8d82bfff681?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "text": "Had an amazing day at the beach!"
     },
-    "likes": 120,
+    "likes": 2,
     "shares": 15
   },
   {
@@ -18,7 +18,7 @@
       "image": null,
       "text": "123123"
     },
-    "likes": 0,
+    "likes": 1,
     "shares": 0
   },
   {
@@ -28,6 +28,28 @@
     "post": {
       "image": null,
       "text": "qweqwe"
+    },
+    "likes": 0,
+    "shares": 0
+  },
+  {
+    "id": "3b621df9-2ccd-40f6-b8f8-b6c53aa8c45c",
+    "username": "Thexxkiller",
+    "date": "2024-08-10T16:08:50.172Z",
+    "post": {
+      "image": null,
+      "text": "Holy Sheiße"
+    },
+    "likes": 2,
+    "shares": 0
+  },
+  {
+    "id": "876059ec-efe7-4aa3-b8c2-5d3ef4bd3c65",
+    "username": "Thexxkiller",
+    "date": "2024-08-10T17:57:49.565Z",
+    "post": {
+      "image": null,
+      "text": "asdasda"
     },
     "likes": 0,
     "shares": 0

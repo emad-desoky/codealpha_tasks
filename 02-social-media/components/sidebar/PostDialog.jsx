@@ -10,22 +10,19 @@ import { IconButton } from "@mui/material";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import VideocamIcon from "@mui/icons-material/Videocam";
 import { v4 } from "uuid";
+import axios from "axios";
+import Image from "next/image";
 
-const CreatePostDialog = ({ openDialog, handleCloseDialog }) => {
+export default function PostDialog({ openDialog, handleCloseDialog, loggedUser, setRefetch}) {
   const [postTitle, setPostTitle] = useState("");
   const [postContent, setPostContent] = useState("");
   const [media, setMedia] = useState(null);
-  const [user, setUser] = useState(null); // State to hold user info
 
   const dialogProps = useSpring({
     opacity: openDialog ? 1 : 0,
     transform: openDialog ? "scale(1)" : "scale(0.9)",
     config: { tension: 300, friction: 30 },
   });
-
-  useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem("user")));
-  }, []);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -37,7 +34,7 @@ const CreatePostDialog = ({ openDialog, handleCloseDialog }) => {
   const handleSubmit = async () => {
     const newPost = {
       id: v4(),
-      username: user.username, // Replace with actual username
+      username: loggedUser.username, // Replace with actual username
       date: new Date().toISOString(),
       post: {
         image: media,
@@ -47,23 +44,12 @@ const CreatePostDialog = ({ openDialog, handleCloseDialog }) => {
       shares: 0,
     };
 
-    try {
-      const response = await fetch("/api/posts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newPost),
-      });
-
-      if (response.ok) {
-        console.log("Post created successfully");
-      } else {
-        console.error("Failed to create post");
-      }
-    } catch (error) {
-      console.error("Error creating post:", error);
-    }
+    axios.post("/api/posts", newPost)
+    .then(res => {
+      console.log("Post Created Successfully: " + res.data);
+      setRefetch(prev => !prev);
+    })
+    .catch(e => console.error("Error creating post: ", e));
 
     handleCloseDialog();
   };
@@ -117,7 +103,7 @@ const CreatePostDialog = ({ openDialog, handleCloseDialog }) => {
               {media.endsWith(".mp4") || media.endsWith(".mov") ? (
                 <video src={media} controls style={{ maxWidth: "100%" }} />
               ) : (
-                <img
+                <Image
                   src={media}
                   alt="Post media"
                   style={{ maxWidth: "100%" }}
@@ -134,5 +120,3 @@ const CreatePostDialog = ({ openDialog, handleCloseDialog }) => {
     </Dialog>
   );
 };
-
-export default CreatePostDialog;

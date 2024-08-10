@@ -27,11 +27,18 @@ const writeFile = (filePath, data) => {
 
 export default async function handler(req, res) {
   const filePath = path.join(process.cwd(), "data", "users.json");
+  const postsPath = path.join(process.cwd(), "data", "posts.json");
 
   if (req.method === "GET") {
     try {
       const data = await readFile(filePath);
-      res.status(200).json(data);
+      if (req.query.username) {
+        res
+          .status(200)
+          .json(data.find((d) => d.username == req.query.username));
+      } else {
+        res.status(200).json(data);
+      }
     } catch (error) {
       console.error("GET Error:", error);
       res.status(500).json({ error: "Failed to read data" });
@@ -48,9 +55,21 @@ export default async function handler(req, res) {
 
     try {
       const data = await readFile(filePath);
-      data.push(newElement);
-      await writeFile(filePath, data);
-      res.status(201).json(newElement);
+      if (data.find((user) => user.username == newElement.username)) {
+        res.status(201).json({ message: "Username Already Exists" });
+      } else {
+        data.push({
+          ...newElement,
+          likedReceived: 0,
+          likesGiven: 0,
+          likedPosts: [],
+          friends: [],
+          following: [],
+          followers: [],
+        });
+        await writeFile(filePath, data);
+        res.status(201).json(newElement);
+      }
     } catch (error) {
       console.error("POST Error:", error);
       res.status(500).json({ error: "Failed to write data" });
@@ -66,23 +85,31 @@ export default async function handler(req, res) {
     }
 
     try {
-      const data = await readFile(filePath);
-      const index = data.findIndex(
+      const users = await readFile(filePath);
+      const posts = await readFile(postsPath);
+      const index = users.findIndex(
         (item) => item.username === updatedElement.username
       );
       if (index !== -1) {
-        data[index] = updatedElement;
-        await writeFile(filePath, data);
+        users[index] = updatedElement;
+
+        const likedPosts = users.map((u) => u.likedPosts).flat();
+        posts.forEach(
+          (post) =>
+            (post.likes = likedPosts.filter((lp) => lp == post.id).length)
+        );
+
+        await writeFile(filePath, users);
+        await writeFile(postsPath, posts);
         res.status(200).json(updatedElement);
       } else {
         res.status(404).json({ error: "Element not found" });
       }
     } catch (error) {
       console.error("PUT Error:", error);
-      res.status(500).json({ error: "Failed to update data" });
+      res.status(500).json({ error: "Failed to update users" });
     }
   } else if (req.method === "DELETE") {
-    const { id } = req.query;
     try {
       const data = await readFile(filePath);
       const newData = data.filter((item) => item.username !== username);
