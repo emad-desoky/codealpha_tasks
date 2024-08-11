@@ -1,4 +1,3 @@
-// Products.jsx
 import React, { useState, useEffect } from "react";
 import styles from "./Products.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -45,21 +44,17 @@ const Products = () => {
     });
   };
 
-  const handleAddToCart = async (product) => {
+  const handleAddToCart = (product) => {
     try {
-      const response = await fetch("/api/cart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...product,
-          quantity: 1, // Set quantity to 1 or any default value
-        }),
-      });
-      if (!response.ok) {
-        throw new Error("Failed to add to cart");
-      }
+      // Get the current cart from localStorage
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      // Add the new product to the cart
+      const updatedCart = [...cart, { ...product, quantity: 1 }];
+
+      // Save the updated cart back to localStorage
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+
       alert("Product added to cart");
     } catch (error) {
       console.error("Error adding product to cart:", error);

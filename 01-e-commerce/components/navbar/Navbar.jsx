@@ -16,20 +16,10 @@ const Navbar = () => {
   const router = useRouter();
 
   useEffect(() => {
-    fetch("/api/cart")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        const totalItems = data.reduce((sum, item) => sum + item.quantity, 0);
-        setCartCount(totalItems);
-      })
-      .catch((error) => {
-        console.error("Error fetching cart data:", error);
-      });
+    // Load cart items from localStorage when the component mounts
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalItems = storedCart.reduce((sum, item) => sum + item.quantity, 0);
+    setCartCount(totalItems);
 
     let lastScrollTop = 0;
     const handleScroll = () => {

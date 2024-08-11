@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import styles from "./Cart.module.css";
 import { Button, Container, Row, Col, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,33 +9,20 @@ import Footer from "@/components/footer/Footer";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
+  const router = useRouter(); // Use the useRouter hook
 
   useEffect(() => {
-    // Fetch cart items from the backend when the component mounts
-    fetch("/api/cart")
-      .then((response) => response.json())
-      .then((data) => {
-        // Ensure the cart is initially empty or populated correctly
-        setCartItems(data);
-      })
-      .catch((error) => console.error("Error fetching cart items:", error));
+    // Load cart items from localStorage when the component mounts
+    const storedCartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartItems(storedCartItems);
   }, []);
 
   const handleRemove = (id) => {
-    fetch(`/api/cart?id=${id}`, {
-      method: "DELETE",
-    })
-      .then((response) => {
-        if (response.ok) {
-          // Remove the item from the local state
-          setCartItems((prevItems) =>
-            prevItems.filter((item) => item.id !== id)
-          );
-        } else {
-          throw new Error("Failed to remove item");
-        }
-      })
-      .catch((error) => console.error("Error removing item:", error));
+    const updatedCartItems = cartItems.filter((item) => item.id !== id);
+    setCartItems(updatedCartItems);
+
+    // Update localStorage with the new cart items
+    localStorage.setItem("cart", JSON.stringify(updatedCartItems));
   };
 
   const calculateTotal = () => {
@@ -44,6 +32,10 @@ const Cart = () => {
         0
       )
       .toFixed(2);
+  };
+
+  const handleCheckout = () => {
+    router.push("/cart/orders"); // Navigate to the orders page
   };
 
   return (
@@ -102,7 +94,11 @@ const Cart = () => {
                   <Card.Text>
                     <strong>Total:</strong> ${calculateTotal()}
                   </Card.Text>
-                  <Button variant="success" className={styles.checkoutButton}>
+                  <Button
+                    variant="success"
+                    className={styles.checkoutButton}
+                    onClick={handleCheckout} // Attach the click handler here
+                  >
                     Proceed to Checkout
                   </Button>
                 </Card.Body>

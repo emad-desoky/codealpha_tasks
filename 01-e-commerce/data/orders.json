@@ -1,0 +1,6 @@
+[
+    { "id": 1, "product": "Product A", "price": 20, "status": "Getting Order Ready" },
+    { "id": 2, "product": "Product B", "price": 30, "status": "Delivering Order" },
+    { "id": 3, "product": "Product C", "price": 15, "status": "Delivered" }
+  ]
+  
