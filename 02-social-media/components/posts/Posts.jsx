@@ -21,6 +21,8 @@ import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import styles from "./Posts.module.css";
 import axios from "axios";
+import { v4 } from "uuid";
+import { date } from "yup";
 
 // Helper function to convert date to "x time ago"
 const timeAgo = (date) => {
@@ -35,6 +37,7 @@ const timeAgo = (date) => {
 export default function Posts({ posts, users, comments, setRefetch }) {
   const [user, setUser] = useState({});
   const [anchorEl, setAnchorEl] = useState(null);
+  const [textInputs, setTextInputs] = useState({}); // Store comment text for each post
 
   const cardAnimation = {
     hidden: { opacity: 0, scale: 0.8 },
@@ -146,6 +149,32 @@ export default function Posts({ posts, users, comments, setRefetch }) {
       localStorage.setItem("user", JSON.stringify(updatedUser));
       return updatedUser;
     });
+  };
+  const handleInputChange = (event, postId) => {
+    setTextInputs({
+      ...textInputs,
+      [postId]: event.target.value, // Update the specific post's comment input
+    });
+  };
+
+  const handleSubmit = (postId) => {
+    const postData = {
+      id: v4(),
+      postId: postId,
+      text: textInputs[postId] || "", // Get the comment text for this post
+      username: user.username,
+      date: new Date().toISOString(),
+    };
+
+    axios
+      .post("api/comments", postData)
+      .then((response) => {
+        console.log("Response:", response.data);
+        setTextInputs({ ...textInputs, [postId]: "" }); // Clear the input field after submission
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (
@@ -329,11 +358,15 @@ export default function Posts({ posts, users, comments, setRefetch }) {
                     fullWidth
                     placeholder="Write a comment..."
                     className={styles.commentField}
+                    onChange={(e) => handleInputChange(e, post.id)} // Pass post ID to change handler
+                    type="text"
+                    value={textInputs[post.id] || ""} // Bind the input value to the specific post's comment
                   />
                   <Button
                     variant="contained"
                     color="primary"
                     className={styles.commentButton}
+                    onClick={() => handleSubmit(post.id)}
                   >
                     Comment
                   </Button>
