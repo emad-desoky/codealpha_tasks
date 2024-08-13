@@ -6,13 +6,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
+import axios from "axios";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
-  const router = useRouter(); // Use the useRouter hook
+  const router = useRouter();
 
   useEffect(() => {
-    // Load cart items from localStorage when the component mounts
     const storedCartItems = JSON.parse(localStorage.getItem("cart")) || [];
     setCartItems(storedCartItems);
   }, []);
@@ -20,8 +20,6 @@ const Cart = () => {
   const handleRemove = (id) => {
     const updatedCartItems = cartItems.filter((item) => item.id !== id);
     setCartItems(updatedCartItems);
-
-    // Update localStorage with the new cart items
     localStorage.setItem("cart", JSON.stringify(updatedCartItems));
   };
 
@@ -34,8 +32,30 @@ const Cart = () => {
       .toFixed(2);
   };
 
-  const handleCheckout = () => {
-    router.push("/cart/orders"); // Navigate to the orders page
+  const handleCheckout = async () => {
+    try {
+      // Post cart items to the orders endpoint
+      await axios.post("/api/orders", {
+        items: cartItems.map((item) => ({
+          id: item.id,
+          name: item.name,
+          price: parseFloat(item.price) * item.quantity,
+          quantity: item.quantity,
+          image: item.image,
+          category: item.category, // Add category if available in cart items
+        })),
+        total: calculateTotal(),
+        status: "Getting Order Ready",
+      });
+
+      // Clear the cart from localStorage
+      localStorage.removeItem("cart");
+
+      // Navigate to the orders page
+      router.push("/cart/orders");
+    } catch (error) {
+      console.error("Error processing checkout:", error);
+    }
   };
 
   return (
@@ -97,7 +117,7 @@ const Cart = () => {
                   <Button
                     variant="success"
                     className={styles.checkoutButton}
-                    onClick={handleCheckout} // Attach the click handler here
+                    onClick={handleCheckout}
                   >
                     Proceed to Checkout
                   </Button>

@@ -1,3 +1,4 @@
+// pages/api/orders.js
 import fs from "fs";
 import path from "path";
 
@@ -81,18 +82,28 @@ export default async function handler(req, res) {
     }
   } else if (req.method === "DELETE") {
     const { id } = req.query;
-    try {
-      const data = await readFile(filePath);
-      const newData = data.filter((item) => item.id !== id);
-      if (data.length === newData.length) {
-        res.status(404).json({ error: "Element not found" });
-      } else {
-        await writeFile(filePath, newData);
-        res.status(200).json({ message: "Element deleted successfully" });
+    if (id === "all") {
+      try {
+        await writeFile(filePath, []);
+        res.status(200).json({ message: "All orders deleted successfully" });
+      } catch (error) {
+        console.error("DELETE Error:", error);
+        res.status(500).json({ error: "Failed to delete data" });
       }
-    } catch (error) {
-      console.error("DELETE Error:", error);
-      res.status(500).json({ error: "Failed to delete data" });
+    } else {
+      try {
+        const data = await readFile(filePath);
+        const newData = data.filter((item) => item.id !== id);
+        if (data.length === newData.length) {
+          res.status(404).json({ error: "Element not found" });
+        } else {
+          await writeFile(filePath, newData);
+          res.status(200).json({ message: "Element deleted successfully" });
+        }
+      } catch (error) {
+        console.error("DELETE Error:", error);
+        res.status(500).json({ error: "Failed to delete data" });
+      }
     }
   } else {
     res.status(405).json({ error: "Method not allowed" });
