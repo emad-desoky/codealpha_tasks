@@ -21,8 +21,8 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import styles from "./ProjectCard.module.css";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import ListAltIcon from "@mui/icons-material/ListAlt"; // Icon for viewing assigned jobs
-import GroupIcon from "@mui/icons-material/Group"; // Icon for showing assigned users count
+import ListAltIcon from "@mui/icons-material/ListAlt";
+import GroupIcon from "@mui/icons-material/Group";
 
 const ProjectToolCard = () => {
   const [projects, setProjects] = useState([]);
@@ -31,7 +31,7 @@ const ProjectToolCard = () => {
   const [user, setUser] = useState({});
   const [assignedProjects, setAssignedProjects] = useState(new Set());
   const [snackbar, setSnackbar] = useState({ open: false, message: "" });
-  const [openJobsDialog, setOpenJobsDialog] = useState(false); // State for jobs dialog
+  const [openJobsDialog, setOpenJobsDialog] = useState(false);
   const commentRefs = useRef({});
   const [expandedComments, setExpandedComments] = useState({});
   const [assignedUsersCount, setAssignedUsersCount] = useState({});
@@ -39,13 +39,20 @@ const ProjectToolCard = () => {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     setUser(user);
-    setAssignedProjects(new Set(user.jobs.map((job) => job.id))); // Update for job IDs
+    setAssignedProjects(new Set(user.jobs.map((job) => job.id)));
 
     axios
       .get("api/projects")
-      .then((res) => setProjects(res.data))
-      .catch((e) => console.log(e));
+      .then((res) => {
+        setProjects(res.data);
 
+        const initialAssignedUsersCount = res.data.reduce((acc, project) => {
+          acc[project.id] = project.members.length;
+          return acc;
+        }, {});
+        setAssignedUsersCount(initialAssignedUsersCount);
+      })
+      .catch((e) => console.log(e));
     axios
       .get("api/tasks")
       .then((res) => setTasks(res.data))
@@ -73,7 +80,7 @@ const ProjectToolCard = () => {
         .post("api/comments", comment)
         .then((res) => {
           setComments((prevComments) => [...prevComments, comment]);
-          commentRefs.current[projectId].value = ""; // Clear the text field after submitting
+          commentRefs.current[projectId].value = "";
         })
         .catch((e) => console.log(e));
     }
@@ -106,12 +113,42 @@ const ProjectToolCard = () => {
     axios
       .put("api/users", updatedUser)
       .then(() => {
-        setSnackbar({
-          open: true,
-          message: isAssigned
-            ? "Project unassigned successfully"
-            : "Project assigned successfully",
+        const updatedProjects = projects.map((p) => {
+          if (p.id === projectId) {
+            const newMembers = isAssigned
+              ? p.members.filter((member) => member !== user.username)
+              : [...p.members, user.username];
+
+            return {
+              ...p,
+              members: newMembers,
+            };
+          }
+          return p;
         });
+
+        setProjects(updatedProjects);
+
+        const updatedProject = updatedProjects.find((p) => p.id === projectId);
+
+        axios
+          .put("api/projects", updatedProject)
+          .then(() => {
+            setAssignedUsersCount((prev) => ({
+              ...prev,
+              [projectId]: updatedProject.members.length,
+            }));
+
+            setSnackbar({
+              open: true,
+              message: isAssigned
+                ? "Project unassigned successfully"
+                : "Project assigned successfully",
+            });
+          })
+          .catch((error) => {
+            console.error("Error updating project:", error);
+          });
       })
       .catch((error) => {
         console.error("Error assigning project:", error);
@@ -135,14 +172,14 @@ const ProjectToolCard = () => {
       <React.Fragment>
         <CssBaseline />
         <Container>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
+          <Grid container spacing={6}>
+            <Grid item xs={10}>
               <IconButton onClick={handleOpenJobsDialog}>
                 <ListAltIcon />
               </IconButton>
             </Grid>
             {projects.map((p) => (
-              <Grid item xs={12} sm={6} md={4} key={p.id}>
+              <Grid item xs={12} sm={8} md={4} key={p.id}>
                 <Card className={styles.projectCard}>
                   <Grid container spacing={2} direction="column">
                     <Grid
@@ -154,22 +191,21 @@ const ProjectToolCard = () => {
                         container
                         alignItems="center"
                         justifyContent="space-between"
+                        className={styles.avatarContainer}
                       >
-                        {/* Avatar and other elements */}
-                        <IconButton
-                          className={styles.assignedUsersIcon}
-                          onClick={() => handleAssignedUsersClick(p.id)}
-                        >
+                        <IconButton className={styles.assignedUsersIcon}>
                           <GroupIcon />
                         </IconButton>
-                        <Typography variant="body2">
-                          {assignedUsersCount[p.id] || 0} Users Assigned
+                        <Typography className={styles.projectTitle}>
+                          {p.members && p.members.length ? p.members.length : 0}{" "}
+                          Users Assigned
                         </Typography>
                       </Grid>
                       <Grid container alignItems="center" spacing={1}>
                         <Avatar
                           alt={p.ownerUsername}
                           src="/static/images/avatar/1.jpg"
+                          className={styles.avatarImage}
                         />
                         <Typography
                           variant="subtitle2"
@@ -246,9 +282,22 @@ const ProjectToolCard = () => {
                       .filter((c) => c.projectId === p.id)
                       .slice(0, expandedComments[p.id] ? comments.length : 3)
                       .map((c, i) => (
-                        <Typography key={i} className={styles.comment}>
-                          {c.userUsername}: {c.text}
-                        </Typography>
+                        <div key={i} className={styles.commentItem}>
+                          <Avatar
+                            alt={c.userUsername}
+                            src={user.pfp}
+                            className={styles.commentAvatar}
+                          />
+                          <div className={styles.commentText}>
+                            <Typography
+                              variant="body2"
+                              className={styles.commentHeader}
+                            >
+                              {c.userUsername}
+                            </Typography>
+                            {c.text}
+                          </div>
+                        </div>
                       ))}
                     {comments.filter((c) => c.projectId === p.id).length >
                       3 && (
@@ -288,7 +337,6 @@ const ProjectToolCard = () => {
             ))}
           </Grid>
 
-          {/* Dialog for displaying assigned jobs */}
           <Dialog
             open={openJobsDialog}
             onClose={handleCloseJobsDialog}

@@ -10,8 +10,12 @@
     "tasks": [
       "1",
       "2"
+    ],
+    "members": [
+      "q",
+      "W",
+      "EE"
     ]
-    
   },
   {
     "id": "2",
@@ -23,6 +27,9 @@
     "status": "Not Started",
     "tasks": [
       "3"
+    ],
+    "members": [
+      "q"
     ]
   },
   {
@@ -33,7 +40,10 @@
     "startDate": "23123-12-31",
     "endDate": "0023-12-31",
     "status": "In Progress",
-    "tasks": []
+    "tasks": [],
+    "members": [
+      "q"
+    ]
   },
   {
     "id": "0c6658ae-e8bc-4e04-bbfa-16bbb37d3020",
@@ -43,7 +53,10 @@
     "endDate": "2312-12-31",
     "status": "Completed",
     "budget": "123123",
-    "tasks": []
+    "tasks": [],
+    "members": [
+      "q"
+    ]
   },
   {
     "id": "45657b9e-4046-4068-9306-2dbbda029689",
@@ -53,7 +66,10 @@
     "endDate": "1212-12-12",
     "status": "In Progress",
     "budget": "1000",
-    "tasks": []
+    "tasks": [],
+    "members": [
+      "q"
+    ]
   },
   {
     "id": "9a7c1905-4965-4da0-8e1e-b822604f0d21",
@@ -66,6 +82,85 @@
     "budget": "11231",
     "tasks": [
       "7ad8ba5e-4a5d-407a-a992-af06ee723eab"
+    ],
+    "members": [
+      "q"
+    ]
+  },
+  {
+    "id": "eaf539d3-0cda-4dee-b7e0-d1385d4e286e",
+    "name": "qwewq",
+    "ownerUsername": "q",
+    "description": "qweqwe",
+    "startDate": "23123-12-31",
+    "endDate": "0023-12-31",
+    "status": "In Progress",
+    "budget": "123123",
+    "tasks": [
+      "544df4f3-b93a-45dd-bdd4-e3d5269fc854"
+    ],
+    "members": [
+      "q"
+    ]
+  },
+  {
+    "id": "64c1124e-e957-4042-bc9b-acf575ac6dd5",
+    "name": "qwewq",
+    "ownerUsername": "q",
+    "description": "qweqwe",
+    "startDate": "23123-12-31",
+    "endDate": "0023-12-31",
+    "status": "In Progress",
+    "budget": "123123",
+    "tasks": [
+      "a7d06eb7-4cfa-4d4b-bcdb-d1d8b07e5347"
+    ],
+    "members": [
+      "q"
+    ]
+  },
+  {
+    "id": "82487093-0a31-457d-8c4f-e834a03836a3",
+    "name": "",
+    "ownerUsername": "q",
+    "description": "",
+    "startDate": "",
+    "endDate": "",
+    "status": "Pending",
+    "budget": 0,
+    "tasks": [
+      "ea02698d-9f2f-48fa-bc84-b687140d36d5"
+    ],
+    "members": []
+  },
+  {
+    "id": "6a609bd3-03ce-4ed9-aa37-47869411171a",
+    "name": "",
+    "ownerUsername": "q",
+    "description": "",
+    "startDate": "",
+    "endDate": "",
+    "status": "Pending",
+    "budget": 0,
+    "tasks": [
+      "4a15045d-e376-4a05-9f6d-c439454350fb"
+    ],
+    "members": []
+  },
+  {
+    "id": "9a4bd42d-a683-4728-8238-f2cae8e31023",
+    "name": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "ownerUsername": "q",
+    "description": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "startDate": "2024-08-14",
+    "endDate": "2024-08-19",
+    "status": "In Progress",
+    "budget": 999,
+    "tasks": [
+      "bc90bede-a15b-4bb7-9bc0-96d06e149f1c"
+    ],
+    "members": [
+      "q"
     ]
   }
 ]
