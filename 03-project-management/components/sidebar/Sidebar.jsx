@@ -20,6 +20,8 @@ import PostDialog from "./PostDialog";
 import RegisterDialog from "./RegisterDialog";
 import LoginDialog from "./LoginDialog";
 import { useRouter } from "next/router";
+import ProjectDialog from "./projectDialog";
+import axios from "axios";
 
 // Styled Avatar for Click Effect
 const ClickableAvatar = styled(Avatar)({
@@ -46,6 +48,8 @@ export default function Sidebar({ setRefetch }) {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [isSidebarVisible, setSidebarVisible] = useState(false);
+  const [openProjectDialog, setOpenProjectDialog] = useState(false);
+
   const router = useRouter();
 
   const handleProfilePictureChange = (event) => {
@@ -157,7 +161,7 @@ export default function Sidebar({ setRefetch }) {
           </Tooltip>
         </div>
 
-        {/* Create Project Button */}
+        {/* Create Post Button */}
         {user && (
           <>
             <div className="mb-4">
@@ -167,7 +171,7 @@ export default function Sidebar({ setRefetch }) {
                 startIcon={<AddIcon />}
                 onClick={() => setOpenPostDialog(true)}
               >
-                Create A Project
+                Create A Post
               </Button>
             </div>
 
@@ -176,6 +180,29 @@ export default function Sidebar({ setRefetch }) {
               loggedUser={user}
               openDialog={openPostDialog}
               handleCloseDialog={() => setOpenPostDialog(false)}
+              setRefetch={setRefetch}
+            />
+          </>
+        )}
+        {/* Create Project Button */}
+        {user && (
+          <>
+            <div className="mb-4">
+              <Button
+                variant="contained"
+                className="w-full border-gradient bg-gradient-to-r from-blue-600 to-blue-800 text-white hover:from-blue-700 hover:to-blue-900"
+                startIcon={<AddIcon />}
+                onClick={() => setOpenProjectDialog(true)}
+              >
+                Create A Project
+              </Button>
+            </div>
+
+            {/* Create Project Dialog */}
+            <ProjectDialog
+              loggedUser={user}
+              openDialog={openProjectDialog}
+              handleCloseDialog={() => setOpenProjectDialog(false)}
               setRefetch={setRefetch}
             />
           </>

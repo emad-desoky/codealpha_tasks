@@ -36,6 +36,7 @@ const Navbar = () => {
       animate="visible"
       variants={gradientAnimation}
       style={{
+        marginBottom: "20px",
         position: "relative",
         width: "100%",
         background: "linear-gradient(to right, #002147, #4b0082, #002147)",

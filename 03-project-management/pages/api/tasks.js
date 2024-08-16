@@ -26,7 +26,7 @@ const writeFile = (filePath, data) => {
 };
 
 export default async function handler(req, res) {
-  const filePath = path.join(process.cwd(), "data", "users.json");
+  const filePath = path.join(process.cwd(), "data", "tasks.json");
 
   if (req.method === "GET") {
     try {
@@ -67,11 +67,7 @@ export default async function handler(req, res) {
 
     try {
       const data = await readFile(filePath);
-      const index = data.findIndex(
-        (item) => item.username === updatedElement.username
-      );
-      console.log(req.body);
-
+      const index = data.findIndex((item) => item.id === updatedElement.id);
       if (index !== -1) {
         data[index] = updatedElement;
         await writeFile(filePath, data);

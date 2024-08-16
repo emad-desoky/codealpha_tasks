@@ -1,0 +1,71 @@
+[
+  {
+    "id": "1",
+    "name": "Project Alpha",
+    "description": "Description for Project Alpha",
+    "ownerUsername": "q",
+    "startDate": "2024-01-01",
+    "endDate": "2024-12-31",
+    "status": "In Progress",
+    "tasks": [
+      "1",
+      "2"
+    ]
+    
+  },
+  {
+    "id": "2",
+    "name": "Project Beta",
+    "description": "Description for Project Beta",
+    "ownerUsername": "w",
+    "startDate": "2024-02-01",
+    "endDate": "2024-11-30",
+    "status": "Not Started",
+    "tasks": [
+      "3"
+    ]
+  },
+  {
+    "id": "a42b0afe-8056-4d42-a492-892dc23a9adb",
+    "name": "Project Alpha",
+    "ownerUsername": "qweq",
+    "description": "qwewqe",
+    "startDate": "23123-12-31",
+    "endDate": "0023-12-31",
+    "status": "In Progress",
+    "tasks": []
+  },
+  {
+    "id": "0c6658ae-e8bc-4e04-bbfa-16bbb37d3020",
+    "name": "uuuuuu",
+    "description": "uuuuuuuuuuuuuuu",
+    "startDate": "",
+    "endDate": "2312-12-31",
+    "status": "Completed",
+    "budget": "123123",
+    "tasks": []
+  },
+  {
+    "id": "45657b9e-4046-4068-9306-2dbbda029689",
+    "name": "OUR FIRST WEBSITE",
+    "description": "THIS IS GONNA BE A SERIOUS SAMPLE FOR OUR WEBSITE CREATOR",
+    "startDate": "1212-12-12",
+    "endDate": "1212-12-12",
+    "status": "In Progress",
+    "budget": "1000",
+    "tasks": []
+  },
+  {
+    "id": "9a7c1905-4965-4da0-8e1e-b822604f0d21",
+    "name": "asd",
+    "ownerUsername": "q",
+    "description": "asdffzxcvzxcvzxcgvsdsdfaaaaaaaaa",
+    "startDate": "23213-12-31",
+    "endDate": "23123-12-31",
+    "status": "In Progress",
+    "budget": "11231",
+    "tasks": [
+      "7ad8ba5e-4a5d-407a-a992-af06ee723eab"
+    ]
+  }
+]

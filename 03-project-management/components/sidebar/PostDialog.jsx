@@ -13,7 +13,12 @@ import { v4 } from "uuid";
 import axios from "axios";
 import Image from "next/image";
 
-export default function PostDialog({ openDialog, handleCloseDialog, loggedUser, setRefetch}) {
+export default function PostDialog({
+  openDialog,
+  handleCloseDialog,
+  loggedUser,
+  setRefetch,
+}) {
   const [postTitle, setPostTitle] = useState("");
   const [postContent, setPostContent] = useState("");
   const [media, setMedia] = useState(null);
@@ -44,12 +49,13 @@ export default function PostDialog({ openDialog, handleCloseDialog, loggedUser, 
       shares: 0,
     };
 
-    axios.post("/api/posts", newPost)
-    .then(res => {
-      console.log("Post Created Successfully: " + res.data);
-      setRefetch(prev => !prev);
-    })
-    .catch(e => console.error("Error creating post: ", e));
+    axios
+      .post("/api/posts", newPost)
+      .then((res) => {
+        console.log("Post Created Successfully: " + res.data);
+        setRefetch((prev) => !prev);
+      })
+      .catch((e) => console.error("Error creating post: ", e));
 
     handleCloseDialog();
   };
@@ -119,4 +125,4 @@ export default function PostDialog({ openDialog, handleCloseDialog, loggedUser, 
       </animated.div>
     </Dialog>
   );
-};
+}
