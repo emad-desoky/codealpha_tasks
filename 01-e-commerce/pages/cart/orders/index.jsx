@@ -1,32 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, Typography, Button } from "@mui/material";
+import { useRouter } from "next/router";
 import styles from "./Orders.module.css";
-import ordersData from "@/data/orders.json"; // Import JSON data
+import ordersData from "@/data/orders.json";
 import axios from "axios";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [products, setProducts] = useState([]);
+  const router = useRouter(); // Initialize useRouter hook
 
   useEffect(() => {
-    // Fetch and merge data
     const fetchData = async () => {
-      // Retrieve products from localStorage
       const localProducts = JSON.parse(localStorage.getItem("products")) || [];
       setProducts(localProducts);
 
-      // Merge orders data with product data
       const mergedOrders = ordersData.map((order) => ({
         ...order,
         items: order.items.map((item) => {
           const product = localProducts.find((p) => p.id === item.id);
           return {
             ...item,
-            ...product, // Merge product details with order item
+            ...product,
           };
         }),
       }));
-      // Assign random status to each order
+
       const statusLabels = [
         "Getting Order Ready",
         "Delivering Order",
@@ -51,14 +50,17 @@ export default function Orders() {
     }
   };
 
-  // Calculate totals
+  const handleNavigate = () => {
+    router.push("/"); // Navigate to /3
+  };
+
   const subtotal = orders.reduce(
     (acc, order) =>
       acc +
       order.items.reduce((itemAcc, item) => itemAcc + (item.price || 0), 0),
     0
   );
-  const shipping = 10; // fixed shipping cost
+  const shipping = 10;
   const total = subtotal + shipping;
 
   const statusLabels = {
@@ -70,25 +72,35 @@ export default function Orders() {
   return (
     <div className={styles.ordersContainer}>
       <div className={styles.header}>
-        <Typography variant="h1">Thanks For Your Order</Typography>
+        <Typography variant="h4" className={styles.title}>
+          Thanks For Your Order
+        </Typography>
         <Button
           variant="contained"
-          color="secondary"
+          color="error"
           className={styles.cancelAllButton}
           onClick={handleCancelOrder}
         >
           Cancel All Orders
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          className={styles.navigateButton}
+          onClick={handleNavigate}
+        >
+          Go back
         </Button>
       </div>
 
       <div className={styles.productsContainer}>
         {orders.length > 0 ? (
           orders.map((order) => (
-            <div key={order.id}>
+            <div key={order.id} className={styles.orderSection}>
               {order.items.map((item) => (
                 <Card key={item.id} className={styles.productCard}>
                   <CardContent>
-                    <Typography variant="h6">
+                    <Typography variant="h6" className={styles.productName}>
                       {item.name || "Unnamed Product"}
                     </Typography>
                     {item.image ? (
@@ -101,7 +113,9 @@ export default function Orders() {
                       <Typography>No Image Available</Typography>
                     )}
                     <Typography>Category: {item.category || "N/A"}</Typography>
-                    <Typography>Price: ${item.price.toFixed(2)}</Typography>
+                    <Typography>
+                      Price: ${item.price?.toFixed(2) || "0.00"}
+                    </Typography>
                     <Typography>Quantity: {item.quantity || 0}</Typography>
                   </CardContent>
                 </Card>
