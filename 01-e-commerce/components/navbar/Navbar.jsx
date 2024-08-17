@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Navbar.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Script from "next/script";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -21,16 +22,13 @@ const Navbar = () => {
     const totalItems = storedCart.reduce((sum, item) => sum + item.quantity, 0);
     setCartCount(totalItems);
 
-    let lastScrollTop = 0;
     const handleScroll = () => {
       const currentScroll =
         window.pageYOffset || document.documentElement.scrollTop;
-      if (currentScroll > lastScrollTop) {
-        setScrollingUp(false);
-      } else {
-        setScrollingUp(true);
-      }
-      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+      setScrollingUp(
+        currentScroll <= 0 || currentScroll < window.lastScrollTop
+      );
+      window.lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -59,6 +57,10 @@ const Navbar = () => {
         scrollingUp ? "" : styles.hidden
       }`}
     >
+      <Script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        strategy="beforeInteractive"
+      />
       <div className={styles.topNavbar}>
         <div className="container-fluid">
           <div className="row">
@@ -257,9 +259,9 @@ const Navbar = () => {
                 <a
                   className={`${styles.navLink} nav-link`}
                   href="#"
-                  onClick={(e) => handleClick(e, "furniture")}
+                  onClick={(e) => handleClick(e, "toys")}
                 >
-                  Furniture
+                  Toys
                 </a>
               </li>
             </ul>

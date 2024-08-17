@@ -1,47 +1,48 @@
+/* General styling - already present */
 .salesContainer {
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
     justify-content: center;
     padding: 40px;
-    background: linear-gradient(to right, #e0f7fa, #dbe1e2); /* Optional background gradient */
-}
-
-.saleCard {
+    background: linear-gradient(to right, #e0f7fa, #dbe1e2);
+  }
+  
+  .saleCard {
     position: relative;
     width: 400px;
-    height: 500px; /* Increased height for taller cards */
+    height: 500px;
     overflow: hidden;
     border-radius: 20px;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     cursor: pointer;
-    border: 2px solid #ddd; /* Optional border */
-}
-
-.saleCard:hover {
+    border: 2px solid #ddd;
+  }
+  
+  .saleCard:hover {
     transform: scale(1.05);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    border-color: #556cdc; /* Border color change on hover */
-}
-
-.saleCard img {
+    border-color: #556cdc;
+  }
+  
+  .saleCard img {
     width: 100%;
-    height: 60%; /* Adjusted height to leave space for the overlay */
+    height: 60%;
     object-fit: cover;
     transition: filter 0.3s ease;
-}
-
-.saleCard:hover img {
+  }
+  
+  .saleCard:hover img {
     filter: brightness(70%);
-}
-
-.saleOverlay {
+  }
+  
+  .saleOverlay {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 40%; /* Adjusted height */
+    height: 40%;
     background: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
@@ -49,29 +50,29 @@
     flex-direction: column;
     padding: 20px;
     transition: background 0.3s ease;
-}
-
-.saleOverlay:hover {
+  }
+  
+  .saleOverlay:hover {
     background: rgba(0, 0, 0, 0.8);
-}
-
-.saleContent {
+  }
+  
+  .saleContent {
     text-align: center;
     color: #fff;
-}
-
-.saleContent h2 {
+  }
+  
+  .saleContent h2 {
     font-size: 30px;
     margin: 0 0 10px;
     font-weight: bold;
-}
-
-.saleContent p {
+  }
+  
+  .saleContent p {
     font-size: 22px;
     margin: 0 0 10px;
-}
-
-.button {
+  }
+  
+  .button {
     background-color: #556cdc;
     color: #fff;
     border: none;
@@ -80,9 +81,91 @@
     cursor: pointer;
     font-size: 18px;
     transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.button:hover {
+  }
+  
+  .button:hover {
     background-color: #3f4dbf;
     transform: scale(1.05);
-}
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 1200px) {
+    .saleCard {
+      width: 300px;
+      height: 400px;
+    }
+  
+    .saleContent h2 {
+      font-size: 24px;
+    }
+  
+    .saleContent p {
+      font-size: 18px;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .salesContainer {
+      gap: 20px;
+      padding: 20px;
+    }
+  
+    .saleCard {
+      width: 100%;
+      height: auto;
+    }
+  
+    .saleContent h2 {
+      font-size: 22px;
+    }
+  
+    .saleContent p {
+      font-size: 16px;
+    }
+  
+    .button {
+      padding: 12px 24px;
+      font-size: 16px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .saleCard {
+      width: 100%;
+      height: auto;
+    }
+  
+    .saleContent h2 {
+      font-size: 20px;
+    }
+  
+    .saleContent p {
+      font-size: 14px;
+    }
+  
+    .button {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .saleCard {
+      width: 100%;
+      height: auto;
+    }
+  
+    .saleContent h2 {
+      font-size: 18px;
+    }
+  
+    .saleContent p {
+      font-size: 12px;
+    }
+  
+    .button {
+      padding: 8px 16px;
+      font-size: 12px;
+    }
+  }
+  

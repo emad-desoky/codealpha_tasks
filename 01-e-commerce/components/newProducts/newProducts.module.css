@@ -1,5 +1,8 @@
+/* components/NewProducts.module.css */
+
 .newProducts {
   padding: 20px;
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
 
 .newProducts h3 {
@@ -11,12 +14,21 @@
   margin-bottom: 20px;
 }
 
+/* Ensure proper wrapping and spacing */
+.swiper-container {
+  overflow: visible; /* Prevent clipping of slides */
+}
+
 .productCard {
   position: relative;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
   background: #fff;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box; /* Include padding and border in the width */
+  margin: 10px; /* Margin to prevent clipping */
 }
 
 .productCardImg {
@@ -49,6 +61,9 @@
 
 .productCardBody {
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .productCategory {
@@ -72,8 +87,9 @@
 
 .productActions {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: auto; /* Push actions to the bottom */
 }
 
 .addToCartButton,
@@ -86,6 +102,12 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  flex: 1; /* Full width */
+  margin: 0 5px; /* Space between buttons */
+}
+
+.addToCartButton {
+  margin-right: 5px;
 }
 
 .buttonText {
@@ -102,4 +124,82 @@
   border: 1px solid #ddd;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+}
+
+/* Responsive styles for tablets and smaller screens */
+@media (max-width: 1024px) {
+  .productCard {
+    width: calc(50% - 20px); /* Two cards per row with margin */
+    margin: 10px;
+  }
+
+  .productCardImg {
+    height: 180px; /* Adjust image height for tablets */
+  }
+
+  .productCategory {
+    font-size: 0.8rem; /* Slightly reduce font size */
+  }
+
+  .productName {
+    font-size: 1rem; /* Adjust font size */
+  }
+
+  .productPrice {
+    font-size: 0.9rem; /* Adjust font size */
+  }
+
+  .productActions {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: stretch; /* Stretch buttons to full width */
+  }
+
+  .addToCartButton,
+  .quickViewButton {
+    width: 100%; /* Full width buttons */
+    margin-bottom: 10px; /* Space between buttons */
+  }
+
+  .addToCartButton {
+    margin-right: 0; /* Remove margin for vertical stacking */
+  }
+}
+
+/* Responsive styles for phones */
+@media (max-width: 480px) {
+  .productCard {
+    width: calc(100% - 10px); /* Full width with margin */
+    margin: 5px;
+  }
+
+  .productCardImg {
+    height: 150px; /* Further adjust image height */
+  }
+
+  .productCategory {
+    font-size: 0.7rem; /* Reduce font size further */
+  }
+
+  .productName {
+    font-size: 0.9rem; /* Reduce font size */
+  }
+
+  .productPrice {
+    font-size: 0.8rem; /* Reduce font size */
+  }
+
+  .productActions {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: stretch; /* Stretch buttons to full width */
+  }
+
+  .addToCartButton,
+  .quickViewButton {
+    width: 100%; /* Full width buttons */
+    margin-bottom: 10px; /* Space between buttons */
+  }
+
+  .addToCartButton {
+    margin-right: 0; /* Remove margin for vertical stacking */
+  }
 }

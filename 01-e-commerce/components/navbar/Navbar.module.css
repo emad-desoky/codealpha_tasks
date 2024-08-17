@@ -1,4 +1,4 @@
-/* Ensuring the navbar and its elements have the correct styles */
+/* Base styles for the navbar */
 .mainNavbar {
     border-bottom: 1px solid #ccc;
     background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
@@ -13,8 +13,7 @@
 
 .topNavbar {
     background: transparent;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px;
 }
 
 .brandName {
@@ -98,4 +97,92 @@
 
 .navbarNav .nav-item .nav-link:hover {
     color: #ffeb3b !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .mainNavbar {
+        box-shadow: none;
+    }
+
+    .topNavbar {
+        padding: 5px;
+    }
+
+    .brandName {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .navLink {
+        font-size: 14px;
+        margin-right: 10px;
+    }
+
+    .navIcon {
+        font-size: 18px;
+    }
+
+    .navbar-toggler {
+        display: block;
+    }
+
+    .navbar-collapse {
+        margin-top: 10px;
+    }
+
+    .searchBtn {
+        font-size: 14px;
+    }
+
+    .dropdownMenu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: auto;
+        margin-top: 0;
+        width: 100%;
+    }
+
+    .dropdownItem {
+        padding: 12px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 991px) {
+    .navbar-toggler {
+        display: block;
+    }
+
+    .topNavbar {
+        padding: 5px;
+    }
+
+    .navbarNav .nav-item .nav-link {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+   /* Ensure that dropdown menu styles are not overridden */
+.dropdown-menu {
+    min-width: 160px;
+  }
+  
+
+    .dropdownItem {
+        padding: 10px;
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .topNavbar {
+        padding: 10px;
+    }
+
+    .navbarNav .nav-item .nav-link {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
 }

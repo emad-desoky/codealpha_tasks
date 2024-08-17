@@ -79,9 +79,26 @@ const NewProducts = () => {
       </div>
       <Swiper
         spaceBetween={30}
-        slidesPerView={4}
         navigation
         pagination={{ clickable: true }}
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          1200: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+          },
+        }}
       >
         {newProducts.length > 0 ? (
           newProducts.map((product) => (
