@@ -1,11 +1,12 @@
 import { db } from "@/firebase/clientApp";
 import {
   collection,
+  query,
+  where,
   getDocs,
   doc,
-  getDoc,
-  setDoc,
   updateDoc,
+  setDoc,
   deleteDoc,
   addDoc,
 } from "firebase/firestore";
@@ -43,19 +44,31 @@ export default async function handler(req, res) {
   } else if (req.method === "PUT") {
     try {
       const updatedElement = req.body;
-      const docRef = doc(colRef, updatedElement.id);
+      console.log(updatedElement);
 
-      if (updatedElement.id) {
-        const docSnap = await getDoc(docRef);
+      if (!updatedElement.username) {
+        return res
+          .status(400)
+          .json({ error: "Username must be provided for update" });
+      }
 
-        if (docSnap.exists()) {
-          await updateDoc(docRef, updatedElement);
-          res.status(200).json(updatedElement);
-        } else {
-          res.status(404).json({ error: "Element not found" });
-        }
+      // Create a query to find the document where username matches
+      const q = query(colRef, where("username", "==", updatedElement.username));
+      const snapshot = await getDocs(q);
+
+      if (!snapshot.empty) {
+        const docRef = doc(db, "users", snapshot.docs[0].id); // Get the document ID from the snapshot
+        await updateDoc(docRef, {
+          password: updatedElement.password,
+          age: updatedElement.age,
+          email: updatedElement.email,
+          country: updatedElement.country,
+          pfp: updatedElement.pfp,
+          jobs: updatedElement.jobs, // Ensure this matches the structure in Firestore
+        });
+        res.status(200).json(updatedElement);
       } else {
-        res.status(400).json({ error: "ID must be provided for update" });
+        res.status(404).json({ error: "Element not found" });
       }
     } catch (error) {
       console.error("PUT Error:", error);
