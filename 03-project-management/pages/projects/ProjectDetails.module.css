@@ -1,0 +1,65 @@
+.container {
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .backButton {
+    margin-bottom: 1rem;
+  }
+  
+  .leftSide {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+  }
+  
+  .rightSide {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+  }
+  
+  .projectTitle {
+    margin-bottom: 1rem;
+  }
+  
+  .projectCard {
+    margin-bottom: 1rem;
+  }
+  
+  .chartContainer {
+    margin-top: 1rem;
+    height: 400px;
+    position: relative;
+  }
+  
+  .commentButton {
+    margin-top: 1rem;
+  }
+  
+  .chatInput {
+    margin-top: 1rem;
+  }
+  .chartCard {
+    margin-top: 20px;
+  }
+  
+  .backButton {
+    margin-bottom: 20px;
+  }
+  
+  .projectCard {
+    margin-bottom: 20px;
+  }
+  
+  .commentButton {
+    margin-top: 10px;
+  }
+  
+  .chatInput {
+    margin-top: 20px;
+  }  

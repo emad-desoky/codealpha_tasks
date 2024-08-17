@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
 import {
   Card,
   Typography,
@@ -16,15 +17,17 @@ import {
   List,
   ListItem,
   ListItemText,
+  LinearProgress, // Import LinearProgress for progress bar
 } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
-import styles from "./ProjectCard.module.css";
+import styles from "./ProjectToolCard.module.css";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import GroupIcon from "@mui/icons-material/Group";
 
 const ProjectToolCard = () => {
+  const router = useRouter(); // Initialize useRouter
   const [projects, setProjects] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [comments, setComments] = useState([]);
@@ -167,6 +170,10 @@ const ProjectToolCard = () => {
     setSnackbar({ open: false, message: "" });
   };
 
+  const handleShowMoreClick = (projectId) => {
+    router.push(`/projects?id=${projectId}`);
+  };
+
   return (
     <>
       <React.Fragment>
@@ -254,6 +261,20 @@ const ProjectToolCard = () => {
                       Status: {p.status}
                     </Typography>
 
+                    {/* Progress Bar */}
+                    <div className={styles.progressContainer}>
+                      <Typography
+                        variant="subtitle1"
+                        className={styles.progressTitle}
+                      >
+                        Progress:
+                      </Typography>
+                      <LinearProgress
+                        variant="determinate"
+                        value={Math.floor(Math.random() * 100)} // Random value for progress
+                      />
+                    </div>
+
                     <Typography
                       variant="subtitle1"
                       className={styles.taskHeader}
@@ -268,107 +289,97 @@ const ProjectToolCard = () => {
                             Task {i + 1} Title: {t.title}
                           </Typography>
                           <Typography className={styles.task}>
-                            Task Description: {t.description}
+                            Task {i + 1} Description: {t.description}
                           </Typography>
                         </React.Fragment>
                       ))}
+
                     <Typography
                       variant="subtitle1"
-                      className={styles.commentsHeader}
+                      className={styles.commentHeader}
                     >
-                      Comments:
+                      COMMENTS:
                     </Typography>
                     {comments
                       .filter((c) => c.projectId === p.id)
-                      .slice(0, expandedComments[p.id] ? comments.length : 3)
+                      .slice(0, expandedComments[p.id] ? undefined : 2)
                       .map((c, i) => (
-                        <div key={i} className={styles.commentItem}>
+                        <div
+                          key={i}
+                          className={styles.comment}
+                          ref={(el) => (commentRefs.current[p.id] = el)}
+                        >
                           <Avatar
                             alt={c.userUsername}
-                            src={user.pfp}
+                            src={`/static/images/avatar/${c.userUsername}.jpg`}
                             className={styles.commentAvatar}
                           />
-                          <div className={styles.commentText}>
-                            <Typography
-                              variant="body2"
-                              className={styles.commentHeader}
-                            >
-                              {c.userUsername}
-                            </Typography>
-                            {c.text}
-                          </div>
+                          <Typography variant="body2">
+                            <strong>{c.userUsername}:</strong> {c.text}
+                          </Typography>
                         </div>
                       ))}
                     {comments.filter((c) => c.projectId === p.id).length >
-                      3 && (
+                      2 && (
                       <Button
                         onClick={() => toggleExpandComments(p.id)}
-                        size="small"
-                        color="primary"
-                        className={styles.commentButton}
+                        className={styles.showMoreButton}
                       >
-                        {expandedComments[p.id] ? "Show less" : "Show more"}
+                        {expandedComments[p.id] ? "Show Less" : "Show More"}
                       </Button>
                     )}
-                    <Grid container alignItems="center" spacing={1}>
-                      <Grid item xs={8}>
-                        <TextField
-                          placeholder="Write a comment..."
-                          fullWidth
-                          variant="outlined"
-                          inputRef={(el) => (commentRefs.current[p.id] = el)}
-                        />
-                      </Grid>
-                      <Grid item xs={4}>
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          onClick={() => handleCommentSubmit(p.id)}
-                          fullWidth
-                          className={styles.commentButton}
-                        >
-                          Comment
-                        </Button>
-                      </Grid>
-                    </Grid>
+                    <TextField
+                      variant="outlined"
+                      multiline
+                      rows={2}
+                      placeholder="Add a comment..."
+                      className={styles.commentInput}
+                    />
+                    <Button
+                      onClick={() => handleCommentSubmit(p.id)}
+                      className={styles.submitButton}
+                    >
+                      Submit
+                    </Button>
+                    <Button
+                      onClick={() => handleShowMoreClick(p.id)}
+                      className={styles.showMoreButton}
+                    >
+                      Show More
+                    </Button>
                   </Grid>
                 </Card>
               </Grid>
             ))}
           </Grid>
-
-          <Dialog
-            open={openJobsDialog}
-            onClose={handleCloseJobsDialog}
-            className={styles.dialog}
-          >
-            <DialogTitle className={styles.dialogTitle}>
-              Assigned Jobs
-            </DialogTitle>
-            <DialogContent className={styles.dialogContent}>
-              <List>
-                {user.jobs && Array.isArray(user.jobs) ? (
-                  user.jobs.map((job, index) => (
-                    <ListItem key={index} className={styles.listItem}>
-                      <ListItemText primary={job.name} />
-                    </ListItem>
-                  ))
-                ) : (
-                  <ListItem>
-                    <ListItemText primary="No assigned jobs" />
-                  </ListItem>
-                )}
-              </List>
-            </DialogContent>
-          </Dialog>
-
-          <Snackbar
-            open={snackbar.open}
-            autoHideDuration={3000}
-            onClose={handleCloseSnackbar}
-            message={snackbar.message}
-          />
         </Container>
+
+        {/* Dialog for Assigned Jobs */}
+        <Dialog open={openJobsDialog} onClose={handleCloseJobsDialog}>
+          <DialogTitle>Assigned Jobs</DialogTitle>
+          <DialogContent>
+            <List>
+              {projects
+                .filter((p) => assignedProjects.has(p.id))
+                .map((p) => (
+                  <ListItem key={p.id}>
+                    <ListItemText
+                      primary={p.name}
+                      secondary={`Status: ${p.status}`}
+                    />
+                  </ListItem>
+                ))}
+            </List>
+          </DialogContent>
+        </Dialog>
+
+        {/* Snackbar for success message */}
+        <Snackbar
+          open={snackbar.open}
+          autoHideDuration={6000}
+          onClose={handleCloseSnackbar}
+          message={snackbar.message}
+        />
       </React.Fragment>
     </>
   );
