@@ -7,7 +7,6 @@
     "country": "caito",
     "pfp": "/path-to-your-profile-pic.jpg",
     "jobs": [
-    
       {
         "id": "eaf539d3-0cda-4dee-b7e0-d1385d4e286e",
         "name": "Project Eta"
@@ -25,16 +24,16 @@
         "name": "Project Zeta"
       },
       {
+        "id": "1",
+        "name": "Project Alpha"
+      },
+      {
         "id": "a42b0afe-8056-4d42-a492-892dc23a9adb",
         "name": "Project Gamma"
       },
       {
         "id": "2",
         "name": "Project Beta"
-      },
-      {
-        "id": "1",
-        "name": "Project Alpha"
       }
     ]
   },

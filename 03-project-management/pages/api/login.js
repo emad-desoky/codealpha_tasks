@@ -1,17 +1,17 @@
-import fs from "fs";
-import path from "path";
-
-// Path to the JSON file
-const usersFilePath = path.join(process.cwd(), "data", "users.json");
+import { db } from "@/firebase/clientApp";
+import { collection, getDocs } from "firebase/firestore";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const { username, password } = req.body;
 
     try {
-      // Read the JSON file
-      const fileContent = fs.readFileSync(usersFilePath);
-      const users = JSON.parse(fileContent);
+      // Reference to the Firestore collection
+      const colRef = collection(db, "users");
+
+      // Fetch all documents from the 'users' collection
+      const snapshot = await getDocs(colRef);
+      const users = snapshot.docs.map((doc) => doc.data());
 
       // Find the user with the matching username and password
       const foundUser = users.find(
@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 
       return res.status(200).json(foundUser);
     } catch (error) {
-      console.error("Error reading user data from JSON file:", error);
+      console.error("Error retrieving user data from Firestore:", error);
       return res.status(500).json({ error: "Failed to retrieve user data" });
     }
   } else {
