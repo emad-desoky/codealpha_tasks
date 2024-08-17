@@ -16,7 +16,6 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import LoginIcon from "@mui/icons-material/Login";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { styled } from "@mui/material/styles";
-import PostDialog from "./PostDialog";
 import RegisterDialog from "./RegisterDialog";
 import LoginDialog from "./LoginDialog";
 import { useRouter } from "next/router";
@@ -40,7 +39,6 @@ const sidebarVariants = {
 };
 
 export default function Sidebar({ setRefetch }) {
-  const [openPostDialog, setOpenPostDialog] = useState(false);
   const [openRegistrationDialog, setOpenRegistrationDialog] = useState(false);
   const [openLoginDialog, setOpenLoginDialog] = useState(false);
   const [user, setUser] = useState(null);
@@ -161,29 +159,6 @@ export default function Sidebar({ setRefetch }) {
           </Tooltip>
         </div>
 
-        {/* Create Post Button */}
-        {user && (
-          <>
-            <div className="mb-4">
-              <Button
-                variant="contained"
-                className="w-full border-gradient bg-gradient-to-r from-blue-600 to-blue-800 text-white hover:from-blue-700 hover:to-blue-900"
-                startIcon={<AddIcon />}
-                onClick={() => setOpenPostDialog(true)}
-              >
-                Create A Post
-              </Button>
-            </div>
-
-            {/* Create Post Dialog */}
-            <PostDialog
-              loggedUser={user}
-              openDialog={openPostDialog}
-              handleCloseDialog={() => setOpenPostDialog(false)}
-              setRefetch={setRefetch}
-            />
-          </>
-        )}
         {/* Create Project Button */}
         {user && (
           <>

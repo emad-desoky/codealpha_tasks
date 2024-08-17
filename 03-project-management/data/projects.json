@@ -2,8 +2,8 @@
   {
     "id": "1",
     "name": "Project Alpha",
-    "description": "Description for Project Alpha",
-    "ownerUsername": "q",
+    "description": "A key project focusing on the alpha phase of our development.",
+    "ownerUsername": "john_doe",
     "startDate": "2024-01-01",
     "endDate": "2024-12-31",
     "status": "In Progress",
@@ -12,16 +12,19 @@
       "2"
     ],
     "members": [
-      "q",
-      "W",
-      "EE"
+      "john_doe",
+      "jane_smith",
+      "eric_elliott",
+      "susan_lee",
+      "s",
+      "q"
     ]
   },
   {
     "id": "2",
     "name": "Project Beta",
-    "description": "Description for Project Beta",
-    "ownerUsername": "w",
+    "description": "A secondary project aimed at beta testing.",
+    "ownerUsername": "jane_smith",
     "startDate": "2024-02-01",
     "endDate": "2024-11-30",
     "status": "Not Started",
@@ -29,137 +32,89 @@
       "3"
     ],
     "members": [
+      "john_doe",
+      "susan_lee",
+      "s",
       "q"
     ]
   },
   {
     "id": "a42b0afe-8056-4d42-a492-892dc23a9adb",
-    "name": "Project Alpha",
-    "ownerUsername": "qweq",
-    "description": "qwewqe",
-    "startDate": "23123-12-31",
+    "name": "Project Gamma",
+    "description": "An experimental project with various tasks.",
+    "ownerUsername": "jane_doe",
+    "startDate": "2024-12-31",
     "endDate": "0023-12-31",
     "status": "In Progress",
     "tasks": [],
     "members": [
+      "john_doe",
+      "susan_lee",
+      "s",
       "q"
     ]
   },
   {
     "id": "0c6658ae-e8bc-4e04-bbfa-16bbb37d3020",
-    "name": "uuuuuu",
-    "description": "uuuuuuuuuuuuuuu",
-    "startDate": "",
-    "endDate": "2312-12-31",
+    "name": "Project Delta",
+    "description": "A completed project focusing on initial development.",
+    "startDate": "2023-01-01",
+    "endDate": "2024-12-31",
     "status": "Completed",
-    "budget": "123123",
+    "budget": "123,123",
     "tasks": [],
     "members": [
+      "john_doe",
       "q"
     ]
   },
   {
     "id": "45657b9e-4046-4068-9306-2dbbda029689",
-    "name": "OUR FIRST WEBSITE",
-    "description": "THIS IS GONNA BE A SERIOUS SAMPLE FOR OUR WEBSITE CREATOR",
-    "startDate": "1212-12-12",
-    "endDate": "1212-12-12",
+    "name": "Project Epsilon",
+    "description": "A serious sample project for website creation.",
+    "startDate": "2024-12-12",
+    "endDate": "2024-12-12",
     "status": "In Progress",
-    "budget": "1000",
+    "budget": "1,000",
     "tasks": [],
     "members": [
+      "john_doe",
+      "susan_lee",
+      "s",
       "q"
     ]
   },
   {
     "id": "9a7c1905-4965-4da0-8e1e-b822604f0d21",
-    "name": "asd",
-    "ownerUsername": "q",
-    "description": "asdffzxcvzxcvzxcgvsdsdfaaaaaaaaa",
-    "startDate": "23213-12-31",
+    "name": "Project Zeta",
+    "description": "An advanced project with a large budget.",
+    "ownerUsername": "john_doe",
+    "startDate": "2024-12-31",
     "endDate": "23123-12-31",
     "status": "In Progress",
-    "budget": "11231",
+    "budget": "11,231",
     "tasks": [
       "7ad8ba5e-4a5d-407a-a992-af06ee723eab"
     ],
     "members": [
+      "john_doe",
+      "susan_lee",
+      "s",
       "q"
     ]
   },
   {
     "id": "eaf539d3-0cda-4dee-b7e0-d1385d4e286e",
-    "name": "qwewq",
-    "ownerUsername": "q",
-    "description": "qweqwe",
-    "startDate": "23123-12-31",
-    "endDate": "0023-12-31",
+    "name": "Project Eta",
+    "description": "A high-budget project for intensive tasks.",
+    "ownerUsername": "john_doe",
+    "startDate": "2024-01-01",
+    "endDate": "2024-12-31",
     "status": "In Progress",
-    "budget": "123123",
-    "tasks": [
-      "544df4f3-b93a-45dd-bdd4-e3d5269fc854"
-    ],
+    "budget": "3,000",
+    "tasks": [],
     "members": [
-      "q"
-    ]
-  },
-  {
-    "id": "64c1124e-e957-4042-bc9b-acf575ac6dd5",
-    "name": "qwewq",
-    "ownerUsername": "q",
-    "description": "qweqwe",
-    "startDate": "23123-12-31",
-    "endDate": "0023-12-31",
-    "status": "In Progress",
-    "budget": "123123",
-    "tasks": [
-      "a7d06eb7-4cfa-4d4b-bcdb-d1d8b07e5347"
-    ],
-    "members": [
-      "q"
-    ]
-  },
-  {
-    "id": "82487093-0a31-457d-8c4f-e834a03836a3",
-    "name": "",
-    "ownerUsername": "q",
-    "description": "",
-    "startDate": "",
-    "endDate": "",
-    "status": "Pending",
-    "budget": 0,
-    "tasks": [
-      "ea02698d-9f2f-48fa-bc84-b687140d36d5"
-    ],
-    "members": []
-  },
-  {
-    "id": "6a609bd3-03ce-4ed9-aa37-47869411171a",
-    "name": "",
-    "ownerUsername": "q",
-    "description": "",
-    "startDate": "",
-    "endDate": "",
-    "status": "Pending",
-    "budget": 0,
-    "tasks": [
-      "4a15045d-e376-4a05-9f6d-c439454350fb"
-    ],
-    "members": []
-  },
-  {
-    "id": "9a4bd42d-a683-4728-8238-f2cae8e31023",
-    "name": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-    "ownerUsername": "q",
-    "description": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-    "startDate": "2024-08-14",
-    "endDate": "2024-08-19",
-    "status": "In Progress",
-    "budget": 999,
-    "tasks": [
-      "bc90bede-a15b-4bb7-9bc0-96d06e149f1c"
-    ],
-    "members": [
+      "john_doe",
       "q"
     ]
   }

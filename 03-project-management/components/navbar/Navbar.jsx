@@ -12,9 +12,9 @@ import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 import GroupIcon from "@mui/icons-material/Group";
 import SearchIcon from "@mui/icons-material/Search";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 import styles from "./Navbar.module.css"; // Ensure you have a CSS module for styling
 
-// Define animation variants for the gradient background
 const gradientAnimation = {
   hidden: { backgroundPosition: "0% 0%" },
   visible: {
@@ -29,7 +29,17 @@ const gradientAnimation = {
   },
 };
 
-const Navbar = () => {
+const Navbar = ({ searchTerm, setSearchTerm }) => {
+  const router = useRouter();
+
+  const handleHomeClick = () => {
+    router.push("/");
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
   return (
     <motion.div
       initial="hidden"
@@ -42,7 +52,7 @@ const Navbar = () => {
         background: "linear-gradient(to right, #002147, #4b0082, #002147)",
         backgroundSize: "200% 200%",
         height: "64px",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Add shadow for depth
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
       }}
     >
       <AppBar
@@ -59,6 +69,7 @@ const Navbar = () => {
               color="inherit"
               aria-label="home"
               className={styles.icon}
+              onClick={handleHomeClick}
             >
               <HomeIcon />
             </IconButton>
@@ -81,6 +92,8 @@ const Navbar = () => {
             variant="outlined"
             placeholder="Search..."
             size="small"
+            value={searchTerm}
+            onChange={handleSearchChange}
             sx={{
               background: "rgba(255, 255, 255, 0.1)",
               borderRadius: "20px",
@@ -96,10 +109,10 @@ const Navbar = () => {
                   border: "none",
                 },
                 "& input": {
-                  color: "white", // Set text color to white
+                  color: "white",
                 },
                 "& input::placeholder": {
-                  color: "rgba(255, 255, 255, 0.7)", // Set placeholder color to a lighter white
+                  color: "rgba(255, 255, 255, 0.7)",
                 },
               },
             }}

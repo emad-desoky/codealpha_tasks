@@ -23,6 +23,7 @@ export default function RegisterDialog({
     email: "",
     country: "",
     pfp: "",
+    jobs: [], // Initialize jobs array
   });
 
   // Animation for Registration Dialog
@@ -34,31 +35,39 @@ export default function RegisterDialog({
 
   const handleRegister = async () => {
     if (validateRegistrationData()) {
-      axios
-        .post("/api/users", registrationData)
-        .then((res) => {
-          if (res.data.message) {
-            alert(res.data.message);
-          } else {
-            console.log("Registration successful: ", res.data);
-            // Clear the registration form
-            setRegistrationData({
-              username: "",
-              password: "",
-              age: "",
-              email: "",
-              country: "",
-              pfp: "",
-            });
+      try {
+        // Add jobs array to registrationData
+        const userWithJobs = {
+          ...registrationData,
+          jobs: [], // Ensure jobs array is included
+        };
 
-            handleCloseRegistrationDialog(false);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          setSnackbarMessage("Failed to register. Please try again.");
-          setSnackbarOpen(true);
-        });
+        // Post the registration data to the API
+        const response = await axios.post("/api/users", userWithJobs);
+
+        if (response.data.message) {
+          alert(response.data.message);
+        } else {
+          console.log("Registration successful: ", response.data);
+
+          // Clear the registration form
+          setRegistrationData({
+            username: "",
+            password: "",
+            age: "",
+            email: "",
+            country: "",
+            pfp: "",
+            jobs: [], // Reset jobs array
+          });
+
+          handleCloseRegistrationDialog(false);
+        }
+      } catch (error) {
+        console.log(error);
+        setSnackbarMessage("Failed to register. Please try again.");
+        setSnackbarOpen(true);
+      }
     }
   };
 

@@ -2,14 +2,14 @@
   {
     "id": "1",
     "projectId": "1",
-    "userUsername": "q",
+    "userUsername": "john_doe",
     "text": "Completed the initial part of the task.",
     "timestamp": "2024-03-01T12:00:00Z"
   },
   {
     "id": "2",
     "projectId": "1",
-    "userUsername": "w",
+    "userUsername": "jane_smith",
     "text": "Looks good, moving to the next step.",
     "timestamp": "2024-03-02T14:00:00Z"
   },
@@ -17,77 +17,77 @@
     "id": "3747398d-7d99-4af9-b75f-ed9bd4f1d8a4",
     "projectId": "1",
     "userUsername": "currentUser",
-    "text": "asd",
+    "text": "Reviewed the task, everything seems to be in order.",
     "timestamp": "2024-08-16T11:31:12.888Z"
   },
   {
     "id": "e5a54289-7b42-4917-b4c7-ee2b3cca1b37",
     "projectId": "1",
-    "userUsername": "q",
-    "text": "asd",
+    "userUsername": "john_doe",
+    "text": "Minor fixes needed, please check.",
     "timestamp": "2024-08-16T11:41:58.522Z"
   },
   {
     "id": "45d9d1f2-4d36-44c4-9a48-d8da8da9043c",
     "projectId": "2",
-    "userUsername": "q",
-    "text": "asd",
+    "userUsername": "john_doe",
+    "text": "Initial review complete, more work required.",
     "timestamp": "2024-08-16T11:42:02.090Z"
   },
   {
     "id": "09afb6b7-8d94-4a99-acf2-254f2ef65813",
     "projectId": "a42b0afe-8056-4d42-a492-892dc23a9adb",
-    "userUsername": "q",
-    "text": "asd",
+    "userUsername": "john_doe",
+    "text": "Pending review.",
     "timestamp": "2024-08-16T11:42:03.313Z"
   },
   {
     "id": "01bc9ea5-9729-4adb-bb2d-22791303456c",
     "projectId": "a42b0afe-8056-4d42-a492-892dc23a9adb",
-    "userUsername": "q",
-    "text": "asd",
-    "timestamp": "2024-08-16T11:42:07.793Z"
-  },
-  {
-    "id": "01042ef6-c658-4703-a4e4-2a12a93f4c9b",
-    "projectId": "1",
-    "userUsername": "q",
-    "text": "",
+    "userUsername": "john_doe",
+    "text": "No comments yet.",
     "timestamp": "2024-08-16T11:42:15.761Z"
   },
   {
     "id": "a1dc653b-6cf3-4151-9fa1-217b9d76f86d",
     "projectId": "1",
-    "userUsername": "q",
-    "text": "1111111",
+    "userUsername": "john_doe",
+    "text": "Task has been updated with the latest changes.",
     "timestamp": "2024-08-16T11:44:59.273Z"
   },
   {
     "id": "c214b9de-5909-43a5-aa95-68eda3c38c87",
     "projectId": "0c6658ae-e8bc-4e04-bbfa-16bbb37d3020",
-    "userUsername": "q",
-    "text": "qqqqqqq",
+    "userUsername": "john_doe",
+    "text": "Final review completed.",
     "timestamp": "2024-08-16T11:45:01.273Z"
   },
   {
     "id": "a7726009-8744-47ae-9c69-8407285c82eb",
     "projectId": "2",
-    "userUsername": "q",
-    "text": "22222222",
+    "userUsername": "john_doe",
+    "text": "Excellent progress, keep it up!",
     "timestamp": "2024-08-16T11:45:03.298Z"
   },
   {
     "id": "40cbb41c-6006-4ae2-a393-4dfc4d1dacad",
     "projectId": "9a7c1905-4965-4da0-8e1e-b822604f0d21",
-    "userUsername": "q",
-    "text": "aa",
+    "userUsername": "john_doe",
+    "text": "Need to revisit some details.",
     "timestamp": "2024-08-16T12:51:08.927Z"
   },
   {
     "id": "98def1f4-2dde-46b6-9799-4720f1237f25",
     "projectId": "0c6658ae-e8bc-4e04-bbfa-16bbb37d3020",
-    "userUsername": "q",
-    "text": "A",
+    "userUsername": "john_doe",
+    "text": "Reviewed and approved.",
     "timestamp": "2024-08-16T17:57:20.745Z"
+  },
+  {
+    "id": "9c24006c-ed66-4f9c-bbd6-134f514072d7",
+    "projectId": "2",
+    "userUsername": "susan_lee",
+    "text": "Looking forward to the next update.",
+    "timestamp": "2024-08-16T20:39:19.630Z"
   }
 ]

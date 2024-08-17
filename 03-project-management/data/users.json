@@ -7,45 +7,34 @@
     "country": "caito",
     "pfp": "/path-to-your-profile-pic.jpg",
     "jobs": [
+    
       {
-        "id": "9a7c1905-4965-4da0-8e1e-b822604f0d21",
-        "name": "asd"
+        "id": "eaf539d3-0cda-4dee-b7e0-d1385d4e286e",
+        "name": "Project Eta"
       },
       {
-        "id": "1",
-        "name": "Project Alpha"
+        "id": "0c6658ae-e8bc-4e04-bbfa-16bbb37d3020",
+        "name": "Project Delta"
       },
       {
         "id": "45657b9e-4046-4068-9306-2dbbda029689",
-        "name": "OUR FIRST WEBSITE"
+        "name": "Project Epsilon"
+      },
+      {
+        "id": "9a7c1905-4965-4da0-8e1e-b822604f0d21",
+        "name": "Project Zeta"
       },
       {
         "id": "a42b0afe-8056-4d42-a492-892dc23a9adb",
-        "name": "Project Alpha"
+        "name": "Project Gamma"
       },
       {
         "id": "2",
         "name": "Project Beta"
       },
       {
-        "id": "0c6658ae-e8bc-4e04-bbfa-16bbb37d3020",
-        "name": "uuuuuu"
-      },
-      {
-        "id": "eaf539d3-0cda-4dee-b7e0-d1385d4e286e",
-        "name": "qwewq"
-      },
-      {
-        "id": "64c1124e-e957-4042-bc9b-acf575ac6dd5",
-        "name": "qwewq"
-      },
-      {
-        "id": "91e0a289-a59e-4a31-b6d4-cf3be4b10e4b",
-        "name": "qqqqqqqqq"
-      },
-      {
-        "id": "9a4bd42d-a683-4728-8238-f2cae8e31023",
-        "name": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+        "id": "1",
+        "name": "Project Alpha"
       }
     ]
   },
@@ -56,6 +45,15 @@
     "email": "killer@killer.com",
     "country": "Killer Country",
     "pfp": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Zed_0.jpg",
+    "jobs": []
+  },
+  {
+    "username": "s",
+    "password": "123",
+    "age": "22",
+    "email": "deskoemad@gmail.com",
+    "country": "caito",
+    "pfp": "null",
     "jobs": []
   }
 ]
