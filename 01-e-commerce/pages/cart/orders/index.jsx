@@ -1,41 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, Typography, Button } from "@mui/material";
 import { useRouter } from "next/router";
-import styles from "./Orders.module.css";
-import ordersData from "@/data/orders.json";
 import axios from "axios";
+import styles from "./Orders.module.css";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [products, setProducts] = useState([]);
-  const router = useRouter(); // Initialize useRouter hook
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
-      const localProducts = JSON.parse(localStorage.getItem("products")) || [];
-      setProducts(localProducts);
+      try {
+        // Fetch orders from Firestore API endpoint
+        const { data: ordersFromAPI } = await axios.get("/api/orders");
+        const localProducts =
+          JSON.parse(localStorage.getItem("products")) || [];
+        setProducts(localProducts);
 
-      const mergedOrders = ordersData.map((order) => ({
-        ...order,
-        items: order.items.map((item) => {
-          const product = localProducts.find((p) => p.id === item.id);
-          return {
-            ...item,
-            ...product,
-          };
-        }),
-      }));
+        const mergedOrders = ordersFromAPI.map((order) => ({
+          ...order,
+          items: order.items.map((item) => {
+            const product = localProducts.find((p) => p.id === item.id);
+            return {
+              ...item,
+              ...product,
+            };
+          }),
+        }));
 
-      const statusLabels = [
-        "Getting Order Ready",
-        "Delivering Order",
-        "Delivered",
-      ];
-      const updatedOrders = mergedOrders.map((order) => ({
-        ...order,
-        status: statusLabels[Math.floor(Math.random() * statusLabels.length)],
-      }));
-      setOrders(updatedOrders);
+        const statusLabels = [
+          "Getting Order Ready",
+          "Delivering Order",
+          "Delivered",
+        ];
+        const updatedOrders = mergedOrders.map((order) => ({
+          ...order,
+          status: statusLabels[Math.floor(Math.random() * statusLabels.length)],
+        }));
+        setOrders(updatedOrders);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
     };
 
     fetchData();
@@ -51,7 +57,7 @@ export default function Orders() {
   };
 
   const handleNavigate = () => {
-    router.push("/"); // Navigate to /3
+    router.push("/"); // Navigate to /
   };
 
   const subtotal = orders.reduce(
