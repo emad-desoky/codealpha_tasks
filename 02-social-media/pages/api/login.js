@@ -1,30 +1,36 @@
-import fs from "fs";
-import path from "path";
+import { db } from "@/firebase/clientApp"; // Import your Firestore instance
+import { collection, getDocs, query, where } from "firebase/firestore";
 
-// Path to the JSON file
-const usersFilePath = path.join(process.cwd(), "data", "users.json");
+// Reference to the Firestore collection
+const usersCollection = collection(db, "users");
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const { username, password } = req.body;
 
     try {
-      // Read the JSON file
-      const fileContent = fs.readFileSync(usersFilePath);
-      const users = JSON.parse(fileContent);
-
-      // Find the user with the matching username and password
-      const foundUser = users.find(
-        (user) => user.username === username && user.password === password
+      // Create a query to find the user with matching username and password
+      const q = query(
+        usersCollection,
+        where("username", "==", username),
+        where("password", "==", password)
       );
 
-      if (!foundUser) {
+      // Execute the query
+      const querySnapshot = await getDocs(q);
+
+      // Check if user exists
+      if (querySnapshot.empty) {
         return res.status(200).json({ message: "Invalid Credentials" });
       }
 
-      return res.status(200).json(foundUser);
+      // Get user data
+      const foundUser = querySnapshot.docs[0].data();
+      return res
+        .status(200)
+        .json({ id: querySnapshot.docs[0].id, ...foundUser });
     } catch (error) {
-      console.error("Error reading user data from JSON file:", error);
+      console.error("Error retrieving user data from Firestore:", error);
       return res.status(500).json({ error: "Failed to retrieve user data" });
     }
   } else {

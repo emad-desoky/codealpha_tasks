@@ -44,7 +44,7 @@ export default function Posts({ posts, users, comments, setRefetch }) {
     visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } },
   };
 
-  const handleLike = async (postId) => {
+  const handleLike = (postId) => {
     if (user.likedPosts.find((p) => p == postId)) {
       setUser((prev) => {
         const updatedUser = {
@@ -140,10 +140,12 @@ export default function Posts({ posts, users, comments, setRefetch }) {
         .then((res) => {
           const updatedUser = {
             ...res.data,
-            followers: Array.from(
-              new Set([...res.data.followers, user.username])
-            ),
+            followers: res.data.followers.find((f) => f == user.username)
+              ? res.data.followers.filter((f) => f !== user.username)
+              : Array.from(new Set([...res.data.followers, user.username])),
           };
+          console.log(updatedUser);
+
           axios.put("api/users", updatedUser);
         });
       localStorage.setItem("user", JSON.stringify(updatedUser));

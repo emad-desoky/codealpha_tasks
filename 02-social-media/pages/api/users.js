@@ -1,64 +1,57 @@
-import fs from "fs";
-import path from "path";
+import { db } from "@/firebase/clientApp";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+  query,
+  where,
+} from "firebase/firestore";
 
-const readFile = (filePath) => {
-  return new Promise((resolve, reject) => {
-    fs.readFile(filePath, "utf8", (err, data) => {
-      if (err) {
-        reject("Failed to read data");
-      } else {
-        resolve(JSON.parse(data));
-      }
-    });
-  });
-};
-
-const writeFile = (filePath, data) => {
-  return new Promise((resolve, reject) => {
-    fs.writeFile(filePath, JSON.stringify(data, null, 2), (err) => {
-      if (err) {
-        reject("Failed to write data");
-      } else {
-        resolve();
-      }
-    });
-  });
-};
+const usersCollection = collection(db, "users");
+const postsCollection = collection(db, "posts");
 
 export default async function handler(req, res) {
-  const filePath = path.join(process.cwd(), "data", "users.json");
-  const postsPath = path.join(process.cwd(), "data", "posts.json");
-
   if (req.method === "GET") {
     try {
-      const data = await readFile(filePath);
       if (req.query.username) {
-        res
-          .status(200)
-          .json(data.find((d) => d.username == req.query.username));
+        const userQuery = query(
+          usersCollection,
+          where("username", "==", req.query.username)
+        );
+        const querySnapshot = await getDocs(userQuery);
+        const user = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }))[0];
+        res.status(200).json(user);
       } else {
+        const snapshot = await getDocs(usersCollection);
+        const data = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
         res.status(200).json(data);
       }
     } catch (error) {
       console.error("GET Error:", error);
-      res.status(500).json({ error: "Failed to read data" });
+      res.status(500).json({ error: "Failed to fetch data" });
     }
   } else if (req.method === "POST") {
-    let newElement;
     try {
-      newElement = req.body;
-    } catch (error) {
-      console.error("POST JSON Error:", error);
-      res.status(400).json({ error: "Invalid JSON" });
-      return;
-    }
+      const newElement = req.body;
+      const existingUserQuery = query(
+        usersCollection,
+        where("username", "==", newElement.username)
+      );
+      const existingUsers = await getDocs(existingUserQuery);
 
-    try {
-      const data = await readFile(filePath);
-      if (data.find((user) => user.username == newElement.username)) {
-        res.status(201).json({ message: "Username Already Exists" });
+      if (!existingUsers.empty) {
+        res.status(400).json({ message: "Username Already Exists" });
       } else {
-        data.push({
+        const docRef = await addDoc(usersCollection, {
           ...newElement,
           likedReceived: 0,
           likesGiven: 0,
@@ -67,57 +60,63 @@ export default async function handler(req, res) {
           following: [],
           followers: [],
         });
-        await writeFile(filePath, data);
-        res.status(201).json(newElement);
+        res.status(201).json({ id: docRef.id, ...newElement });
       }
     } catch (error) {
       console.error("POST Error:", error);
-      res.status(500).json({ error: "Failed to write data" });
+      res.status(500).json({ error: "Failed to add data" });
     }
   } else if (req.method === "PUT") {
-    let updatedElement;
     try {
-      updatedElement = req.body;
-    } catch (error) {
-      console.error("PUT JSON Error:", error);
-      res.status(400).json({ error: "Invalid JSON" });
-      return;
-    }
+      const updatedElement = req.body;
+      console.log(req.body);
 
-    try {
-      const users = await readFile(filePath);
-      const posts = await readFile(postsPath);
-      const index = users.findIndex(
-        (item) => item.username === updatedElement.username
+      const userQuery = query(
+        usersCollection,
+        where("username", "==", updatedElement.username)
       );
-      if (index !== -1) {
-        users[index] = updatedElement;
+      const userSnapshot = await getDocs(userQuery);
 
-        const likedPosts = users.map((u) => u.likedPosts).flat();
-        posts.forEach(
-          (post) =>
-            (post.likes = likedPosts.filter((lp) => lp == post.id).length)
-        );
-
-        await writeFile(filePath, users);
-        await writeFile(postsPath, posts);
-        res.status(200).json(updatedElement);
-      } else {
-        res.status(404).json({ error: "Element not found" });
+      if (userSnapshot.empty) {
+        res.status(404).json({ error: "User not found" });
+        return;
       }
+
+      const userDocRef = doc(db, "users", userSnapshot.docs[0].id);
+
+      // Update user document
+      await updateDoc(userDocRef, updatedElement);
+
+      res.status(200).json(updatedElement);
     } catch (error) {
-      console.error("PUT Error:", error);
-      res.status(500).json({ error: "Failed to update users" });
+      console.error("PUT Error:", error.message);
+      console.error("Stack Trace:", error.stack);
+      res.status(500).json({ error: "Failed to update data" });
     }
   } else if (req.method === "DELETE") {
     try {
-      const data = await readFile(filePath);
-      const newData = data.filter((item) => item.username !== username);
-      if (data.length === newData.length) {
-        res.status(404).json({ error: "Element not found" });
+      const { username } = req.query;
+
+      if (username === "all") {
+        const querySnapshot = await getDocs(usersCollection);
+        const deletePromises = querySnapshot.docs.map((doc) =>
+          deleteDoc(doc.ref)
+        );
+        await Promise.all(deletePromises);
+        res.status(200).json({ message: "All users deleted successfully" });
       } else {
-        await writeFile(filePath, newData);
-        res.status(200).json({ message: "Element deleted successfully" });
+        const userQuery = query(
+          usersCollection,
+          where("username", "==", username)
+        );
+        const userSnapshot = await getDocs(userQuery);
+        if (userSnapshot.empty) {
+          res.status(404).json({ error: "Element not found" });
+        } else {
+          const userDocRef = doc(db, "users", userSnapshot.docs[0].id);
+          await deleteDoc(userDocRef);
+          res.status(200).json({ message: "Element deleted successfully" });
+        }
       }
     } catch (error) {
       console.error("DELETE Error:", error);
